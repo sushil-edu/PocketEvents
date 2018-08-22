@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="45dp"
+    android:padding="4dp"
+    android:id="@+id/smallFilterCard"
+    android:animateLayoutChanges="true"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text 1"
+        android:id="@+id/smallFilterText1"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="@dimen/Size8"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/textColorGrey"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text 2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/smallFilterText2"
+        android:maxLines="1"
+        android:textSize="@dimen/Size8"
+        android:gravity="center"
+        android:textColor="@color/textColorRed"
+        />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0.25dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:background="@color/textColorBlack"/>
+
+</RelativeLayout>

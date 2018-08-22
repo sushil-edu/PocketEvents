@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_30sdp"
+    android:layout_marginRight="@dimen/_30sdp"
+    android:animateLayoutChanges="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/_20sdp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_save"
+            android:tint="@color/colorAccent" />
+    </FrameLayout>
+
+    <TextView
+        fontPath="fonts/medium.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:gravity="center"
+        android:text="Save Event"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="@color/textColorRed"
+        android:textSize="@dimen/Size10"
+        tools:ignore="MissingPrefix" />
+
+
+    <EditText
+        android:id="@+id/enterEventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Event Name"
+        android:padding="@dimen/_18sdp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textSize="@dimen/Size12"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:background="@null"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/selection_grey"/>
+
+    <EditText
+        android:id="@+id/enterEventDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:editable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:hint="Event Date"
+        android:inputType="date"
+        android:padding="@dimen/_18sdp"
+        android:textSize="@dimen/Size12"
+        android:textAlignment="center"
+        android:background="@null"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/selection_grey"
+        android:layout_marginBottom="@dimen/_25sdp"/>
+
+    <TextView
+        android:id="@+id/saveEventButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Dialog_Button_Height"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/btn_design_solid"
+        android:gravity="center"
+        android:text="Save"
+        android:textColor="@color/textColorWhite"
+        android:textSize="@dimen/Size9" />
+
+
+</LinearLayout>

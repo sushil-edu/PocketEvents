@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:scrollbars="none"
+    android:background="@mipmap/bg"
+    android:id="@+id/update_detail"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingBottom="20dp"
+    android:gravity="center"
+    android:id="@+id/register_root"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        fontPath="fonts/medium.ttf"
+        tools:ignore="MissingPrefix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Profile"
+        android:textSize="@dimen/Size12"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textColor="@color/textColorWhite"
+        android:layout_marginBottom="@dimen/_10sdp"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_110sdp"
+        android:src="@drawable/user_profile_image_grey"
+        android:transitionName="@string/profileAnimation"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:id="@+id/update_profileImage" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColorHint="@color/textColorWhite"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Name"
+            android:inputType="text"
+            android:textSize="@dimen/Size10"
+            android:id="@+id/update_fName"
+            android:gravity="center"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+    <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.25"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:textColorHint="@color/textColorWhite"-->
+        <!--&gt;-->
+
+        <!--<android.support.v7.widget.AppCompatEditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:backgroundTint="@color/btnColorGrey"-->
+            <!--android:hint="Last Name"-->
+            <!--android:inputType="text"-->
+            <!--android:textSize="@dimen/Size10"-->
+            <!--android:id="@+id/update_lName"-->
+            <!--android:gravity="center"-->
+            <!--android:textColorHint="@color/textColorWhite"-->
+            <!--android:textColor="@color/textColorWhite"-->
+            <!--android:lines="1"-->
+            <!--/>-->
+    <!--</android.support.design.widget.TextInputLayout>-->
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColorHint="@color/textColorWhite"
+
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/Size10"
+            android:id="@+id/update_email"
+            android:gravity="center"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Email ID"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColorHint="@color/textColorWhite"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="phone"
+            android:textSize="@dimen/Size10"
+            android:id="@+id/update_mobile"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Mobile No."
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColorHint="@color/textColorWhite"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/Size10"
+            android:id="@+id/update_organisation"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Organisation"
+            android:inputType="text"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColorHint="@color/textColorWhite"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/Size10"
+            android:id="@+id/update_address"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Address"
+            android:inputType="text"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:textColorHint="@color/textColorWhite"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/Size10"
+            android:inputType="text"
+            android:id="@+id/update_designation"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Designation"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="@dimen/Button_Width"
+        android:layout_height="@dimen/Button_Height"
+        android:text="Update"
+        android:padding="2dp"
+        android:textSize="@dimen/Size10"
+        android:id="@+id/update_btn_update"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/textColorWhite"
+        android:background="@drawable/btn_design_solid"
+        />
+
+</LinearLayout>
+</ScrollView>

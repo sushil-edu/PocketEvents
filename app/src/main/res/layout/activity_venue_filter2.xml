@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:id="@+id/venueFilterRoot"
+    android:background="@mipmap/bg"
+    tools:context="kestone.com.kestone.UI.VenueFilterActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4"
+        android:orientation="vertical"
+        android:id="@+id/venue_header"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:layout_marginTop="@dimen/_8sdp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Configure Your Event"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size12"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/circle_red"
+                android:id="@+id/c1"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                />
+
+            <View
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="1dp"
+                android:background="@color/textColorWhite"
+                android:id="@+id/l1"
+                android:layout_toRightOf="@id/c1"
+                android:layout_centerVertical="true"
+                />
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/circle_white"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:id="@+id/c2"
+                android:layout_toRightOf="@id/l1"
+                android:layout_centerVertical="true"
+                />
+
+            <View
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="1dp"
+                android:layout_toRightOf="@id/c2"
+                android:layout_centerVertical="true"
+                android:background="@color/textColorWhite"
+                android:id="@+id/l2"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/circle_white"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:id="@+id/c3"
+                android:layout_toRightOf="@id/l2"
+                android:layout_centerVertical="true"
+                />
+
+            <View
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="1dp"
+                android:layout_toRightOf="@id/c3"
+                android:id="@+id/l3"
+                android:layout_centerVertical="true"
+                android:background="@color/textColorWhite"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/circle_white"
+                android:id="@+id/c4"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_toRightOf="@id/l3"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Venue"
+                android:gravity="center"
+                android:layout_above="@id/c1"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size10"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set-Up"
+                android:gravity="center"
+                android:layout_above="@id/c2"
+                android:layout_toRightOf="@id/l1"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size10"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Design"
+                android:gravity="center"
+                android:layout_above="@id/c3"
+                android:layout_toRightOf="@id/l2"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size10"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/c4"
+                android:layout_toRightOf="@id/l3"
+                android:text="More"
+                android:gravity="center"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size10"
+                />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:background="@color/bg_grey"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="2dp"
+                android:gravity="center"
+                android:id="@+id/venueFilter_layout_city"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Venue"
+                    android:gravity="center"
+                    android:textSize="@dimen/Size10"
+                    android:layout_margin="3dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mumbai"
+                    android:gravity="center"
+                    android:id="@+id/venueFilter_CityText"
+                    android:textColor="@color/textColorRed"
+                    android:textSize="@dimen/Size10"
+                    />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/edit"
+                android:id="@+id/venueFilterChangeCity"
+                android:layout_toRightOf="@+id/venueFilter_layout_city"
+                />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:id="@+id/venue_recycler"
+            android:layout_marginBottom="10dp"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:id="@+id/venue_btn_filter"
+            android:gravity="center"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:src="@drawable/filter"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More Filters"
+                android:textSize="@dimen/_9sdp"
+                android:textColor="@color/textColorGrey"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/venue_layout_search_reset"
+            android:layout_alignParentBottom="true"
+            >
+            <Button
+                android:textAllCaps="false"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:text="Reset"
+                android:textSize="@dimen/Size9"
+                android:layout_margin="3dp"
+                android:background="@drawable/btn_design_stroke"
+                android:textColor="@color/textColorRed"
+                android:id="@+id/venue_filter_fragment_btn_reset"
+                />
+            <Button
+                android:textAllCaps="false"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:text="Search"
+                android:textSize="@dimen/Size9"
+                android:layout_margin="3dp"
+                android:background="@drawable/btn_design_solid"
+                android:id="@+id/venue_filter_fragment_btn_search"
+                android:textColor="@color/textColorWhite"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.4"
+        android:background="@color/bg_grey"
+        android:id="@+id/venue_footer"
+        >
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Button_Height"
+            android:layout_weight="1"
+            android:id="@+id/venueFilterSave"
+            android:layout_margin="3dp"
+            android:textSize="@dimen/Size9"
+            android:background="@color/btnColorGrey"
+            android:textColor="@color/textColorWhite"
+            android:text="Save"
+            />
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Button_Height"
+            android:layout_margin="3dp"
+            android:id="@+id/venueFilterSaveAndExit"
+            android:layout_weight="1"
+            android:textSize="@dimen/Size9"
+            android:background="@color/btnColorGrey"
+            android:textColor="@color/textColorWhite"
+            android:text="Save and exit"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

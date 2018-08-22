@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#4b4b4d</color>
+    <color name="colorAccent">#e82a2a</color>
+    <color name="textColorBlack">#dc000000</color>
+    <color name="textColorRed">#e82a2a</color>
+    <color name="textColorWhite">#e6ffffff</color>
+    <color name="textColorGrey">#4b4b4d</color>
+    <color name="btnColorGrey">#777778</color>
+    <color name="lightGrey">#aacfcece</color>
+    <color name="bg_grey">#e5e7e7</color>
+    <color name="bg_grey_light">#eff1f1</color>
+    <color name="selection_grey">#aaa6a6a6</color>
+    <color name="selection_red">#a0e82a2a</color>
+    <color name="colorRedDark">#e82a2a</color>
+    <color name="text_defaul">#808080</color>
+</resources>

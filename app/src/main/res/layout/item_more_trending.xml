@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/_100sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:gravity="start"
+    android:orientation="vertical"
+    android:padding="@dimen/_3sdp">
+
+    <RelativeLayout
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/trendingImage"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_2sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_big" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/textColorBlack"
+                android:alpha="0.4"/>
+
+            <ImageView
+                android:id="@+id/videoButton"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_play_button" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/trendingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp"
+        android:gravity="start"
+        android:text="Sample"
+        android:textColor="@color/textColorRed"
+        android:textSize="@dimen/Size11" />
+
+    <TextView
+        android:id="@+id/trendingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp"
+        android:gravity="start"
+        android:text="sample"
+        android:textColor="@color/textColorGrey"
+        android:textSize="@dimen/Size9" />
+
+</LinearLayout>

@@ -1,0 +1,120 @@
+package kestone.com.kestone.Adapters.CompareActivity;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+
+import kestone.com.kestone.MODEL.Manager.CompareLeftRight;
+import kestone.com.kestone.MODEL.Manager.MySingleton;
+import kestone.com.kestone.MODEL.Venue.RESPONSE.Payload;
+import kestone.com.kestone.R;
+
+/**
+ * Created by karan on 7/18/2017.
+ */
+
+public class CompareAdapter extends BaseAdapter {
+
+    LayoutInflater inflater;
+
+    Context mContext;
+
+    CompareAdapterCallback compareAdapterCallback;
+
+    Payload payloadLeft , payloadRight;
+
+    boolean nextBool;
+
+    CompareLeftRight compare;
+
+
+    public CompareAdapter(Context context, Payload p1, Payload p2, boolean n) {
+        mContext = context;
+        nextBool = n;
+        this.compareAdapterCallback = ((CompareAdapterCallback)context);
+        payloadLeft = p1;
+        payloadRight = p2;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        compare = new CompareLeftRight(p1.getCompareIndex(),p2.getCompareIndex());
+
+    }
+
+    public class ViewHolder {
+        TextView title,l1,l2;
+    }
+
+    @Override
+    public int getCount() {
+        return payloadRight.getAttributes().size()+1;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return compare;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int i, View convertview, ViewGroup viewGroup) {
+//        View view = convertview;
+
+
+        if (convertview == null) {
+            ViewHolder vh = new ViewHolder();
+            convertview = inflater.inflate(R.layout.item_compare_list, viewGroup, false);
+        }
+
+
+            TextView title = (TextView) convertview.findViewById(R.id.compareAttributes);
+            TextView l1 = (TextView) convertview.findViewById(R.id.CompareList1);
+            TextView l2 = (TextView) convertview.findViewById(R.id.CompareList2);
+            final Button next = (Button) convertview.findViewById(R.id.compareNext_btn);
+
+
+
+            if (i == 0) {
+                title.setText("");
+                if (MySingleton.getInstance().getCompareCount() > 2) {
+                    next.setVisibility(View.VISIBLE);
+                    next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            compareAdapterCallback.onNextClicked();
+                        }
+                    });
+                    if (nextBool) {
+                        next.setBackground(mContext.getResources().getDrawable(R.drawable.next));
+                    } else {
+                        next.setBackground(mContext.getResources().getDrawable(R.drawable.previous));
+                    }
+                }
+                l1.setText(payloadLeft.getVenueName());
+                l2.setText(payloadRight.getVenueName());
+                l1.setTextColor(Color.RED);
+                l2.setTextColor(Color.RED);
+            } else {
+                title.setText(payloadLeft.getAttributes().get(i - 1).getAttrName());
+
+                l1.setText(payloadLeft.getAttributes().get(i - 1).getAttrValue());
+                l2.setText(payloadRight.getAttributes().get(i - 1).getAttrValue());
+            }
+
+
+
+
+        return convertview;
+    }
+
+    public interface CompareAdapterCallback{
+         void onNextClicked();
+    }
+}

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_25sdp"
+        android:gravity="center"
+        android:orientation="vertical"
+
+        >
+
+        <TextView
+            android:id="@+id/dialogue_c_venueCategory"
+            fontPath="fonts/medium.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Venue Category"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/Size12"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/dialogue_c_venueSubheading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="How many people do you expect at your event ?"
+            android:textSize="@dimen/Size10" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialogue_a_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Min"
+                    android:textSize="@dimen/Size10" />
+
+                <EditText
+                    android:id="@+id/minEt"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/btn_design_stroke"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textSize="@dimen/Size12" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="To" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Max"
+                    android:textSize="@dimen/Size10" />
+
+                <EditText
+                    android:id="@+id/maxEt"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/btn_design_stroke"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textSize="@dimen/Size12" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/rangeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="200-400"
+            android:textColor="@color/btnColorGrey"
+            android:textSize="@dimen/Size10" />
+
+        <com.appyvet.rangebar.RangeBar
+            android:id="@+id/rangeBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_gravity="center"
+            app:barWeight="1dp"
+            app:connectingLineColor="@color/textColorRed"
+            app:connectingLineWeight="1dp"
+            app:pinColor="@color/textColorRed"
+            app:pinMaxFont="@dimen/Size7"
+            app:pinMinFont="@dimen/Size7"
+            app:pinRadius="@dimen/_10sdp"
+            app:rangeBarColor="@color/bg_grey"
+            app:selectorColor="@color/textColorRed"
+            app:selectorSize="@dimen/_5sdp"
+            app:textColor="@color/textColorWhite"
+            app:tickColor="@android:color/transparent"
+            app:tickHeight="1dp"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/_11sdp"
+        android:background="@color/selection_grey" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialogue_c_back_btn"
+            android:layout_width="@dimen/Dialog_Button_Width"
+            android:layout_height="@dimen/Dialog_Button_Height"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_design_stroke"
+            android:gravity="center"
+            android:text="Back"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/Size9" />
+
+        <TextView
+            android:id="@+id/dialogue_c_select_btn"
+            android:layout_width="@dimen/Dialog_Button_Width"
+            android:layout_height="@dimen/Dialog_Button_Height"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_design_solid"
+            android:gravity="center"
+            android:text="Select"
+            android:textColor="@color/textColorWhite"
+            android:textSize="@dimen/Size9" />
+
+    </LinearLayout>
+
+</LinearLayout>

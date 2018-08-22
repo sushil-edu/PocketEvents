@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+    <TextView
+        fontPath="fonts/medium.ttf"
+        tools:ignore="MissingPrefix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/Size12"
+        android:textColor="@color/textColorBlack"
+        android:text="FAQ"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:gravity="center"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/faq_list"
+        android:scrollbars="none"
+        >
+
+    </ListView>
+
+</LinearLayout>

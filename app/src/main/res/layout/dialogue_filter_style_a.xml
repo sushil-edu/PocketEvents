@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="@dimen/_25sdp">
+
+        <TextView
+            fontPath="fonts/medium.ttf"
+            tools:ignore="MissingPrefix"
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/dialogue_a_venueCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Venue Category"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/Size12"/>
+        <TextView
+            android:paddingRight="@dimen/_30sdp"
+            android:paddingLeft="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Category"
+            android:lines="2"
+            android:maxLines="2"
+            android:gravity="center"
+            android:id="@+id/dialogue_a_venueSubheading"
+            android:textSize="@dimen/Size10"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:id="@+id/dialogue_a_rv">
+
+    </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/_11sdp"
+        android:background="@color/selection_grey"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:gravity="center">
+        <TextView
+            android:gravity="center"
+            android:layout_width="@dimen/Dialog_Button_Width"
+            android:layout_height="@dimen/Dialog_Button_Height"
+            android:layout_margin="5dp"
+            android:text="Back"
+            android:textSize="@dimen/Size9"
+            android:id="@+id/dialogue_a_back_btn"
+            android:textColor="@color/textColorRed"
+            android:background="@drawable/btn_design_stroke"
+            />
+        <TextView
+            android:gravity="center"
+            android:layout_width="@dimen/Dialog_Button_Width"
+            android:layout_height="@dimen/Dialog_Button_Height"
+            android:text="Select"
+            android:textSize="@dimen/Size9"
+            android:layout_margin="5dp"
+            android:id="@+id/dialogue_a_select_btn"
+            android:textColor="@color/textColorWhite"
+            android:background="@color/selection_grey"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

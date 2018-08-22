@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/contact_us_card"
+    android:padding="@dimen/_7sdp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/Size10"
+        android:gravity="start"
+        android:layout_marginBottom="@dimen/_7sdp"
+        android:id="@+id/contact_us_Text"
+        android:textColor="@color/textColorBlack"
+        android:text="Question"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@color/bg_grey"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:id="@+id/contact_us_expanding"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:textSize="@dimen/Size10"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:lines="1"
+            android:id="@+id/et_invoice"
+            android:hint="Enter your Invoice number or Event name"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorGrey"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:background="@color/bg_grey"
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:id="@+id/et_yourQuery"
+            android:paddingRight="0dp"
+            android:backgroundTint="@android:color/transparent"
+            android:textSize="@dimen/Size10"
+            android:textColor="@color/textColorGrey"
+            android:hint="@string/YourQueries"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/query_line"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@color/bg_grey"
+            android:layout_marginBottom="@dimen/_7sdp"
+            />
+
+        <TextView
+            android:textSize="@dimen/Size9"
+            android:gravity="center"
+            android:layout_width="@dimen/Button_Width"
+            android:layout_height="@dimen/Button_Height"
+            android:id="@+id/btn_Submit"
+            android:background="@drawable/btn_design_stroke"
+            android:text="@string/Submit"
+            android:textColor="@color/textColorRed"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:background="@color/bg_grey"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

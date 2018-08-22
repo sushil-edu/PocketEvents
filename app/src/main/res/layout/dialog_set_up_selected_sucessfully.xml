@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_20sdp"
+    android:gravity="center"
+    android:animateLayoutChanges="true"
+    android:focusableInTouchMode="true">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_20sdp">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/tick_inside_a_circle"/>
+    </FrameLayout>
+    <TextView
+        fontPath="fonts/medium.ttf"
+        tools:ignore="MissingPrefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set-Up Selected Successfully"
+        android:textSize="@dimen/Size11"
+        android:gravity="center"
+        android:textColor="@color/textColorRed"
+
+        />
+    <TextView
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:gravity="center"
+        android:textSize="@dimen/Size12"
+        android:text="You are moving like a pro !"
+        />
+
+    <TextView
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:gravity="center"
+        android:textSize="@dimen/Size12"
+        android:text="You have nicely taken care of all technical requirements for your event. Now proceed with selecting its theme and communication design."
+        />
+
+
+    <TextView
+        android:textSize="@dimen/Size9"
+        android:gravity="center"
+        android:layout_width="@dimen/_125sdp"
+        android:layout_height="@dimen/Button_Height"
+        android:background="@drawable/btn_design_solid"
+        android:text="Proceed with Design"
+        android:id="@+id/proceed"
+        android:textColor="@color/textColorWhite"
+        />
+
+
+</LinearLayout>

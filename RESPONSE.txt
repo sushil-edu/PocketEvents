@@ -1,0 +1,250 @@
+{
+    "getVenueListResult": [
+        {
+            "Code": "OK",
+            "Message": "Request was successful.",
+            "Payload": [
+                {
+                    "Attributes": [
+                        {
+                            "AttrName": "Distance From Airport",
+                            "AttrValue": "10"
+                        },
+                        {
+                            "AttrName": "Price Per Pax",
+                            "AttrValue": "500"
+                        },
+                        {
+                            "AttrName": "Venue Type",
+                            "AttrValue": "Outdoor"
+                        }
+                    ],
+                    "Halls": [
+                        {
+                            "Dimensions": "2",
+                            "Floreplan": "http://www.ashg.org/2015meeting/pdf/Hilton Baltimore Floor Plan.pdf",
+                            "HallID": "1",
+                            "HallName": "banque hal name",
+                            "IsRecommended": "0",
+                            "capacity": [
+                                {
+                                    "SeatingCapacity": "200",
+                                    "SeatingName": "Full Moon"
+                                },
+                                {
+                                    "SeatingCapacity": "100",
+                                    "SeatingName": "Half Moon"
+                                }
+                            ],
+                            "hallImages": [
+                                "http://203.115.101.123:97/Images/15Aug.jpg",
+                                " http://203.115.101.123:97/Images/15Aug.jpg",
+                                " http://203.115.101.123:97/Images/15Aug.jpg"
+                            ],
+                            "hallSizes": [
+                                {
+                                    "Dimensions": "LXBXH",
+                                    "Size": "1500 sqft",
+                                    "SizeName": "Hall Size & Area"
+                                },
+                                {
+                                    "Dimensions": "LXBXH",
+                                    "Size": "Dedicated",
+                                    "SizeName": "Prefunction Area"
+                                }
+                            ]
+                        },
+                        {
+                            "Dimensions": "2",
+                            "Floreplan": "http://www.ashg.org/2015meeting/pdf/Hilton Baltimore Floor Plan.pdf",
+                            "HallID": "2",
+                            "HallName": "banque hal name",
+                            "IsRecommended": "1",
+                            "capacity": [
+                                {
+                                    "SeatingCapacity": "200",
+                                    "SeatingName": "Full Moon"
+                                },
+                                {
+                                    "SeatingCapacity": "100",
+                                    "SeatingName": "Half Moon"
+                                }
+                            ],
+                            "hallImages": [
+                                "http://203.115.101.123:97/Images/15Aug.jpg",
+                                " http://203.115.101.123:97/Images/15Aug.jpg",
+                                " http://203.115.101.123:97/Images/15Aug.jpg"
+                            ],
+                            "hallSizes": [
+                                {
+                                    "Dimensions": "LXBXH",
+                                    "Size": "1500 sqft",
+                                    "SizeName": "Hall Size & Area"
+                                },
+                                {
+                                    "Dimensions": "LXBXH",
+                                    "Size": "Dedicated",
+                                    "SizeName": "Prefunction Area"
+                                }
+                            ]
+                        },
+                        {
+                            "Dimensions": "2",
+                            "Floreplan": "http://www.ashg.org/2015meeting/pdf/Hilton Baltimore Floor Plan.pdf",
+                            "HallID": "3",
+                            "HallName": "banque hal name",
+                            "IsRecommended": "0",
+                            "capacity": [
+                                {
+                                    "SeatingCapacity": "200",
+                                    "SeatingName": "Full Moon"
+                                },
+                                {
+                                    "SeatingCapacity": "100",
+                                    "SeatingName": "Half Moon"
+                                }
+                            ],
+                            "hallImages": [
+                                "[ ]"
+                            ],
+                            "hallSizes": [
+                                {
+                                    "Dimensions": "LXBXH",
+                                    "Size": "1500 sqft",
+                                    "SizeName": "Hall Size & Area"
+                                },
+                                {
+                                    "Dimensions": "LXBXH",
+                                    "Size": "Dedicated",
+                                    "SizeName": "Prefunction Area"
+                                }
+                            ]
+                        }
+                    ],
+                    "IsRecomended": "1",
+                    "TotalCount": "4",
+                    "VenueAddress": "kirti nagerindustrial area",
+                    "VenueID": "1",
+                    "VenueImages": [
+                        "http://www.rest.com/abc.png",
+                        " http://www.rest.com/abc22.png",
+                        " http://www.rest.com/XYZ.png",
+                        " http://www.rest.com/Ylims.png"
+                    ],
+                    "VenueLat": "20.5937° N",
+                    "VenueLong": "78.9629° E",
+                    "VenueName": "The Ashok Hotel",
+                    "VenuePhone": [
+                        "9911335161",
+                        " 3344223344",
+                        " 4466446644",
+                        " 9911335161",
+                        " 3344223344",
+                        " 4466446644"
+                    ]
+                },
+                {
+                    "Attributes": [
+                        {
+                            "AttrName": "Distance From Airport",
+                            "AttrValue": "5"
+                        },
+                        {
+                            "AttrName": "Price Per Pax",
+                            "AttrValue": "500"
+                        },
+                        {
+                            "AttrName": "Venue Type",
+                            "AttrValue": "Outdoor"
+                        }
+                    ],
+                    "Halls": [],
+                    "IsRecomended": "0",
+                    "TotalCount": "4",
+                    "VenueAddress": "kirti nagerindustrial area",
+                    "VenueID": "3",
+                    "VenueImages": [
+                        "http://www.rest.com/abc.png",
+                        " http://www.rest.com/abc22.png",
+                        " http://www.rest.com/XYZ.png",
+                        " http://www.rest.com/Ylims.png"
+                    ],
+                    "VenueLat": "20.5937° N",
+                    "VenueLong": "78.9629° E",
+                    "VenueName": "Hotel Hayat",
+                    "VenuePhone": [
+                        "4466446644",
+                        " 4466446644",
+                        " 4466446644",
+                        " 4466446644"
+                    ]
+                },
+                {
+                    "Attributes": [
+                        {
+                            "AttrName": "Distance From Airport",
+                            "AttrValue": "50"
+                        },
+                        {
+                            "AttrName": "Price Per Pax",
+                            "AttrValue": "500"
+                        },
+                        {
+                            "AttrName": "Venue Type",
+                            "AttrValue": "Outdoor"
+                        }
+                    ],
+                    "Halls": [],
+                    "IsRecomended": "0",
+                    "TotalCount": "4",
+                    "VenueAddress": "kirti nagerindustrial area",
+                    "VenueID": "4",
+                    "VenueImages": [
+                        "http://www.rest.com/abc.png",
+                        " http://www.rest.com/abc22.png",
+                        " http://www.rest.com/XYZ.png",
+                        " http://www.rest.com/Ylims.png"
+                    ],
+                    "VenueLat": "20.5937° N",
+                    "VenueLong": "78.9629° E",
+                    "VenueName": "Hotek Deepak",
+                    "VenuePhone": [
+                        "9911335161",
+                        " 9911335161"
+                    ]
+                },
+                {
+                    "Attributes": [
+                        {
+                            "AttrName": "Distance From Airport",
+                            "AttrValue": "500"
+                        },
+                        {
+                            "AttrName": "Price Per Pax",
+                            "AttrValue": "500"
+                        },
+                        {
+                            "AttrName": "Venue Type",
+                            "AttrValue": "Outdoor"
+                        }
+                    ],
+                    "Halls": [],
+                    "IsRecomended": "0",
+                    "TotalCount": "4",
+                    "VenueAddress": "kirti nagerindustrial area",
+                    "VenueID": "5",
+                    "VenueImages": [
+                        "[ ]"
+                    ],
+                    "VenueLat": "20.5937° N",
+                    "VenueLong": "78.9629° E",
+                    "VenueName": "Hotek ",
+                    "VenuePhone": [
+                        "[ ]"
+                    ]
+                }
+            ],
+            "Status": "true"
+        }
+    ]
+}

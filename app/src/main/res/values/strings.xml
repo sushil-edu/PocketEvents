@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">PocketEvents</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_city_search">CitySearchActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="profileAnimation">animateProfile</string>
+    <string name="logoAnimation">animateLogo</string>
+
+    <string name="PleaseWait">Please Wait</string>
+    <string name="VolleyTimeout">Connection Timed Out</string>
+    <string name="ValidPassword">Password should be alteast 4 Characters</string>
+    <string name="ValidName">Name should be alteast two characters long</string>
+    <string name="ValidEmail">Please enter a valid email-ID</string>
+    <string name="ValidMobile">Enter a Valid Mobile</string>
+    <string name="MatchPassword">Passwords do not Match</string>
+    <string name="CheckCredentials">Checking Credentials</string>
+    <string name="InvalidCredentials">Invalid Credentials</string>
+    <string name="SomethingWentWrong">Something Went Wrong</string>
+    <string name="Reset">Are you sure you want to reset all filters?</string>
+    <string name="SaveFilter">Save Filter Selections?</string>
+    <string name="GetVenues">Getting Venues.....</string>
+    <string name="UpdateSuccessful">Update Successful </string>
+    <string name="SaveExit">Save and Exit?</string>
+    <string name="FiltersSaved">Filters Saved</string>
+    <string name="NoImagesToDisplay">No Images to Display</string>
+    <string name="SelectConsultingError">Please select consulting services</string>
+    <string name="Submit">Submit</string>
+    <string name="YourQueries">Your Query</string>
+    <string name="FeedBack">Feedback</string>
+    <string name="YourFeedBack">Provide your Feedback</string>
+    <string name="RatingError">Please Provide a Rating</string>
+
+
+    <string name="SelectPayment">Select Payment Method</string>
+    <string name="cardName">Name on card</string>
+    <string name="cardNumber">Card Number</string>
+    <string name="cardExpiry">Expiry Date</string>
+    <string name="CardCVV">CVV</string>
+    <string name="payment_title">Select Payment Method</string>
+    <string name="payment_proceed_lable1">Organization</string>
+    <string name="payment_proceed_lable2">Individual</string>
+    <string name="payment_proceed_gst_number">Enter GST Number</string>
+    <string name="termsAndCondition">Left aligned running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here.\n \n Left aligned running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms andconditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here.</string>
+
+
+</resources>

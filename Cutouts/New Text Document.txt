@@ -1,0 +1,423 @@
+package kestone.com.kestone.UI;
+
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
+
+import kestone.com.kestone.Adapters.DialogueAdapters.FilterDialogueAdapterStyleA;
+import kestone.com.kestone.Adapters.DialogueAdapters.FilterDialogueAdpaterStyleB;
+import kestone.com.kestone.Adapters.DialogueAdapters.PhoneNumbersAdapter;
+import kestone.com.kestone.Adapters.DialogueAdapters.SelectHallCapacityAdapter;
+import kestone.com.kestone.Adapters.DialogueAdapters.SelectHallImageAdapter;
+import kestone.com.kestone.Adapters.DialogueAdapters.SelectHallSizeAdapter;
+import kestone.com.kestone.Adapters.VenueActivity.VenueCardAdapter;
+import kestone.com.kestone.Adapters.VenueActivity.VenueCardInnerHallAdapter;
+import kestone.com.kestone.Adapters.VenueActivity.VenueSmallFilterAdapter;
+import kestone.com.kestone.MODEL.Manager.FilterManager;
+import kestone.com.kestone.MODEL.Manager.MySingleton;
+import kestone.com.kestone.MODEL.Venue.REQUEST.VenueRequest;
+import kestone.com.kestone.MODEL.Venue.RESPONSE.GetVenueListResponse;
+import kestone.com.kestone.MODEL.Venue.RESPONSE.Halls;
+import kestone.com.kestone.MODEL.Venue.RESPONSE.Payload;
+import kestone.com.kestone.R;
+import kestone.com.kestone.Utilities.GenericRequest;
+import kestone.com.kestone.Utilities.StorageUtilities;
+import qiu.niorgai.StatusBarCompat;
+
+public class VenueActivity extends AppCompatActivity implements VenueSmallFilterAdapter.VenueSmallFilterAdapterCallBack, View.OnClickListener, VenueCardAdapter.VenueCardAdapterCallBack, VenueCardInnerHallAdapter.InnerHallAdapterCallBack {
+    RecyclerView recyclerViewSmall;
+    RecyclerViewPager recyclerViewLarge;
+    VenueSmallFilterAdapter venueSmallFilterAdapter;
+    VenueCardAdapter venueCardAdapter;
+
+    RecyclerView dialogueRecycler;
+    RecyclerViewPager dialogueRecyclerPager;
+
+    Dialog dialog;
+
+    TextView cityName;
+
+    StorageUtilities storage;
+
+    Button dialogueSelect, dialogueBack, cityChange, addToCompare1, addToCompare2, addToCompare3, compare;
+
+    GetVenueListResponse venues;
+
+    ProgressDialog progressDialog;
+
+    LinearLayout root;
+
+    FilterManager filterManager;
+
+//    boolean c1Empty = true;
+//    boolean c2Empty = true;
+//    boolean c3Empty = true;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_venue);
+        StatusBarCompat.translucentStatusBar(VenueActivity.this,true);
+
+        storage = new StorageUtilities(getApplicationContext());
+
+        dialog = new Dialog(this);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Getting Venues.....");
+        addToCompare1 = (Button)findViewById(R.id.venue_btn_addtoCompare1);
+        addToCompare2 = (Button)findViewById(R.id.venue_btn_addtoCompare2);
+        addToCompare3 = (Button)findViewById(R.id.venue_btn_addtoCompare3);
+        compare = (Button)findViewById(R.id.venue_btn_compare);
+
+        addToCompare1.setOnClickListener(this);
+        addToCompare2.setOnClickListener(this);
+        addToCompare3.setOnClickListener(this);
+        compare.setOnClickListener(this);
+
+        root = (LinearLayout)findViewById(R.id.VenueRoot);
+
+        filterManager = new FilterManager(VenueActivity.this);
+
+        venues = (GetVenueListResponse) getIntent().getSerializableExtra("venues");
+        //Toast.makeText(getApplicationContext(),String.valueOf(venues.getResponse().get(0).getPayload().size()),Toast.LENGTH_SHORT).show();
+
+        venueSmallFilterAdapter = new VenueSmallFilterAdapter(VenueActivity.this);
+        recyclerViewSmall = (RecyclerView)findViewById(R.id.venueMain_rv1);
+        recyclerViewLarge = (RecyclerViewPager) findViewById(R.id.venueMain_rv2);
+        cityName = (TextView)findViewById(R.id.venueCityName);
+
+        cityChange = (Button)findViewById(R.id.venue_citychange);
+        cityChange.setOnClickListener(this);
+
+        cityName.setText(storage.loadCity());
+
+        venueCardAdapter = new VenueCardAdapter(VenueActivity.this, venues);
+
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),1, GridLayoutManager.HORIZONTAL, false);
+        recyclerViewSmall.setLayoutManager(layoutManager);
+        recyclerViewSmall.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewSmall.setAdapter(venueSmallFilterAdapter);
+
+        LinearLayoutManager layout = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+        recyclerViewLarge.setLayoutManager(layout);
+        recyclerViewLarge.setHasFixedSize(true);
+
+
+        recyclerViewLarge.setAdapter(venueCardAdapter);
+
+
+    }
+
+
+    @Override
+    public void onClickCallBack(int i, int mode, int selection) {
+        if (mode==0) {
+
+
+            final FilterDialogueAdapterStyleA filterDialogueAdapterStyleA = new FilterDialogueAdapterStyleA(VenueActivity.this, i,selection);
+
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialogue_filter_style_a);
+            dialogueRecycler = (RecyclerView) dialog.findViewById(R.id.dialogue_a_rv);
+            dialogueSelect = (Button) dialog.findViewById(R.id.dialogue_a_select_btn);
+            dialogueBack = (Button) dialog.findViewById(R.id.dialogue_a_back_btn);
+            final RecyclerView.LayoutManager lm = new GridLayoutManager(getApplicationContext(), 1, GridLayoutManager.HORIZONTAL, false);
+            dialogueRecycler.setLayoutManager(lm);
+            dialogueRecycler.setAdapter(filterDialogueAdapterStyleA);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show();
+            dialogueBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialogueSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    filterDialogueAdapterStyleA.getSelectedItems();
+                    dialog.dismiss();
+                    progressDialog.show();
+                    GetVenues();
+                    venueSmallFilterAdapter.notifyDataSetChanged();
+                }
+            });
+        }else {
+            final FilterDialogueAdpaterStyleB filterDialogueAdpaterStyleB = new FilterDialogueAdpaterStyleB(VenueActivity.this,i,selection);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialogue_filter_style_b);
+            dialogueRecyclerPager = (RecyclerViewPager) dialog.findViewById(R.id.dialogue_b_rv);
+            dialogueSelect = (Button) dialog.findViewById(R.id.dialogue_b_select_btn);
+            dialogueBack = (Button) dialog.findViewById(R.id.dialogue_b_back_btn);
+            final RecyclerView.LayoutManager lm = new GridLayoutManager(getApplicationContext(), 1, GridLayoutManager.HORIZONTAL, false);
+            dialogueRecyclerPager.setLayoutManager(lm);
+            dialogueRecyclerPager.setAdapter(filterDialogueAdpaterStyleB);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show();
+            dialogueBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialogueSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    filterDialogueAdpaterStyleB.getSelectedItems();
+                    dialog.dismiss();
+                    progressDialog.show();
+                    GetVenues();
+                    venueSmallFilterAdapter.notifyDataSetChanged();
+                }
+            });
+
+        }
+    }
+
+    @Override
+    public void moreFilterCallback() {
+        Intent intent = new Intent(VenueActivity.this,MoreFilterActivity.class);
+        intent.putExtra("activitySource",1);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onPostResume() {
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),1, GridLayoutManager.HORIZONTAL, false);
+        recyclerViewSmall.setLayoutManager(layoutManager);
+        recyclerViewSmall.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewSmall.setAdapter(venueSmallFilterAdapter);
+        super.onPostResume();
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent i;
+        switch (view.getId()){
+            case R.id.venue_citychange :
+                i = new Intent(VenueActivity.this,CitySearchActivity.class);
+                startActivity(i);
+                break;
+            case R.id.venue_btn_addtoCompare1 :
+                if (!MySingleton.getInstance().isC1Empty()) {
+                    for (int j = 0; j < MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().size(); j++) {
+                        if (addToCompare1.getText().equals(MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(j).getVenueName())) {
+                            MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(j).setAddedToCompare(false);
+                            MySingleton.getInstance().getCompare().remove(0);
+                            addToCompare1.setText("Drop to compare");
+                            addToCompare1.setTextColor(getResources().getColor(R.color.textColorGrey));
+                            addToCompare1.setBackground(getResources().getDrawable(R.drawable.btn_design_grey_stroke));
+                            venueCardAdapter.notifyDataSetChanged();
+                            MySingleton.getInstance().setC1Empty(true);
+                            Toast.makeText(getApplicationContext(),String.valueOf(MySingleton.getInstance().getCompareCount()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
+            case R.id.venue_btn_addtoCompare2 :
+                if (!MySingleton.getInstance().isC2Empty()) {
+                    for (int j = 0; j < MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().size(); j++) {
+                        if (addToCompare2.getText().equals(MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(j).getVenueName())) {
+                            MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(j).setAddedToCompare(false);
+                            MySingleton.getInstance().getCompare().remove(1);
+                            addToCompare2.setText("Drop to compare");
+                            addToCompare2.setTextColor(getResources().getColor(R.color.textColorGrey));
+                            addToCompare2.setBackground(getResources().getDrawable(R.drawable.btn_design_grey_stroke));
+                            venueCardAdapter.notifyDataSetChanged();
+                            MySingleton.getInstance().setC2Empty(true);
+                            Toast.makeText(getApplicationContext(),String.valueOf(MySingleton.getInstance().getCompareCount()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            case R.id.venue_btn_addtoCompare3 :
+                if (!MySingleton.getInstance().isC3Empty()) {
+                    for (int j = 0; j < MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().size(); j++) {
+                        if (addToCompare3.getText().equals(MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(j).getVenueName())) {
+                            MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(j).setAddedToCompare(false);
+                            MySingleton.getInstance().getCompare().remove(2);
+                            addToCompare3.setText("Drop to compare");
+                            addToCompare3.setTextColor(getResources().getColor(R.color.textColorGrey));
+                            addToCompare3.setBackground(getResources().getDrawable(R.drawable.btn_design_grey_stroke));
+                            venueCardAdapter.notifyDataSetChanged();
+                            MySingleton.getInstance().setC3Empty(true);
+                            Toast.makeText(getApplicationContext(),String.valueOf(MySingleton.getInstance().getCompareCount()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
+            case R.id.venue_btn_compare :
+                i = new Intent(VenueActivity.this,CompareActivity.class);
+                startActivity(i);
+                break;
+        }
+    }
+
+
+    @Override
+    public void onHallsClick() {
+
+
+
+    }
+
+    @Override
+    public void onPhoneClick(String[] phone) {
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialogue_phone);
+        ListView phoneList = (ListView)dialog.findViewById(R.id.phone_lv);
+        PhoneNumbersAdapter adapter = new PhoneNumbersAdapter(VenueActivity.this,phone);
+        phoneList.setAdapter(adapter);
+        phoneList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+adapterView.getItemAtPosition(i)));
+                startActivity(intent);
+            }
+        });
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+    }
+
+    @Override
+    public void onAddtoCompareClick(Payload payload, int position) {
+        if (MySingleton.getInstance().isC1Empty()){
+            addToCompare1.setText(payload.getVenueName());
+            addToCompare1.setBackground(getResources().getDrawable(R.drawable.btn_design_solid));
+            addToCompare1.setTextColor(getResources().getColor(R.color.textColorWhite));
+            MySingleton.getInstance().getCompare().add(0,payload);
+            MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(position).setAddedToCompare(true);
+            MySingleton.getInstance().setC1Empty(false);
+            venueCardAdapter.notifyDataSetChanged();
+            Toast.makeText(getApplicationContext(),String.valueOf(MySingleton.getInstance().getCompareCount()),Toast.LENGTH_SHORT).show();
+        }else if (MySingleton.getInstance().isC2Empty()){
+            addToCompare2.setText(payload.getVenueName());
+            addToCompare2.setBackground(getResources().getDrawable(R.drawable.btn_design_solid));
+            addToCompare2.setTextColor(getResources().getColor(R.color.textColorWhite));
+            MySingleton.getInstance().getCompare().add(1,payload);
+            MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(position).setAddedToCompare(true);
+            MySingleton.getInstance().setC2Empty(false);
+            venueCardAdapter.notifyDataSetChanged();
+            Toast.makeText(getApplicationContext(),String.valueOf(MySingleton.getInstance().getCompareCount()),Toast.LENGTH_SHORT).show();
+        }else if (MySingleton.getInstance().isC3Empty()){
+            addToCompare3.setText(payload.getVenueName());
+            addToCompare3.setBackground(getResources().getDrawable(R.drawable.btn_design_solid));
+            addToCompare3.setTextColor(getResources().getColor(R.color.textColorWhite));
+            MySingleton.getInstance().getCompare().add(2,payload);
+            MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(position).setAddedToCompare(true);
+            MySingleton.getInstance().setC3Empty(false);
+            venueCardAdapter.notifyDataSetChanged();
+            Toast.makeText(getApplicationContext(),String.valueOf(MySingleton.getInstance().getCompareCount()),Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getApplication(),"All Filled",Toast.LENGTH_LONG).show();
+        }
+
+
+
+    }
+
+
+    @Override
+    public void onClickHall(Halls halls, String HotelName) {
+        RecyclerViewPager dialogueViewPager;
+        ListView sizeList;
+        RecyclerView capacity;
+        TextView hotelName, hallName;
+        Button floorPlan, selectHall;
+        SelectHallCapacityAdapter selectHallCapacityAdapter = new SelectHallCapacityAdapter(VenueActivity.this,halls.getCapacities());
+        SelectHallImageAdapter selectHallImageAdapter = new SelectHallImageAdapter(VenueActivity.this,halls.getHallImages());
+        SelectHallSizeAdapter selectHallSizeAdapter = new SelectHallSizeAdapter(VenueActivity.this,halls.getHallSizes());
+
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialogue_halls);
+
+        hotelName = (TextView)dialog.findViewById(R.id.select_hall_dialogue_hotel_name);
+        hallName = (TextView)dialog.findViewById(R.id.select_hall_dialogue_hall_name);
+
+        hotelName.setText(HotelName);
+        hallName.setText(halls.getHallName());
+
+        dialogueViewPager = (RecyclerViewPager) dialog.findViewById(R.id.select_hall_dialogue_image_rv);
+        sizeList = (ListView)dialog.findViewById(R.id.select_hall_dialogue_hallsize_lv);
+        capacity = (RecyclerView)dialog.findViewById(R.id.select_hall_dialogue_hallcapacity_rv);
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),1, GridLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager2 = new GridLayoutManager(getApplicationContext(),1, GridLayoutManager.HORIZONTAL, false);
+
+        dialogueViewPager.setLayoutManager(layoutManager);
+        capacity.setLayoutManager(layoutManager2);
+
+        dialogueViewPager.setAdapter(selectHallImageAdapter);
+        sizeList.setAdapter(selectHallSizeAdapter);
+        capacity.setAdapter(selectHallCapacityAdapter);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+    }
+    void GetVenues(){
+        GenericRequest<GetVenueListResponse> request = new GenericRequest<GetVenueListResponse>(Request.Method.POST, "http://203.115.101.123:97/RestServiceImpl.svc/getVenueList", GetVenueListResponse.class, new VenueRequest("1", "0", "10", filterManager.getSelectedFilters()),
+                new Response.Listener<GetVenueListResponse>() {
+                    @Override
+                    public void onResponse(GetVenueListResponse response) {
+                        progressDialog.dismiss();
+                        Log.d("VENUE RESPONSE",response.toString());
+                        if (Boolean.valueOf(response.getResponse().get(0).getStatus())) {
+                            //Toast.makeText(getApplicationContext(),String.valueOf(response.getResponse().get(0).getPayload().size()),Toast.LENGTH_SHORT).show();
+                            MySingleton.getInstance().setVenues(response);
+                            venueCardAdapter = new VenueCardAdapter(VenueActivity.this, response);
+                            recyclerViewLarge.setAdapter(venueCardAdapter);
+                        }else {
+                            Snackbar snackbar = Snackbar
+                                    .make(root,response.getResponse().get(0).getMessage(), Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                Log.d("VENUE ERROR",error.toString());
+                Snackbar snackbar = Snackbar
+                        .make(root,"Cannot connect to Server...", Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(request);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        GetVenueListResponse v = (GetVenueListResponse) getIntent().getSerializableExtra("venues");
+        venueCardAdapter = new VenueCardAdapter(VenueActivity.this, v);
+        recyclerViewLarge.setAdapter(venueCardAdapter);
+    }
+}

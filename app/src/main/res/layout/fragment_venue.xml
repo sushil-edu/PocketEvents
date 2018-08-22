@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/venue_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/venueMain_footer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:id="@+id/venueMain_layout_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="2dp">
+
+                    <TextView
+                        fontPath="fonts/medium.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:gravity="center"
+                        android:text="City"
+                        android:textSize="@dimen/Size10"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:id="@+id/venueCityName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Mumbai"
+                        android:textColor="@color/textColorRed"
+                        android:textSize="@dimen/Size11" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/venue_citychange"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/venueMain_layout_city"
+                    android:background="@drawable/edit" />
+
+                <TextView
+                    android:id="@+id/venue_showingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:text="Showing\n 1 of 10 Results"
+                    android:textSize="@dimen/Size9" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@color/btnColorGrey"></View>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/venueMain_rv1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_below="@+id/venueMain_layout_city"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+                    android:id="@+id/venueMain_rv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"/>
+
+                <RelativeLayout
+                    android:id="@+id/textLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textviewLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/btnColorGrey"
+                        android:textSize="@dimen/Size11" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/venueMain_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/bg_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/venue_btn_addtoCompare1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Dialog_Button_Height"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/transition_gst_rso"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="Add Hall To \nCompare"
+                android:textColor="@color/btnColorGrey"
+                android:textSize="@dimen/Size7" />
+
+            <TextView
+                android:id="@+id/venue_btn_addtoCompare2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Dialog_Button_Height"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/transition_gst_rso"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="Add Hall to \nCompare"
+                android:textColor="@color/btnColorGrey"
+                android:textSize="@dimen/Size7" />
+
+            <TextView
+                android:id="@+id/venue_btn_addtoCompare3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Dialog_Button_Height"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/transition_gst_rso"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="Add Hall To \nCompare"
+                android:textColor="@color/btnColorGrey"
+                android:textSize="@dimen/Size7" />
+
+            <TextView
+                android:id="@+id/venue_btn_compare"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Dialog_Button_Height"
+                android:layout_margin="3dp"
+                android:layout_weight="1.2"
+                android:background="@color/btnColorGrey"
+                android:gravity="center"
+                android:text="Compare Halls"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size7" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/venue_card_btn_select"
+                android:layout_width="@dimen/Dialog_Button_Width"
+                android:layout_height="@dimen/Button_Height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_design_solid"
+                android:gravity="center"
+                android:text="Select Venue"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size8" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

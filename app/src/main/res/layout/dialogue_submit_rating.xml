@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:animateLayoutChanges="true"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="@dimen/_25sdp"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/FeedBack"
+            android:id="@+id/dialogue_a_venueCategory"
+            android:textSize="@dimen/Size12"
+            android:textColor="@color/textColorRed"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/_11sdp"
+        android:layout_marginRight="@dimen/_11sdp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            style="?android:attr/ratingBarStyle"
+            android:id="@+id/sd_rating"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/sd_hide"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColorHint="@color/textColorGrey"
+            >
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/textColorRed"
+                android:hint="@string/YourFeedBack"
+                android:gravity="start"
+                android:inputType="text"
+                android:id="@+id/sd_et"
+                android:textSize="@dimen/Size10"
+                android:textColorHint="@color/textColorGrey"
+                android:textColor="@color/textColorGrey"
+                />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/_11sdp"
+        android:background="@color/selection_grey"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="@dimen/Button_Width"
+            android:layout_height="@dimen/Button_Height"
+            android:layout_margin="5dp"
+            android:text="@string/Submit"
+            android:textSize="@dimen/Size9"
+            android:id="@+id/sd_submit"
+            android:textColor="@color/textColorRed"
+            android:background="@drawable/btn_design_stroke"
+            />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@color/bg_grey"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_5sdp"
+    android:animateLayoutChanges="true">
+    <LinearLayout
+        android:id="@+id/my_last_earning_layout"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginBottom="@dimen/_8sdp">
+        <LinearLayout
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <TextView
+                    fontPath="fonts/medium.ttf"
+                    tools:ignore="MissingPrefix"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:id="@+id/earnmethod"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="App Download"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/textColorRed"
+                    android:textSize="@dimen/_12sdp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+               android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+            <TextView
+                android:id="@+id/earn_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="24/Dec/2017"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/invoice_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Invoice Amount: INR 00.00"
+                    android:textColor="@color/textColorGrey"
+                    android:textSize="@dimen/Size8" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight=".8"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/earning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Points Earned"
+                android:textColor="@color/textColorGrey"
+                android:textSize="@dimen/Size8"/>
+            <TextView
+                fontPath="fonts/medium.ttf"
+                tools:ignore="MissingPrefix"
+                android:id="@+id/earn_point"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/earning"
+                android:gravity="right"
+                android:text="3750"
+                android:textColor="@color/textColorRed"
+                android:textSize="@dimen/_12sdp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dispatch_status_layout"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/rwStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:lines="1"
+                android:text="Reward Status :"
+                android:textSize="@dimen/Size9" />
+
+            <TextView
+                android:id="@+id/dispatchStatus"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/rwStatus"
+                android:lines="1"
+                android:text="Dispatched"
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="@dimen/Size9" />
+
+            <ImageView
+                android:id="@+id/all_event_more_click"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/_30sdp"
+                android:src="@drawable/next"
+                android:textColor="@color/textColorRed"
+                android:textSize="@dimen/Size10" />
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:visibility="gone"
+            android:id="@+id/all_events_expandable_layout"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_15sdp"
+                >
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:text="Venue"
+                    android:lines="1"
+                    android:textSize="@dimen/Size9"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textSize="@dimen/Size9"
+                    android:id="@+id/allEventVenue"
+                    android:text="Novotel Mumbai | Dumpukht Hall"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_grey"
+                android:layout_marginBottom="@dimen/_15sdp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_15sdp"
+                >
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:text="Set-Up"
+                    android:lines="1"
+                    android:textSize="@dimen/Size9"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To Be Configured"
+                    android:textSize="@dimen/Size9"
+                    android:id="@+id/allEventSetup"
+                    android:lines="1"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_grey"
+                android:layout_marginBottom="@dimen/_15sdp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_15sdp"
+                >
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:text="Design"
+                    android:lines="1"
+                    android:textSize="@dimen/Size9"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textSize="@dimen/Size9"
+                    android:id="@+id/allEventDesign"
+                    android:text="To Be Configured"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_grey"
+                android:layout_marginBottom="@dimen/_15sdp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/_15sdp"
+                >
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:text="More"
+                    android:lines="1"
+                    android:textSize="@dimen/Size9"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textSize="@dimen/Size9"
+                    android:id="@+id/allEventMore"
+                    android:text="To Be Configured"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_grey"
+                android:layout_marginBottom="@dimen/_15sdp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:layout_width="@dimen/Button_Width"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="Delete"
+                    android:layout_marginRight="9dp"
+                    android:padding="5dp"
+                    android:id="@+id/allEventDelete_btn"
+                    android:textSize="@dimen/Size8"
+                    android:textColor="@color/textColorGrey"
+                    android:background="@drawable/btn_design_grey_stroke"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="Email Configuration"
+                    android:id="@+id/allEventEmail_btn"
+                    android:textSize="@dimen/Size8"
+                    android:textColor="@color/textColorWhite"
+                    android:background="@drawable/btn_grey_solid_dark"
+                    android:padding="5dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    </LinearLayout>

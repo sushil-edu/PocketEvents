@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/bg_grey"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.85">
+
+        <LinearLayout
+            android:id="@+id/root_venue_card"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:orientation="vertical">
+            <!--Linear Break 1-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="Selected Hotel"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/Size11" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/textColorWhite"
+                android:gravity="start"
+                android:orientation="vertical">
+                <!--Linear Break 1-->
+                <LinearLayout
+                    android:id="@+id/LB1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="top"
+                    android:orientation="vertical"
+                    android:paddingBottom="1dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/card_img_venue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/scard_venue_name"
+                                fontPath="fonts/medium.ttf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_15sdp"
+                                android:text="Novotel Mumbai"
+                                android:textColor="@color/textColorRed"
+                                android:textSize="@dimen/Size14"
+                                tools:ignore="MissingPrefix" />
+
+                            <ImageView
+                                android:id="@+id/card_venue_isrecomended"
+                                android:layout_width="@dimen/_10sdp"
+                                android:layout_height="@dimen/_10sdp"
+                                android:layout_gravity="top"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:src="@drawable/checked"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/scard_venue_add"
+                                fontPath="fonts/medium.ttf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:maxLines="2"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:paddingRight="@dimen/_10sdp"
+                                android:text="Bandra Kurla Complex, East Mumbai"
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="@dimen/Size8"
+                                tools:ignore="MissingPrefix" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_weight="2"
+                                android:gravity="left"
+                                android:paddingTop="@dimen/_5sdp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical">
+
+                                    <!--<TextView-->
+                                    <!--android:id="@+id/id2"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:layout_gravity="center_vertical"-->
+                                    <!--android:layout_marginLeft="2dp"-->
+                                    <!--android:layout_marginRight="@dimen/_20sdp"-->
+                                    <!--android:gravity="center_vertical"-->
+                                    <!--android:text="PocketEvent Rating"-->
+                                    <!--android:textSize="@dimen/Size8"-->
+                                    <!--android:visibility="gone" />-->
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="horizontal">
+
+                                        <RatingBar
+                                            android:id="@+id/scard_kestone_rating"
+                                            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginBottom="2dp"
+                                            android:layout_marginEnd="3dp"
+                                            android:layout_marginRight="3dp"
+                                            android:layout_marginTop="2dp"
+                                            android:numStars="5"
+                                            android:theme="@style/RatingBar" />
+
+                                        <TextView
+                                            android:id="@+id/scard_venue_kestone_rating"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:text="3.5"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/textColorRed"
+                                            android:textSize="@dimen/Size8"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_35sdp"
+                                android:gravity="center"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/venue_card_btn_compare"
+                                    android:layout_width="@dimen/_110sdp"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/btn_design_stroke"
+                                    android:maxHeight="@dimen/_25sdp"
+                                    android:text="Add To Compare"
+                                    android:textColor="@color/textColorRed"
+                                    android:textSize="@dimen/Size6"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:layout_width="200dp"
+                                android:layout_height="130dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="5">
+
+                                <ImageView
+                                    android:id="@+id/svenue_card_thumb"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerHorizontal="true"
+                                    android:src="@drawable/image" />
+
+                            </FrameLayout>
+
+
+                            <TextView
+                                android:id="@+id/venue_card_text_numberOfImages"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/venue_card_thumb"
+                                android:layout_centerHorizontal="true"
+                                android:layout_weight="1.5"
+                                android:gravity="center"
+                                android:text="4 Photos"
+                                android:textAlignment="center"
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="@dimen/Size8"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/scard_list_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:divider="@null"
+                        android:scrollbars="none" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="vertical"
+                        android:paddingRight="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:id="@+id/svenue_card_btn_call"
+                            android:layout_width="@dimen/Dialog_Button_Width"
+                            android:layout_height="@dimen/Dialog_Button_Height"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/btn_design_grey_stroke">
+
+                            <ImageView
+                                android:layout_width="@dimen/_10sdp"
+                                android:layout_height="@dimen/_10sdp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:src="@drawable/phone"
+                                android:tint="@color/colorAccent" />
+
+                            <TextView
+                                android:id="@+id/venue_card_btn_call"
+                                android:layout_width="@dimen/_68sdp"
+                                android:layout_height="@dimen/Dialog_Button_Height"
+                                android:layout_alignParentRight="true"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="Call Hotel"
+                                android:textSize="@dimen/_9sdp" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:id="@+id/svenue_card_btn_map"
+                            android:layout_width="@dimen/Dialog_Button_Width"
+                            android:layout_height="@dimen/Dialog_Button_Height"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/btn_design_grey_stroke">
+
+                            <ImageView
+                                android:layout_width="@dimen/_10sdp"
+                                android:layout_height="@dimen/_10sdp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:src="@drawable/location_icon" />
+
+                            <TextView
+                                android:id="@+id/venue_card_btn_map"
+                                android:layout_width="@dimen/_68sdp"
+                                android:layout_height="@dimen/Dialog_Button_Height"
+                                android:layout_alignParentEnd="true"
+                                android:gravity="center"
+                                android:text="View on Map"
+                                android:textSize="@dimen/_9sdp" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/bg_grey" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="Selected Hall"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/Size11" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+
+                <TextView
+                    android:id="@+id/fragment_setup_HallName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    fontPath="fonts/medium.ttf"
+                    tools:ignore="MissingPrefix"
+                    android:text="Selected Hall Name"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorRed"
+                    android:textSize="@dimen/Size12" />
+
+                <TextView
+                    android:id="@+id/fragment_setup_VenueName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="Novotel Mumbai"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/Size9" />
+
+                <ImageView
+                    android:id="@+id/hallIv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:src="@drawable/placeholder"
+                    android:layout_marginTop="@dimen/_12sdp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/fragment_setup_rv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/svenue_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/svenueFilterSaveAndExit"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Button_Height"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@color/btnColorGrey"
+            android:gravity="center"
+            android:text="Save and Exit"
+            android:textColor="@color/textColorWhite"
+            android:textSize="@dimen/Size9" />
+
+        <TextView
+            android:id="@+id/svenueFilterSave"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Button_Height"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_design_solid"
+            android:gravity="center"
+            android:text="Proceed with Set-Up"
+            android:textColor="@color/textColorWhite"
+            android:textSize="@dimen/Size9" />
+    </LinearLayout>
+</LinearLayout>

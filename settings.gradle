@@ -1,0 +1,2 @@
+include ':app', ':plutuspg-release', ':mylibrary'
+include ':libraryMobilePaymentSDK'

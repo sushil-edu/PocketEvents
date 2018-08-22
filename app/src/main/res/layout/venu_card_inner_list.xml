@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:gravity="start"
+    android:orientation="horizontal"
+    android:padding="@dimen/_5sdp">
+
+    <TextView
+        android:id="@+id/venue_card_inner_list_text1"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="Text 1"
+        android:textColor="@color/textColorGrey"
+        android:textSize="@dimen/Size8" />
+
+    <TextView
+        android:id="@+id/venue_card_inner_list_text2"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="Text 2"
+        android:textColor="@color/textColorRed"
+        android:textSize="@dimen/Size8" />
+
+
+</LinearLayout>

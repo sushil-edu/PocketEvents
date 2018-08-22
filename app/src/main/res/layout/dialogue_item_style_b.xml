@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:id="@+id/dialogue_b_card"
+    >
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:id="@+id/dialogue_b_imageView"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:id="@+id/dialogue_b_textView2"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:text="Label"
+        android:textSize="@dimen/Size11"
+        android:textColor="@color/textColorRed"
+        />
+    <TextView
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:id="@+id/dialogue_b_textView"
+        android:gravity="center"
+        android:text="Description will appear here"
+        android:textSize="@dimen/_9sdp"
+        android:textColor="@color/textColorBlack"
+        />
+
+
+
+
+
+
+</LinearLayout>

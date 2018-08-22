@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="kestone.com.kestone.UI.SplashScreenActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_weight="1"
+        android:padding="@dimen/_40sdp"
+        android:src="@drawable/pocket_logo_black_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/_20sdp"
+        android:text="Say Hello to \nSmarter Event Management"
+        android:textAlignment="center"
+        android:textColor="@color/textColorWhite"
+        android:textSize="15dp"
+
+
+        />
+
+</LinearLayout>

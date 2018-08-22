@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/cv_video_list_item"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="15dp"
+    android:layout_marginTop="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="180dp">
+        <FrameLayout
+            android:layout_above="@+id/tv_video_list_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <VideoView
+                android:id="@+id/vv_video_play_item"
+                android:visibility="visible"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <WebView
+                android:id="@+id/wv_video_play_item"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/iv_video_thumbnail"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+            <ImageView
+                android:id="@+id/iv_play_video_list_item"
+                android:src="@drawable/ic_play_button"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <ImageView
+                android:id="@+id/iv_full_video_list_item"
+                android:src="@drawable/ic_full_button"
+                android:padding="3dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="3dp"
+                android:visibility="visible"
+                android:layout_gravity="right|bottom"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </FrameLayout>
+        <TextView
+            android:id="@+id/tv_video_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:maxLines="2"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@android:color/white"
+            android:text="Video Title"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

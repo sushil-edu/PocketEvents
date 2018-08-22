@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_15sdp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/designN"
+            fontPath="fonts/medium.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Event Design"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/Size12"
+            tools:ignore="MissingPrefix" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_220sdp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/_3sdp">
+
+            <TextView
+                android:id="@+id/previous"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/previous" />
+        </FrameLayout>
+
+        <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+            android:id="@+id/designRV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="12"></com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/_2sdp"
+            android:layout_weight="1"
+            android:padding="@dimen/_3sdp">
+
+            <TextView
+                android:id="@+id/next"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/next" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/_73sdp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_grey_solid_dark"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
+
+
+            <TextView
+                android:id="@+id/designEmail"
+                android:layout_width="@dimen/Dialog_Button_Big_Width"
+                android:layout_height="@dimen/Dialog_Button_Height"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_12sdp"
+                android:text="Email Artwork"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size8" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/email_icon"
+                android:tint="@color/textColorWhite" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/designSelect"
+            android:layout_width="@dimen/Dialog_Button_Width"
+            android:layout_height="@dimen/Dialog_Button_Height"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_design_solid"
+            android:gravity="center"
+            android:text="Select Design"
+            android:textAllCaps="false"
+            android:textColor="@color/textColorWhite"
+            android:textSize="@dimen/Size9" />
+    </LinearLayout>
+
+</LinearLayout>

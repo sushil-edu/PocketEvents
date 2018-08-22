@@ -1,0 +1,150 @@
+package kestone.com.kestone.UI;
+
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatEditText;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import kestone.com.kestone.MODEL.ForgotPassword.REQUEST.ForegotPasswordRequest;
+import kestone.com.kestone.MODEL.ForgotPassword.RESPONSE.ForgotPasswordResponse;
+import kestone.com.kestone.R;
+import kestone.com.kestone.Utilities.CONSTANTS;
+import kestone.com.kestone.Utilities.GeneralUtils;
+import kestone.com.kestone.Utilities.GenericRequest;
+import qiu.niorgai.StatusBarCompat;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+public class ForgotPasswordActivity extends AppCompatActivity {
+
+    AppCompatEditText emailTextField;
+    TextView submit;
+
+    LinearLayout root;
+    TextView root1, root2;
+
+    ProgressDialog progressDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_forgot_password);
+        // StatusBarCompat.translucentStatusBar(ForgotPasswordActivity.this,true);
+        progressDialog = new ProgressDialog(ForgotPasswordActivity.this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
+        emailTextField = (AppCompatEditText) findViewById(R.id.forgotPass_et);
+        submit = (TextView) findViewById(R.id.forgotPasswordSubmit);
+        root = (LinearLayout) findViewById(R.id.forgotPasswordRoot);
+        root1 = (TextView) findViewById(R.id.forgotPassroot2);
+        root2 = (TextView) findViewById(R.id.forgotPassroot3);
+
+        root2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        });
+
+        root1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        });
+
+        root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+
+                if (GeneralUtils.isEmailValid(emailTextField.getText().toString())) {
+                    if (GeneralUtils.isNetworkAvailable(ForgotPasswordActivity.this)) {
+
+                        ForgotPassword(emailTextField.getText().toString());
+                        progressDialog.show();
+                    } else {
+                        GeneralUtils.displayNetworkAlert(ForgotPasswordActivity.this, false);
+                    }
+
+
+                } else {
+                    GeneralUtils.ShowAlert(ForgotPasswordActivity.this, getResources().getString(R.string.ValidEmail));
+                }
+            }
+        });
+
+    }
+
+
+    void ForgotPassword(String email) {
+        GenericRequest<ForgotPasswordResponse> request = new GenericRequest<ForgotPasswordResponse>(Request.Method.POST, CONSTANTS.URL_FORGOT_PASSWORD, ForgotPasswordResponse.class, new ForegotPasswordRequest(email),
+                new Response.Listener<ForgotPasswordResponse>() {
+                    @Override
+                    public void onResponse(ForgotPasswordResponse response) {
+                        progressDialog.dismiss();
+                        if (Boolean.valueOf(response.getResponse().get(0).getStatus())) {
+                            final Dialog successDialog = new Dialog(ForgotPasswordActivity.this);
+                            successDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            successDialog.setCancelable(true);
+                            successDialog.setContentView(R.layout.dialogue_forget_password);
+                            TextView gotIt = (TextView) successDialog.findViewById(R.id.eventSaved);
+                            gotIt.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    emailTextField.setText("");
+                                    Intent iq = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+                                    iq.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(iq);
+                                    finish();
+                                }
+                            });
+                            successDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            successDialog.show();
+                            //  GeneralUtils.ShowAlert(ForgotPasswordActivity.this,response.getResponse().get(0).getPayload().get(0).getActive());
+                        } else {
+                            GeneralUtils.ShowAlert(ForgotPasswordActivity.this, response.getResponse().get(0).getMessage());
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                GeneralUtils.ShowAlert(ForgotPasswordActivity.this, getResources().getString(R.string.VolleyTimeout));
+            }
+        });
+        AppController.getInstance().addToRequestQueue(request);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_20sdp"
+    android:gravity="center"
+    android:animateLayoutChanges="true"
+    android:focusableInTouchMode="true">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_20sdp">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/tick_inside_a_circle"/>
+    </FrameLayout>
+    <TextView
+        fontPath="fonts/medium.ttf"
+        tools:ignore="MissingPrefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Design Selected Successfully"
+        android:textSize="@dimen/Size11"
+        android:gravity="center"
+        android:textColor="@color/textColorRed"
+
+        />
+    <TextView
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:gravity="center"
+        android:textSize="@dimen/Size12"
+        android:text="Almost done!"
+        />
+
+    <TextView
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:gravity="center"
+        android:textSize="@dimen/Size12"
+        android:text="You are done with venue, set-up and communication design for your event. Now spruce it further by adding Artists, Activities and Giveaways. "
+        />
+
+
+    <TextView
+        android:textSize="@dimen/Size9"
+        android:gravity="center"
+        android:layout_width="@dimen/_125sdp"
+        android:layout_height="@dimen/Button_Height"
+        android:background="@drawable/btn_design_solid"
+        android:text="Proceed with More"
+        android:id="@+id/proceed"
+        android:textColor="@color/textColorWhite"
+        />
+
+
+</LinearLayout>

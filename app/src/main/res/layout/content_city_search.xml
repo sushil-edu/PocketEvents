@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/citySearchRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:fitsSystemWindows="true"
+    android:focusableInTouchMode="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:theme="@style/AppTheme.NoActionBar"
+    tools:context="kestone.com.kestone.UI.CitySearchActivity"
+    tools:showIn="@layout/app_bar_city_search">
+
+    <TextView
+        android:id="@+id/hamburger"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/nav_menu"
+        android:padding="8dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="130dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:gravity="center"
+                android:text="Where do you want to conduct \n your event"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size12"
+                android:textStyle="bold" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:textColorHint="@color/textColorWhite">
+
+                    <kestone.com.kestone.Utilities.DelayAutoCompleteTextView
+                        android:id="@+id/citySearch_et_enterCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/textColorRed"
+                        android:gravity="center"
+                        android:hint="Enter City"
+                        android:lines="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/textColorWhite"
+                        android:textColorHint="@color/textColorWhite"
+                        android:textSize="@dimen/Size10" />
+
+                </android.support.design.widget.TextInputLayout>
+                <!--<ProgressBar-->
+                    <!--android:id="@+id/progressBar3"-->
+                    <!--style="?android:attr/progressBarStyle"-->
+                    <!--android:layout_width="@dimen/_20sdp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:visibility="gone"/>-->
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/citySearch_btn_proceed"
+                android:layout_width="@dimen/Button_Width"
+                android:layout_height="@dimen/Button_Height"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/btn_design_grey_solid"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="Proceed"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size10" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/citySearch_btn_allEvents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp"
+                    android:text="View Saved Events"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/Size12" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

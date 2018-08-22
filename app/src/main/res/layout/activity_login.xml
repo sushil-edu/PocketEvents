@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kestone.com.kestone.UI.LoginActivity"
+    android:background="@mipmap/bg"
+    android:paddingTop="20dp"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingBottom="20dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="true"
+    android:id="@+id/loginRoot"
+    >
+
+    <ImageView
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/pocket_logo_black_bg"
+        android:id="@+id/login_logo"
+        android:transitionName="@string/logoAnimation"
+        android:layout_weight="1.8"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:textColorHint="@color/textColorWhite"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Email"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:id="@+id/login_et_usermane"
+            android:textSize="@dimen/Size10"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:textColorHint="@color/textColorWhite">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/login_et_password"
+            android:textSize="@dimen/Size10"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Password"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+    <TextView
+        android:gravity="center"
+        android:layout_width="@dimen/Button_Width"
+        android:layout_height="@dimen/Button_Height"
+        android:text="Login"
+        android:textSize="@dimen/Size10"
+        android:id="@+id/login_btn_login"
+        android:textColor="@color/textColorWhite"
+        android:background="@drawable/btn_design_solid"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Forgot Password"
+            android:id="@+id/login_forgotPassword"
+            android:textColor="@color/textColorWhite"
+            android:textSize="@dimen/Size12"
+            />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Not Registered?"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/textColorWhite"
+        android:textSize="@dimen/Size11"
+        />
+    
+    <TextView
+        android:gravity="center"
+        android:layout_width="@dimen/Button_Width"
+        android:layout_height="@dimen/Button_Height"
+        android:text="Sign Up"
+        android:id="@+id/login_btn_signUp"
+        android:textSize="@dimen/Size10"
+        android:textColor="@color/textColorWhite"
+        android:background="@drawable/btn_design_stroke"
+        />
+
+
+
+</LinearLayout>

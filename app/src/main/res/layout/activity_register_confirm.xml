@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kestone.com.kestone.UI.LoginActivity"
+    android:background="@mipmap/bg"
+    android:paddingTop="10dp"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingBottom="20dp"
+    android:animateLayoutChanges="true"
+    android:gravity="center"
+    android:fitsSystemWindows="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/registerConfirmLogo"
+        android:src="@drawable/pocket_logo_black_bg"
+        android:layout_weight="0.5"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="@color/textColorWhite"
+        >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btnColorGrey"
+            android:hint="Enter OTP"
+            android:textSize="@dimen/Size10"
+            android:id="@+id/registerConfirm_enterOTP_et"
+            android:gravity="center"
+            android:textColorHint="@color/textColorWhite"
+            android:textColor="@color/textColorWhite"
+            android:lines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/registerConfirmCheckBox"
+                android:layout_centerVertical="true"
+                android:buttonTint="@color/textColorWhite"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to Terms and Conditions"
+                android:textColor="@color/textColorWhite"
+                android:layout_centerVertical="true"
+                android:id="@+id/registerConfirmPolicy"
+                android:textSize="@dimen/Size11"
+                android:layout_toRightOf="@+id/registerConfirmCheckBox"
+                />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:textAllCaps="false"
+        android:layout_width="@dimen/Button_Width"
+        android:layout_height="@dimen/Button_Height"
+        android:text="Register"
+        android:padding="2dp"
+        android:textSize="@dimen/Size10"
+        android:id="@+id/register_btn_otp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:textColor="@color/textColorWhite"
+        android:background="@drawable/btn_design_solid"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_centerInParent="true"
+            android:text="Already registered?"
+            android:id="@+id/id1"
+            android:textColor="@color/textColorWhite"
+            android:textSize="15dp"
+            />
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="@dimen/Button_Width"
+            android:layout_height="@dimen/Button_Height"
+            android:text="Login"
+            android:textSize="@dimen/Size10"
+            android:id="@+id/register_btn_login"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/id1"
+            android:textColor="@color/textColorWhite"
+            android:background="@drawable/btn_design_stroke"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

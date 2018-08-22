@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:paddingRight="@dimen/_50sdp"
+    android:paddingLeft="@dimen/_50sdp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_6sdp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAP A NUMBER TO CALL"
+            android:textColor="@color/textColorGrey"
+            android:textSize="@dimen/Size12"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/phone_text"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/phone_lv"
+        android:divider="@color/bg_grey"
+        android:dividerHeight="0.5dp"
+        >
+
+    </ListView>
+
+</LinearLayout>

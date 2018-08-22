@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none"
+        >
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            />
+        <item
+            android:id="@+id/nav_Myevents"
+            android:title="My Events" />
+        <item
+            android:id="@+id/nav_Conslting"
+            android:title="Consulting Services" />
+        <item
+            android:id="@+id/nav_MyOrders"
+            android:title="My Orders" />
+
+        <item
+            android:id="@+id/nav_support"
+            android:title="Support" />
+
+
+        <item
+            android:id="@+id/rewards_referral"
+            android:title="Reward and Referrals" />
+
+        <item
+            android:id="@+id/nav_change"
+            android:title="Change Password"/>
+        <item
+            android:id="@+id/nav_terms"
+            android:title="Terms and Conditions"/>
+        <item
+            android:id="@+id/nav_privacy"
+            android:title="Privacy Policy"/>
+        <item
+            android:id="@+id/nav_logOut"
+            android:title="Logout" />
+    </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>

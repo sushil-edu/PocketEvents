@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:focusableInTouchMode="true"
+    android:background="@mipmap/bg"
+    tools:context="kestone.com.kestone.UI.PrivacyAndPolicy">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:orientation="vertical"
+        android:id="@+id/venue_header">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                fontPath="fonts/medium.ttf"
+                tools:ignore="MissingPrefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Privacy Policy"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/Size12" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@color/bg_grey"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_5sdp">
+
+        <LinearLayout
+           android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/textColorWhite"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:gravity="center_horizontal">
+            <TextView
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/termsAndCondition"
+                android:textSize="@dimen/Size10" />
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:gravity="center"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/Button_Height"
+                android:text="Got It"
+                android:textSize="@dimen/Size9"
+                android:layout_margin="5dp"
+                android:id="@+id/button"
+                android:textColor="@color/textColorRed"
+                android:background="@drawable/btn_design_stroke"
+                />
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

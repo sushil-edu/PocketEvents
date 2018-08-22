@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_20sdp"
+    android:paddingLeft="@dimen/_60sdp"
+    android:paddingRight="@dimen/_60sdp"
+    android:paddingTop="@dimen/_20sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:gravity="center"
+        android:text="Select Profile Image"
+        android:textColor="@color/textColorRed"
+        android:textSize="@dimen/Size12" />
+
+<RelativeLayout
+    android:layout_width="200dp"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/cameraLl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/ic_camera"
+            android:layout_gravity="center_horizontal"
+            android:tint="@color/selection_grey"/>
+
+        <TextView
+            android:id="@+id/takePicture"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:gravity="center"
+            android:text="Camera"
+            android:textColor="@color/textColorBlack"
+            android:textSize="@dimen/Size10" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/galleryLl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/ic_gallery"
+            android:layout_gravity="center_horizontal"
+            android:tint="@color/selection_grey"/>
+
+        <TextView
+            android:id="@+id/selectFromGallery"
+            android:layout_width="100dp"
+            android:layout_height="@dimen/_30sdp"
+            android:gravity="center"
+            android:text="Gallery"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:textSize="@dimen/Size10"
+            android:textColor="@color/textColorBlack"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+</LinearLayout>

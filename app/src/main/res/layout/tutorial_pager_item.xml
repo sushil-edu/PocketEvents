@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:animateLayoutChanges="true">
+    <ImageView
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:scaleType="centerInside"
+        android:id="@+id/sliderImage"
+        android:layout_weight="1"
+        android:src="@drawable/location_icon_new"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="@dimen/Size12"
+        android:textStyle="bold"
+        android:id="@+id/sliderTitle"
+        android:text="Example"
+        android:layout_weight=".8"
+        android:textColor="@color/textColorWhite"
+        fontPath="fonts/medium.ttf"
+        tools:ignore="MissingPrefix" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:id="@+id/sliderText"
+        android:textSize="@dimen/Size11"
+        android:text="Example"
+        android:layout_weight="1"
+        android:textColor="@color/textColorWhite"
+        />
+
+
+
+
+</LinearLayout>

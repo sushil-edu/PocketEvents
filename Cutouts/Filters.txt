@@ -1,0 +1,131 @@
+@Override
+    public void onClickCallBack(final int i, int mode, int selection) {
+        if (mode==0) {
+
+
+            final FilterDialogueAdapterStyleA filterDialogueAdapterStyleA = new FilterDialogueAdapterStyleA(VenueActivity.this, i,selection);
+
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialogue_filter_style_a);
+            dialogueRecycler = (RecyclerView) dialog.findViewById(R.id.dialogue_a_rv);
+            dialogueSelect = (Button) dialog.findViewById(R.id.dialogue_a_select_btn);
+            dialogueBack = (Button) dialog.findViewById(R.id.dialogue_a_back_btn);
+            dialogueCategory = (TextView)dialog.findViewById(R.id.dialogue_a_venueCategory);
+            dialogueSubCategory = (TextView)dialog.findViewById(R.id.dialogue_a_venueSubheading);
+            dialogueSubCategory.setText(MySingleton.getInstance().getPayload1().get(i).getFilterSubHeading());
+            dialogueCategory.setText(MySingleton.getInstance().getPayload1().get(i).getFilterName());
+            final RecyclerView.LayoutManager lm = new GridLayoutManager(getApplicationContext(), 1, GridLayoutManager.HORIZONTAL, false);
+            dialogueRecycler.setLayoutManager(lm);
+            dialogueRecycler.setAdapter(filterDialogueAdapterStyleA);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show();
+            dialogueBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialogueSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    filterDialogueAdapterStyleA.getSelectedItems();
+                    dialog.dismiss();
+                    progressDialog.show();
+                    GetVenues();
+                    venueSmallFilterAdapter.notifyDataSetChanged();
+                }
+            });
+        }else if (mode==1) {
+            final FilterDialogueAdpaterStyleB filterDialogueAdpaterStyleB = new FilterDialogueAdpaterStyleB(VenueActivity.this,i,selection);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialogue_filter_style_b);
+            dialogueRecyclerPager = (RecyclerViewPager) dialog.findViewById(R.id.dialogue_b_rv);
+            dialogueSelect = (Button) dialog.findViewById(R.id.dialogue_b_select_btn);
+            dialogueBack = (Button) dialog.findViewById(R.id.dialogue_b_back_btn);
+            dialogueCategory = (TextView)dialog.findViewById(R.id.dialogue_b_venueCategory);
+            dialogueSubCategory = (TextView)dialog.findViewById(R.id.dialogue_b_venueSubheading);
+            dialogueSubCategory.setText(MySingleton.getInstance().getPayload1().get(i).getFilterSubHeading());
+            dialogueCategory.setText(MySingleton.getInstance().getPayload1().get(i).getFilterName());
+            final RecyclerView.LayoutManager lm = new GridLayoutManager(getApplicationContext(), 1, GridLayoutManager.HORIZONTAL, false);
+            dialogueRecyclerPager.setLayoutManager(lm);
+            dialogueRecyclerPager.setAdapter(filterDialogueAdpaterStyleB);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show();
+            dialogueBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialogueSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    filterDialogueAdpaterStyleB.getSelectedItems();
+                    dialog.dismiss();
+                    progressDialog.show();
+                    GetVenues();
+                    venueSmallFilterAdapter.notifyDataSetChanged();
+                }
+            });
+
+        }else {
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialogue_filter_style_c);
+
+            //rangeSeekBar = (RangeSeekBar<Integer>)dialog.findViewById(R.id.rangeSeekbar);
+            dialogueSelect = (Button) dialog.findViewById(R.id.dialogue_c_select_btn);
+            dialogueBack = (Button) dialog.findViewById(R.id.dialogue_c_back_btn);
+            dialogueCategory = (TextView)dialog.findViewById(R.id.dialogue_c_venueCategory);
+            dialogueSubCategory = (TextView)dialog.findViewById(R.id.dialogue_c_venueSubheading);
+            dialogueSubCategory.setText(MySingleton.getInstance().getPayload1().get(i).getFilterSubHeading());
+            dialogueCategory.setText(MySingleton.getInstance().getPayload1().get(i).getFilterName());
+//            rangeSeekBar.setRangeValues(Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getValues().get(0).getNameLabel()),Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getValues().get(1).getNameLabel()));
+//            if (MySingleton.getInstance().getPayload1().get(i).getRanges() != null){
+//                rangeSeekBar.setSelectedMaxValue(Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getRanges().getUpperLimit()));
+//                rangeSeekBar.setSelectedMinValue(Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getRanges().getLowerLimit()));
+//            }else {
+//                rangeSeekBar.setSelectedMaxValue(Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getValues().get(1).getNameLabel()));
+//                rangeSeekBar.setSelectedMinValue(Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getValues().get(0).getNameLabel()));
+//            }
+//
+//
+//            rangeSeekBar.setActivated(true);
+
+
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show();
+            dialogueBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialogueSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    SavedRange savedRange = new SavedRange();
+//                    savedRange.setLowerLimit(String.valueOf(rangeSeekBar.getSelectedMinValue()));
+//                    savedRange.setUpperLimit(String.valueOf(rangeSeekBar.getSelectedMaxValue()));
+//                    //Toast.makeText(getApplicationContext(),String.valueOf(finalRangeSeekBar.getSelectedMinValue()) + " - " + String.valueOf(finalRangeSeekBar.getSelectedMaxValue()),Toast.LENGTH_SHORT).show();
+//                    //(rangeSeekBar.getSelectedMinValue() == rangeSeekBar.getAbsoluteMinValue()) && (rangeSeekBar.getSelectedMaxValue() == rangeSeekBar.getAbsoluteMaxValue())
+//                    int sl,su,al,au;
+//                    sl = rangeSeekBar.getSelectedMinValue();
+//                    su = rangeSeekBar.getSelectedMaxValue();
+//                    al = rangeSeekBar.getAbsoluteMinValue();
+//                    au = rangeSeekBar.getAbsoluteMaxValue();
+//                    if (sl == al && su == au){
+//                        //Toast.makeText(getApplicationContext(),String.valueOf(rangeSeekBar.getAbsoluteMinValue()),Toast.LENGTH_SHORT).show();
+//                        MySingleton.getInstance().getPayload1().get(i).setSelected(false);
+//                    }else {
+//                        MySingleton.getInstance().getPayload1().get(i).setSelected(true);
+//                    }
+//                    MySingleton.getInstance().getPayload1().get(i).setRanges(savedRange);
+//                    storage.storePayload1(MySingleton.getInstance().getPayload1());
+//                    dialog.dismiss();
+//                    progressDialog.show();
+//                    GetVenues();
+//                    venueSmallFilterAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+    }
