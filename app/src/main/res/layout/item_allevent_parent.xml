@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<com.silencedut.expandablelayout.ExpandableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/expandableLl"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_marginBottom="10dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
     android:background="@color/textColorWhite"
-    android:padding="@dimen/_17sdp"
-    app:expDuration="300"
-    app:expExpandScrollTogether="false"
-    app:expWithParentScroll="true">
+    android:padding="@dimen/_17sdp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/allEventName"
             fontPath="fonts/medium.ttf"
@@ -28,215 +21,278 @@
             android:layout_height="wrap_content"
             android:text="Partner Summit 2017"
             android:textColor="@color/textColorRed"
+            android:layout_toLeftOf="@id/tvEdit"
             android:textSize="@dimen/Size13"
             tools:ignore="MissingPrefix" />
-
-        <RelativeLayout
-            android:id="@+id/rl_click"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvEdit"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp">
+            android:text="Edit"
+            android:paddingLeft="10dp"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/textColorRed"
+            android:textSize="@dimen/Size10" />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/allEventDetail"
-                fontPath="fonts/medium.ttf"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:text="Mumbai | Novotel Mumbai | 17 Nov 2017"
-                android:textColor="@color/textColorBlack"
-                android:textSize="@dimen/Size9"
-                tools:ignore="MissingPrefix" />
-
-            <TextView
-                android:id="@+id/all_event_more_click"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:gravity="bottom"
-                android:text="More"
-                android:textColor="@color/textColorRed"
-                android:textSize="@dimen/Size10" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/all_events_expandable_layout"
+    <com.silencedut.expandablelayout.ExpandableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/expandableLl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="25dp"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/_10sdp"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:id="@+id/firstLl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_40sdp"
-                android:lines="1"
-                android:text="Venue"
-                android:textSize="@dimen/Size9" />
-
-            <TextView
-                android:id="@+id/allEventVenue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:text="Novotel Mumbai | Dumpukht Hall"
-                android:textSize="@dimen/Size9" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:background="@color/bg_grey" />
-
-        <LinearLayout
-            android:id="@+id/secondLl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_40sdp"
-                android:lines="1"
-                android:text="Set-Up"
-                android:textSize="@dimen/Size9" />
-
-            <TextView
-                android:id="@+id/allEventSetup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:text="Configure This"
-                android:textSize="@dimen/Size9" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:background="@color/bg_grey" />
-
-        <LinearLayout
-            android:id="@+id/thirdLl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_40sdp"
-                android:lines="1"
-                android:text="Design"
-                android:textSize="@dimen/Size9" />
-
-            <TextView
-                android:id="@+id/allEventDesign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:text="Configure This"
-                android:textSize="@dimen/Size9" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:background="@color/bg_grey" />
-
-        <LinearLayout
-            android:id="@+id/fourthLl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_40sdp"
-                android:lines="1"
-                android:text="More"
-                android:textSize="@dimen/Size9" />
-
-            <TextView
-                android:id="@+id/allEventMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:text="Configure This"
-                android:textSize="@dimen/Size9" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:background="@color/bg_grey" />
+        android:layout_height="wrap_content"
+        app:expDuration="300"
+        app:expExpandScrollTogether="false"
+        app:expWithParentScroll="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/allEventDelete_btn"
-                android:layout_width="@dimen/Dialog_Button_Width"
-                android:layout_height="@dimen/Dialog_Button_Height"
-                android:layout_marginRight="9dp"
-                android:background="@drawable/btn_design_grey_stroke"
-                android:gravity="center"
-                android:text="Delete"
-                android:textColor="@color/textColorGrey"
-                android:textSize="@dimen/Size8" />
+
 
             <RelativeLayout
-                android:layout_width="@dimen/_95sdp"
+                android:id="@+id/rl_click"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_grey_solid_dark"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp">
-
+                android:layout_marginTop="@dimen/_10sdp">
 
                 <TextView
-                    android:id="@+id/allEventEmail_btn"
-                    android:layout_width="@dimen/Dialog_Button_Big_Width"
-                    android:layout_height="@dimen/Dialog_Button_Height"
-                    android:gravity="center"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:text="Event Configuration"
-                    android:textColor="@color/textColorWhite"
-                    android:textSize="@dimen/Size8" />
+                    android:id="@+id/allEventDetail"
+                    fontPath="fonts/medium.ttf"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="Mumbai | Novotel Mumbai | 17 Nov 2017"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/Size9"
+                    tools:ignore="MissingPrefix" />
 
-                <ImageView
-                    android:layout_width="13dp"
-                    android:layout_height="13dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="3dp"
-                    android:src="@drawable/email_icon"
-                    android:tint="@color/textColorWhite" />
-
+                <TextView
+                    android:id="@+id/all_event_more_click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="bottom"
+                    android:text="More"
+                    android:textColor="@color/textColorRed"
+                    android:textSize="@dimen/Size10" />
             </RelativeLayout>
+
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/all_events_expandable_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_10sdp"
+            android:visibility="visible">
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/firstLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="horizontal">
 
-</com.silencedut.expandablelayout.ExpandableLayout>
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    android:lines="1"
+                    android:text="Venue"
+                    android:textSize="@dimen/Size9" />
+
+                <TextView
+                    android:id="@+id/allEventVenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="Novotel Mumbai | Dumpukht Hall"
+                    android:textSize="@dimen/Size9" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@color/bg_grey" />
+
+            <LinearLayout
+                android:id="@+id/secondLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    android:lines="1"
+                    android:text="Set-Up"
+                    android:textSize="@dimen/Size9" />
+
+                <TextView
+                    android:id="@+id/allEventSetup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="Configure This"
+                    android:textSize="@dimen/Size9" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@color/bg_grey" />
+
+            <LinearLayout
+                android:id="@+id/thirdLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    android:lines="1"
+                    android:text="Design"
+                    android:textSize="@dimen/Size9" />
+
+                <TextView
+                    android:id="@+id/allEventDesign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="Configure This"
+                    android:textSize="@dimen/Size9" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@color/bg_grey" />
+
+            <LinearLayout
+                android:id="@+id/fourthLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    android:lines="1"
+                    android:text="More"
+                    android:textSize="@dimen/Size9" />
+
+                <TextView
+                    android:id="@+id/allEventMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="Configure This"
+                    android:textSize="@dimen/Size9" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@color/bg_grey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/allEventDelete_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:layout_height="@dimen/Dialog_Button_Height"
+                    android:layout_marginRight="2.5dp"
+                    android:background="@drawable/btn_design_grey_stroke"
+                    android:gravity="center"
+                    android:text="Delete"
+                    android:textColor="@color/textColorGrey"
+                    android:textSize="@dimen/Size8" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2.5dp"
+                    android:layout_marginLeft="2.5dp"
+                    android:background="@drawable/btn_grey_solid_dark"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp">
+
+
+                    <TextView
+                        android:id="@+id/tvEventConfiguration"
+                        android:layout_width="@dimen/Dialog_Button_Big_Width"
+                        android:layout_height="@dimen/Dialog_Button_Height"
+                        android:gravity="center"
+                        android:text="View Configuration"
+                        android:textColor="@color/textColorWhite"
+                        android:textSize="@dimen/Size8" />
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="13dp"-->
+                        <!--android:layout_height="13dp"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginLeft="3dp"-->
+                        <!--android:src="@drawable/email_icon"-->
+                        <!--android:tint="@color/textColorWhite" />-->
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1.3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2.5dp"
+                    android:background="@drawable/btn_grey_solid_dark"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp">
+
+
+                    <TextView
+                        android:id="@+id/allEventEmail_btn"
+                        android:layout_width="@dimen/Dialog_Button_Big_Width"
+                        android:layout_height="@dimen/Dialog_Button_Height"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:text="Event Configuration"
+                        android:textColor="@color/textColorWhite"
+                        android:textSize="@dimen/Size8" />
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:src="@drawable/email_icon"
+                        android:tint="@color/textColorWhite" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.silencedut.expandablelayout.ExpandableLayout>
+</LinearLayout>
+

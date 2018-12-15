@@ -1,18 +1,14 @@
 package kestone.com.kestone.Fragments;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,8 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +31,7 @@ import java.util.List;
 
 import kestone.com.kestone.Adapters.SetupFragment.SetupAdapter;
 import kestone.com.kestone.Adapters.SetupFragment.YourSelectionsAdapter;
+import kestone.com.kestone.MODEL.ContactUs.ContactUsResponse;
 import kestone.com.kestone.MODEL.Design.REQUEST.DesignRequest;
 import kestone.com.kestone.MODEL.Design.RESPONSE.DesignResponse;
 import kestone.com.kestone.MODEL.SaveVenue.REQUEST.SaveVenueRequest;
@@ -44,9 +39,14 @@ import kestone.com.kestone.MODEL.SaveVenue.RESPONSE.SaveEventResponse;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.Data;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.Details;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.SetupResponse;
+import kestone.com.kestone.MODEL.Theme.REQUEST.DesignRequestTheme;
+import kestone.com.kestone.MODEL.Theme.RESPONSE.DesignResponseTheme;
+import kestone.com.kestone.MODEL.Theme.RESPONSE.ThemeResponse;
+import kestone.com.kestone.MODEL.Theme.RESPONSE.ThemeResult;
 import kestone.com.kestone.R;
 import kestone.com.kestone.UI.AppController;
 import kestone.com.kestone.UI.CitySearchActivity;
+import kestone.com.kestone.UI.ContactUsActivity;
 import kestone.com.kestone.UI.SetupActivity;
 import kestone.com.kestone.Utilities.CONSTANTS;
 import kestone.com.kestone.Utilities.GeneralUtils;
@@ -332,17 +332,77 @@ public class SetupVenueFragment extends Fragment implements SetupAdapter.SetupAd
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
     }
 
-    void Design(String EventID) {
+//    void Design(String EventID) {
+//
+//        if (GeneralUtils.isNetworkAvailable(getActivity())) {
+//            progressDialog.show();
+//            GenericRequest<DesignResponse> request = new GenericRequest<DesignResponse>(Request.Method.POST, CONSTANTS.URL_DESIGN, DesignResponse.class,
+//                    new DesignRequest(EventID), new Response.Listener<DesignResponse>() {
+//                @Override
+//                public void onResponse(final DesignResponse response) {
+//                    progressDialog.dismiss();
+//
+//                    if (Boolean.parseBoolean(response.getResponse().get(0).getStatus())) {
+//                        final Dialog setUpSuccess = new Dialog(getActivity());
+//                        setUpSuccess.setCancelable(true);
+//                        setUpSuccess.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                        setUpSuccess.setContentView(R.layout.dialog_set_up_selected_sucessfully);
+//
+//                        TextView procceed = (TextView) setUpSuccess.findViewById(R.id.proceed);
+//
+//                        procceed.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                setUpSuccess.dismiss();
+//
+//                                DesignFragment fragment = new DesignFragment();
+//                                Bundle bundle = new Bundle();
+//                                bundle.putSerializable("data", response);
+//                                fragment.setArguments(bundle);
+//                                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//                                ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
+//                                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                                ft.replace(R.id.venue_filter_placeholder, fragment, CONSTANTS.FRAGMENT_DESIGN);
+//                                getActivity().getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                                ft.commit();
+//                            }
+//
+//                        });
+//                        setUpSuccess.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//                        setUpSuccess.show();
+//
+//
+//                    } else {
+//                        GeneralUtils.ShowAlert(getActivity(), response.getResponse().get(0).getMessage());
+//                    }
+//
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    progressDialog.dismiss();
+//                    GeneralUtils.ShowAlert(getActivity(), getString(R.string.VolleyTimeout));
+//                }
+//            });
+//
+//            AppController.getInstance().addToRequestQueue(request);
+//
+//        } else {
+//            GeneralUtils.displayNetworkAlert(getActivity(), false);
+//        }
+//
+//    }
 
+    void Design(String EventID) {
         if (GeneralUtils.isNetworkAvailable(getActivity())) {
             progressDialog.show();
-            GenericRequest<DesignResponse> request = new GenericRequest<DesignResponse>(Request.Method.POST, CONSTANTS.URL_DESIGN, DesignResponse.class,
-                    new DesignRequest(EventID), new Response.Listener<DesignResponse>() {
+            GenericRequest<ThemeResponse> request = new GenericRequest<ThemeResponse>(Request.Method.GET, CONSTANTS.URL_DESIGN_THEME, ThemeResponse.class,
+                    null,new Response.Listener<ThemeResponse>() {
                 @Override
-                public void onResponse(final DesignResponse response) {
+                public void onResponse(final ThemeResponse response) {
                     progressDialog.dismiss();
-
-                    if (Boolean.parseBoolean(response.getResponse().get(0).getStatus())) {
+                    Log.e("Size ", ""+response.getGetThemeResult().size());
+                    if (response.getGetThemeResult().size()>0) {
                         final Dialog setUpSuccess = new Dialog(getActivity());
                         setUpSuccess.setCancelable(true);
                         setUpSuccess.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -357,7 +417,7 @@ public class SetupVenueFragment extends Fragment implements SetupAdapter.SetupAd
 
                                 DesignFragment fragment = new DesignFragment();
                                 Bundle bundle = new Bundle();
-                                bundle.putSerializable("data", response);
+                                bundle.putSerializable("data", response );
                                 fragment.setArguments(bundle);
                                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                                 ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
@@ -373,7 +433,7 @@ public class SetupVenueFragment extends Fragment implements SetupAdapter.SetupAd
 
 
                     } else {
-                        GeneralUtils.ShowAlert(getActivity(), response.getResponse().get(0).getMessage());
+                        GeneralUtils.ShowAlert(getActivity(), "Theme not available");
                     }
 
                 }

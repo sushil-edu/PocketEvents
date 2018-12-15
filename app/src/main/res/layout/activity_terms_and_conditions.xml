@@ -3,95 +3,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@mipmap/bg"
     android:fitsSystemWindows="true"
     android:focusableInTouchMode="true"
-    android:background="@mipmap/bg"
+    android:orientation="vertical"
     tools:context="kestone.com.kestone.UI.TermsAndConditions">
+
     <LinearLayout
+        android:id="@+id/venue_header"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.6"
-        android:orientation="vertical"
-        android:id="@+id/venue_header">
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 fontPath="fonts/medium.ttf"
-                tools:ignore="MissingPrefix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:text="Terms and Conditions
 "
-                android:textStyle="bold"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_30sdp"
                 android:textColor="@color/textColorWhite"
-                android:textSize="@dimen/Size12" />
+                android:textSize="@dimen/Size12"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
-
-        android:paddingLeft="@dimen/_10sdp"
-        android:paddingRight="@dimen/_10sdp"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="@dimen/_5sdp"
         android:layout_weight="5"
         android:background="@color/bg_grey"
         android:orientation="vertical"
-        android:layout_margin="@dimen/_5sdp">
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp">
 
         <LinearLayout
-           android:padding="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/textColorWhite"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_weight="5"
-            android:gravity="center_horizontal">
-            <TextView
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingRight="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:gravity="center_vertical"
+            android:background="@color/textColorWhite"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/termsAndCondition"
-                android:textSize="@dimen/Size10" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:padding="@dimen/_20sdp"
+                    android:text="@string/termsAndCondition"
+                    android:textSize="@dimen/Size10" />
+            </ScrollView>
 
         </LinearLayout>
 
 
         <RelativeLayout
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
+
             <TextView
-                android:textAllCaps="false"
-                android:gravity="center"
+                android:id="@+id/button"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/Button_Height"
-                android:text="Got It"
-                android:textSize="@dimen/Size9"
                 android:layout_margin="5dp"
-                android:id="@+id/button"
-                android:textColor="@color/textColorRed"
                 android:background="@drawable/btn_design_stroke"
-                />
+                android:gravity="center"
+                android:text="Got It"
+                android:textAllCaps="false"
+                android:textColor="@color/textColorRed"
+                android:textSize="@dimen/Size9" />
 
         </RelativeLayout>
 
 
+    </LinearLayout>
+
+    <!--load terms and condition-->
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_weight="5"
+        android:background="@color/bg_grey"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_weight="5"
+            android:background="@color/textColorWhite"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
+
+            <WebView
+                android:id="@+id/term_condition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"></WebView>
+
+        </LinearLayout>
+
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/button"-->
+                <!--android:layout_width="@dimen/_120sdp"-->
+                <!--android:layout_height="@dimen/Button_Height"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:background="@drawable/btn_design_stroke"-->
+                <!--android:gravity="center"-->
+                <!--android:text="Got It"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/textColorRed"-->
+                <!--android:textSize="@dimen/Size9" />-->
+
+        <!--</RelativeLayout>-->
 
 
     </LinearLayout>
-
 
 
 </LinearLayout>

@@ -760,24 +760,31 @@ public class VenueFilterFragment extends Fragment implements View.OnClickListene
                 if (MySingleton.getInstance().getPayload1().get(i).getRanges() != null) {
                     int capacity = ((Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getRanges().getLowerLimit()))
                             + (Integer.parseInt(MySingleton.getInstance().getPayload1().get(i).getRanges().getUpperLimit()))) / 2;
-                    etCapacity.setText(capacity + "");
+                    if(capacity==25){
+                        etCapacity.setText(50 + "");
+                    }else if(capacity==75){
+                        etCapacity.setText(100 + "");
+                    }else if(capacity==125){
+                        etCapacity.setText(150 + "");
+                    }
+
                     dialogueSelect.setBackgroundColor(getResources().getColor(R.color.colorRedDark));
 
-                    if (capacity < 100) {
+                    if (capacity <= 50) {
                         firstTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_red));
                         firstTv.setTextColor(getResources().getColor(R.color.textColorWhite));
                         secondTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_white));
                         secondTv.setTextColor(getResources().getColor(R.color.textColorBlack));
                         thirdTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_white));
                         thirdTv.setTextColor(getResources().getColor(R.color.textColorBlack));
-                    } else if (capacity < 150) {
+                    } else if (capacity <= 100) {
                         firstTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_white));
                         firstTv.setTextColor(getResources().getColor(R.color.textColorBlack));
                         secondTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_red));
                         secondTv.setTextColor(getResources().getColor(R.color.textColorWhite));
                         thirdTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_white));
                         thirdTv.setTextColor(getResources().getColor(R.color.textColorBlack));
-                    } else if (capacity >= 150) {
+                    } else if (capacity > 100) {
                         firstTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_white));
                         firstTv.setTextColor(getResources().getColor(R.color.textColorBlack));
                         secondTv.setBackground(getResources().getDrawable(R.drawable.shape_circle_white));
@@ -895,10 +902,20 @@ public class VenueFilterFragment extends Fragment implements View.OnClickListene
 
 
                             if (Integer.parseInt(etCapacity.getText().toString()) >= 50) {
-
                                 SavedRange savedRange = new SavedRange();
-                                savedRange.setLowerLimit((Integer.parseInt(etCapacity.getText().toString()) - 25) + "");
-                                savedRange.setUpperLimit((Integer.parseInt(etCapacity.getText().toString()) + 25) + "");
+                                if(Integer.parseInt(etCapacity.getText().toString()) == 50) {
+//                                    savedRange.setLowerLimit((Integer.parseInt(etCapacity.getText().toString()) - 25) + "");
+//                                    savedRange.setUpperLimit((Integer.parseInt(etCapacity.getText().toString()) + 25) + "");
+                                    savedRange.setLowerLimit(45 + "");
+                                    savedRange.setUpperLimit(50 + "");
+                                }else if(Integer.parseInt(etCapacity.getText().toString()) == 100) {
+                                    savedRange.setLowerLimit(51 + "");
+                                    savedRange.setUpperLimit(100 + "");
+                                }else if(Integer.parseInt(etCapacity.getText().toString()) == 150) {
+                                    savedRange.setLowerLimit(101 + "");
+                                    savedRange.setUpperLimit(150 + "");
+                                }
+
 
                                 String dataString = (Integer.parseInt(etCapacity.getText().toString()) - 25) + " - " +
                                         (Integer.parseInt(etCapacity.getText().toString()) + 25);
@@ -1015,12 +1032,12 @@ public class VenueFilterFragment extends Fragment implements View.OnClickListene
     }
 
     void GetVenues(String Filters) {
-        GenericRequest<GetVenueListResponse> request = new GenericRequest<GetVenueListResponse>(Request.Method.POST, CONSTANTS.URL_GET_VENUE_LIST, GetVenueListResponse.class, new VenueRequest(storage.loadCityID(), "1", "10", Filters),
+        GenericRequest<GetVenueListResponse> request = new GenericRequest<GetVenueListResponse>(Request.Method.POST, CONSTANTS.URL_GET_VENUE_LIST, GetVenueListResponse.class, new VenueRequest(storage.loadCityID(), "1", "100", Filters),
                 new Response.Listener<GetVenueListResponse>() {
                     @Override
                     public void onResponse(GetVenueListResponse response) {
                         progressDialog.dismiss();
-                        Log.d("VENUE RESPONSE", response.toString());
+                        Log.d("VENUE RESPONSEs", response.getResponse().toString());
                         if (Boolean.valueOf(response.getResponse().get(0).getStatus())) {
 
                             MySingleton.getInstance().setVenues(response);

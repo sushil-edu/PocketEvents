@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Filters_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@color/bg_grey"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/venueFilter_layout_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <TextView
+                    fontPath="fonts/medium.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:gravity="center"
+                    android:text="Design"
+                    android:textSize="@dimen/Size10"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:id="@+id/design_hallText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Mumbai"
+                    android:visibility="gone"
+                    android:textColor="@color/textColorRed"
+                    android:textSize="@dimen/Size10" />
+
+                <TextView
+                    android:id="@+id/design_venueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Mumbai"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:textColor="@color/textColorRed"
+                    android:textSize="@dimen/Size12" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/venueFilterChangeCity"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/venueFilter_layout_city"
+                android:background="@drawable/edit"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/spnrSelectTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="Select element for design options"
+            android:textSize="@dimen/_10sdp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/design_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="4"
+            android:paddingLeft="@dimen/_4sdp">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/venue_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_grey"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/designSaveExit"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Button_Height"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@color/btnColorGrey"
+            android:gravity="center"
+            android:text="Save and Exit"
+            android:textColor="@color/textColorWhite"
+            android:textSize="@dimen/Size9" />
+
+        <TextView
+            android:id="@+id/designSave"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/Button_Height"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@color/btnColorGrey"
+            android:gravity="center"
+            android:text="Save and Proceed"
+            android:textColor="@color/textColorWhite"
+            android:textSize="@dimen/Size9" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

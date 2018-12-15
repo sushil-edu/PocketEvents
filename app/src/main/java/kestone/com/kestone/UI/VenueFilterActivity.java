@@ -13,20 +13,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.io.Serializable;
 
 import kestone.com.kestone.Fragments.DesignFragment;
 import kestone.com.kestone.Fragments.MoreFragment;
 import kestone.com.kestone.Fragments.SetupVenueFragment;
 import kestone.com.kestone.Fragments.VenueFilterFragment;
 import kestone.com.kestone.Fragments.VenueFragment;
+import kestone.com.kestone.MODEL.Theme.RESPONSE.ThemeResponse;
 import kestone.com.kestone.R;
 import kestone.com.kestone.Utilities.CONSTANTS;
 import kestone.com.kestone.Utilities.StorageUtilities;
-import qiu.niorgai.StatusBarCompat;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class VenueFilterActivity extends AppCompatActivity {
+public class VenueFilterActivity extends AppCompatActivity implements Serializable {
 
 
     StorageUtilities storage;
@@ -174,8 +175,9 @@ public class VenueFilterActivity extends AppCompatActivity {
     void LoadDesignFragment() {
         DesignFragment fragment = new DesignFragment();
         Bundle bundle = new Bundle();
+
         if (getIntent() != null)
-            bundle.putSerializable("data", getIntent().getSerializableExtra("data"));
+            bundle.putSerializable("data", (ThemeResponse)getIntent().getSerializableExtra("data"));
         fragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);

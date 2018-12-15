@@ -113,7 +113,6 @@ public class VenueCardAdapter extends RecyclerView.Adapter<VenueCardAdapter.Hold
 
         holder.venueName.setText(styleString(MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(position).getVenueName()));
 
-
         holder.venueAddress.setText(MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(position).getVenueAddress());
         if (MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(position).getVenueImages().length == 0) {
             holder.numberOfImages.setText("No Images");
@@ -239,8 +238,8 @@ public class VenueCardAdapter extends RecyclerView.Adapter<VenueCardAdapter.Hold
     }
 
     private String styleString(String str) {
-        str = str.toLowerCase();
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
+//        str = str.toLowerCase();
+        return str;//.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
 

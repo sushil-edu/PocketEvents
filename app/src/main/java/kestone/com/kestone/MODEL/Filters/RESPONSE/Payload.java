@@ -159,6 +159,13 @@ public class Payload implements Serializable {
         this.isSelected = isSelected;
     }
 
+//    public SavedRange getRanges() {
+//        return ranges;
+//    }
+//
+//    public void setRanges(SavedRange ranges) {
+//        this.ranges = ranges;
+//    }
     public SavedRange getRanges() {
         return ranges;
     }

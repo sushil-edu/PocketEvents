@@ -9,49 +9,52 @@ import kestone.com.kestone.MODEL.More.RESPONSE.MoreResponse;
 public class CONSTANTS {
 
 
-    private String BASEURL="http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc";
+    private String BASEURL="http://pocketevents.in/eiab/RestServiceImpl.svc";
     public static final int RESULTCODE_COMPARE = 1;
     public static final int MY_PERMISSIONS_REQUEST_READ_STORAGE = 99;
     public static final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 100;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 101;
+    private static String HOST_URL="http://pocketevents.in/eiab/";
 
     //URL  http://mobileapps.kestoneapps.com/eiab
     //URL2 http://mobileapps.kestoneapps.com/eiab
 
     //URLS
-    public  static final String URL_GET_VENUE_FILTERS = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/getVenueFilters";
-    public  static final String URL_GET_SAVED_EVENT_LIST = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/getSavedEventList";
-    public  static final String URL_FORGOT_PASSWORD = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/sendForgotLink";
-    public  static final String URL_LOGIN = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/login";
-    public  static final String URL_GET_VENUE_LIST = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/getVenueList";
-    public  static final String URL_INSERT_SIGNUP = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/InsertSignUP";
-    public  static final String URL_SAVE_EVENT = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/saveEvent";
-    public  static final String URL_SAVED_EVENT_FILTERS = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/SavedEventList";
-    public  static final String URL_LOGOUT = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/logout";
-    public  static final String URL_DELETE_EVENT = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/DeleteEvent";
-    public  static final String URL_SETUP = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/SetupAPI";
-    public  static final String URL_DESIGN = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/DesignAPI";
-    public  static final String URL_DESIGN_EMAIL = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/DesignEmail";
-    public  static final String URL_EVENTSEARCH = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/EventSearch";
-    public  static final String URL_MORE = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/MoreAPI";
-    public  static final String URL_CONSULTING_PRICE = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/GetPriceDetails";
-    public  static final String URL_MYORDERS = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/MyOrder";
-    public  static final String URL_EMAIL_INVOICE = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/InvoiceEmail";
-    public  static final String URL_EMAIL_ALLEVENTS = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/EventDesignEmail";
-    public  static final String URL_PAYMENT_API = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/PaymentDetails";
-    public  static final String URL_CONTACT_US = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/GetContactUS";
-    public  static final String URL_SUBMIT_QUERY = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/SubmitQuestion";
-    public  static final String URL_SUBMIT_RATING = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/SubmitRating";
-    public  static final String URL_GET_CITY = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/getCity";
-    public  static final String URL_GET_PAYMENT_QUOTE = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/GetPaymentQuote";
-    public  static final String URL_PAYMENT_SUCCESS = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/InsertInvoiceDetails";
-    public  static final String URL_REWARDS_REFERRALS = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/ReferralReward";
-    public  static final String URL_REFERRAL_REWARD_LIST = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/MyReferralRewardList";
-    public  static final String URL_FOR_CHANGEPASSWORD = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/ChangePassword";
-    public  static final String URL_FLOORPLAN = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/FlorePlanMail";
-    public  static final String URL_FOR_REFFERAL_VALIDATION = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/RefferalValidation";
-    public static  final String URL_Get_Consultancy_Info = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/getConsultancyinfo";
-    public static  final String URL_Event_Search_Id = "http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/EventSearchId";
+    public  static final String URL_GET_VENUE_FILTERS = HOST_URL + "RestServiceImpl.svc/getVenueFilters";
+    public  static final String URL_GET_SAVED_EVENT_LIST = HOST_URL + "RestServiceImpl.svc/getSavedEventList";
+    public  static final String URL_FORGOT_PASSWORD = HOST_URL + "RestServiceImpl.svc/sendForgotLink";
+    public  static final String URL_LOGIN = HOST_URL + "RestServiceImpl.svc/login";
+    public  static final String URL_GET_VENUE_LIST = HOST_URL + "RestServiceImpl.svc/getVenueList";
+    public  static final String URL_INSERT_SIGNUP = HOST_URL + "RestServiceImpl.svc/InsertSignUP";
+    public  static final String URL_SAVE_EVENT = HOST_URL + "RestServiceImpl.svc/saveEvent";
+    public  static final String URL_SAVED_EVENT_FILTERS = HOST_URL + "RestServiceImpl.svc/SavedEventList";
+    public  static final String URL_LOGOUT = HOST_URL + "RestServiceImpl.svc/logout";
+    public  static final String URL_DELETE_EVENT = HOST_URL + "RestServiceImpl.svc/DeleteEvent";
+    public  static final String URL_SETUP = HOST_URL + "RestServiceImpl.svc/SetupAPI";
+    public  static final String URL_DESIGN = HOST_URL + "RestServiceImpl.svc/DesignAPI";
+    public  static final String URL_DESIGN_THEME = HOST_URL + "RestServiceImpl.svc/getTheme";
+    public  static final String URL_DESIGN_EMAIL = HOST_URL + "RestServiceImpl.svc/DesignEmail";
+    public  static final String URL_EVENTSEARCH = HOST_URL + "RestServiceImpl.svc/EventSearch";
+    public  static final String URL_MORE = HOST_URL + "RestServiceImpl.svc/MoreAPI";
+    public  static final String URL_CONSULTING_PRICE = HOST_URL + "RestServiceImpl.svc/GetPriceDetails";
+    public  static final String URL_MYORDERS = HOST_URL + "RestServiceImpl.svc/MyOrder";
+    public  static final String URL_EMAIL_INVOICE = HOST_URL + "RestServiceImpl.svc/InvoiceEmail";
+    public  static final String URL_EMAIL_ALLEVENTS = HOST_URL + "RestServiceImpl.svc/EventDesignEmail";
+    public  static final String URL_PAYMENT_API = HOST_URL + "RestServiceImpl.svc/PaymentDetails";
+    public  static final String URL_CONTACT_US = HOST_URL + "RestServiceImpl.svc/GetContactUS";
+    public  static final String URL_SUBMIT_QUERY = HOST_URL + "RestServiceImpl.svc/SubmitQuestion";
+    public  static final String URL_SUBMIT_RATING = HOST_URL + "RestServiceImpl.svc/SubmitRating";
+    public  static final String URL_GET_CITY = HOST_URL + "RestServiceImpl.svc/getCity";
+    public  static final String URL_GET_PAYMENT_QUOTE = HOST_URL + "RestServiceImpl.svc/GetPaymentQuote";
+    public  static final String URL_PAYMENT_SUCCESS = HOST_URL + "RestServiceImpl.svc/InsertInvoiceDetails";
+    public  static final String URL_REWARDS_REFERRALS = HOST_URL + "RestServiceImpl.svc/ReferralReward";
+    public  static final String URL_REFERRAL_REWARD_LIST = HOST_URL + "RestServiceImpl.svc/MyReferralRewardList";
+    public  static final String URL_FOR_CHANGEPASSWORD = HOST_URL + "RestServiceImpl.svc/ChangePassword";
+    public  static final String URL_FLOORPLAN = HOST_URL + "RestServiceImpl.svc/FlorePlanMail";
+    public  static final String URL_FOR_REFFERAL_VALIDATION = HOST_URL + "RestServiceImpl.svc/RefferalValidation";
+    public static  final String URL_Get_Consultancy_Info = HOST_URL + "RestServiceImpl.svc/getConsultancyinfo";
+    public static  final String URL_Event_Search_Id = HOST_URL + "RestServiceImpl.svc/EventSearchId";
+    public static  final String url_event_configuration = HOST_URL + "M_EmailView.aspx";
     //Fragments
 
     public static final String FRAGMENT_FILTERS = "filters";

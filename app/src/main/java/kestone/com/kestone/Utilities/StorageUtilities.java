@@ -84,6 +84,7 @@ public class StorageUtilities {
 //        preferences = PreferenceManager.getDefaultSharedPreferences(context);
 //        return preferences.getString("lname",STORAGE);
 //    }
+
     public void storeID(String ID){
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();

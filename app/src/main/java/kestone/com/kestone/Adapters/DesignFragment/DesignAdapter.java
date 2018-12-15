@@ -3,6 +3,7 @@ package kestone.com.kestone.Adapters.DesignFragment;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import kestone.com.kestone.MODEL.Design.RESPONSE.DesignResponse;
 import kestone.com.kestone.MODEL.Design.RESPONSE.Payload;
 import kestone.com.kestone.MODEL.Design.RESPONSE.Values;
 import kestone.com.kestone.R;
@@ -51,7 +53,7 @@ public class DesignAdapter extends RecyclerView.Adapter<DesignAdapter.Holder> {
     @Override
     public void onBindViewHolder(final Holder holder, final int position) {
 
-
+        Log.e("Design Name ", list.get(position) +" ID "+list.get( position ));
             if (list.get(position).isSelected()){
                 holder.card.setBackgroundColor(ContextCompat.getColor(mContext,R.color.textColorRed));
                 holder.text1.setTextColor(ContextCompat.getColor(mContext,R.color.textColorWhite));

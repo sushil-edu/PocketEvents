@@ -104,11 +104,8 @@ public class VenueCardInnerHallAdapter extends RecyclerView.Adapter<VenueCardInn
         }
 
         holder.text1.setText(styleString(MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(POSITION).getHalls().get(position).getHallName()));
-
         if (MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(POSITION).getHalls().get(position).getHallImages().length > 0) {
-
             Glide.with(mcontext).load(MySingleton.getInstance().getVenues().getResponse().get(0).getPayload().get(POSITION).getHalls().get(position).getHallImages()[0]).crossFade().placeholder(R.drawable.placeholder).into(holder.hallIv);
-
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

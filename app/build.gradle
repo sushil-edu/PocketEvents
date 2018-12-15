@@ -80,8 +80,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-analytics:10.0.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC1'
-    implementation project(':libraryMobilePaymentSDK')
+//    implementation project(':libraryMobilePaymentSDK')
+    implementation project(':ATOMlibraryMobilePaymentSDK')
     implementation project(':plutuspg-release')
+
 }
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'

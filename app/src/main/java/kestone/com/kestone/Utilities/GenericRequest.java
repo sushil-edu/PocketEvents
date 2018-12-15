@@ -3,6 +3,7 @@ package kestone.com.kestone.Utilities;
 import android.content.Context;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -228,4 +229,5 @@ public class GenericRequest<T> extends JsonRequest<T> {
         // Add headers, for auth for example
         // ...
     }
+
 }

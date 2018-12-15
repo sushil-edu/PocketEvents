@@ -478,7 +478,7 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
         Log.d("TxnId", TxnId);
         Log.d("date", currentDateandTime);
 
-        Intent newPayIntent = new Intent(ConsultingServiceActivity.this, PayActivity.class);
+        Intent newPayIntent = new Intent(ConsultingServiceActivity.this,PayActivity.class);
         newPayIntent.putExtra("merchantId", "61028");
         newPayIntent.putExtra("txnscamt", "0"); //Fixed. Must be 0
         newPayIntent.putExtra("loginid", "61028");
@@ -488,15 +488,16 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
         newPayIntent.putExtra("clientcode", "007");
         //newPayIntent.putExtra("custacc", "100000036600");
         newPayIntent.putExtra("custacc", "100000036600");
-        newPayIntent.putExtra("amt", amount + ".000");//Should be 3 decimal number i.e 51.000
+        newPayIntent.putExtra("amt", amount + ".00");//Should be 2 decimal number i.e 51.00
         //newPayIntent.putExtra("amt", "50" + ".000");//Should be 3 decimal number i.e 51.000
         newPayIntent.putExtra("txnid", TxnId);
         newPayIntent.putExtra("date", currentDateandTime);//Should be in same format
         //newPayIntent.putExtra("bankid", "9"); //Should be valid bank id // Optional
         newPayIntent.putExtra("discriminator", "ALL"); // NB or IMPS or All ONLY (value should be same as commented)
-        //newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param");  // FOR UAT (Testing)
-        newPayIntent.putExtra("ru", "https://payment.atomtech.in/mobilesdk/param");  // FOR UAT (Testing)
-        //newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param"); // FOR UAT (Testing)
+        newPayIntent.putExtra("signature_request", "73f054c2da9db53e7b");
+        newPayIntent.putExtra("signature_response", "720c3d760227ba97ea");
+//        newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param");  // FOR UAT (Testing)
+        newPayIntent.putExtra("ru", "https://payment.atomtech.in/mobilesdk/param");  // FOR PRODUCTION
         startActivityForResult(newPayIntent, 1);
 
     }
@@ -537,10 +538,10 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
                                         myData.get(0).getIGSTTax(), myData.get(0).getIGSTTaxAmount(), myData.get(0).getTaxAmount(), myData.get(0).getGrandTotalAmount());
                                 break;
                             case "F":
-                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transction Failure");
+                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transaction Failure");
                                 break;
                             default:
-                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transection Cancelled by User.");
+                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transaction Cancelled by User.");
                                 break;
                         }
 
@@ -560,7 +561,7 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
                                 GeneralUtils.ShowAlert(ConsultingServiceActivity.this, resValue[21].toString());
                                 break;
                             default:
-                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transection Cancelled by User.");
+                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transaction Cancelled by User.");
                                 break;
                         }
                     }
@@ -644,32 +645,32 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
     }
 
     void getCounsultingInfo() {
-        progressDialog.show();
-        GenericRequest<ConsultingInfoResponse> request = new GenericRequest<ConsultingInfoResponse>(Request.Method.POST, CONSTANTS.URL_Get_Consultancy_Info, ConsultingInfoResponse.class,
-                "", new Response.Listener<ConsultingInfoResponse>() {
-            @Override
-            public void onResponse(ConsultingInfoResponse response) {
-                progressDialog.dismiss();
-                if (Boolean.valueOf(response.getResponse().get(0).getStatus())) {
+//        progressDialog.show();
+//        GenericRequest<ConsultingInfoResponse> request = new GenericRequest<ConsultingInfoResponse>(Request.Method.POST, CONSTANTS.URL_Get_Consultancy_Info, ConsultingInfoResponse.class,
+//                "", new Response.Listener<ConsultingInfoResponse>() {
+//            @Override
+//            public void onResponse(ConsultingInfoResponse response) {
+//                progressDialog.dismiss();
+//                if (Boolean.valueOf(response.getResponse().get(0).getStatus())) {
                     Intent intent = new Intent(ConsultingServiceActivity.this, AboutConsultingServices.class);
-                    intent.putExtra("data", response);
+//                    intent.putExtra("data", response);
                     startActivity(intent);
 
-                } else {
-                    GeneralUtils.ShowAlert(ConsultingServiceActivity.this, response.getResponse().get(0).getMessage());
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, getString(R.string.VolleyTimeout));
-                progressDialog.dismiss();
-
-            }
-        });
-
-        AppController.getInstance().addToRequestQueue(request);
+//                } else {
+//                    GeneralUtils.ShowAlert(ConsultingServiceActivity.this, response.getResponse().get(0).getMessage());
+//                }
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, getString(R.string.VolleyTimeout));
+//                progressDialog.dismiss();
+//
+//            }
+//        });
+//
+//        AppController.getInstance().addToRequestQueue(request);
     }
 
     void getCounsulting(String body) {

@@ -34,6 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -185,7 +186,7 @@ public class CitySearchActivity extends AppCompatActivity
         nav_terms = (LinearLayout) findViewById(R.id.nav_terms);
         nav_terms.setOnClickListener(this);
         nav_privacy = (LinearLayout) findViewById(R.id.nav_privacy);
-        nav_privacy.setOnClickListener(this);
+        nav_privacy.setVisibility( View.GONE );//.setOnClickListener(this);
         nav_logOut = (LinearLayout) findViewById(R.id.nav_logOut);
         nav_logOut.setOnClickListener(this);
 
@@ -629,6 +630,10 @@ public class CitySearchActivity extends AppCompatActivity
         });
 
         AppController.getInstance().addToRequestQueue(request);
+//        request.setRetryPolicy(new DefaultRetryPolicy(
+//                500,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
 
@@ -822,7 +827,10 @@ public class CitySearchActivity extends AppCompatActivity
             }
         });
         AppController.getInstance().addToRequestQueue(request);
-
+//        request.setRetryPolicy(new DefaultRetryPolicy(
+//                30000,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     void ContactUs() {

@@ -215,7 +215,10 @@ public class MoreFilterActivity extends AppCompatActivity implements MoreFilterA
     }
 
     void GetVenues(){
-        GenericRequest<GetVenueListResponse> request = new GenericRequest<GetVenueListResponse>(Request.Method.POST, CONSTANTS.URL_GET_VENUE_LIST, GetVenueListResponse.class, new VenueRequest("1", "0", "10", filterManager.getSelectedFilters()),
+        String filters = filterManager.getSelectedFilters();
+        String [] filterData = filters.split( "; FilterID 3 ; FilterValue" );
+//        GenericRequest<GetVenueListResponse> request = new GenericRequest<GetVenueListResponse>(Request.Method.POST, CONSTANTS.URL_GET_VENUE_LIST, GetVenueListResponse.class, new VenueRequest("1", "0", "10", filterManager.getSelectedFilters()),
+        GenericRequest<GetVenueListResponse> request = new GenericRequest<GetVenueListResponse>(Request.Method.POST, CONSTANTS.URL_GET_VENUE_LIST, GetVenueListResponse.class, new VenueRequest("1", "0", "10", filterData[0]),
                 new Response.Listener<GetVenueListResponse>() {
                     @Override
                     public void onResponse(GetVenueListResponse response) {

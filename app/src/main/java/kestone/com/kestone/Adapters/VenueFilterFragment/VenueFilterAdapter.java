@@ -2,6 +2,7 @@ package kestone.com.kestone.Adapters.VenueFilterFragment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,16 +81,23 @@ public class VenueFilterAdapter extends RecyclerView.Adapter<VenueFilterAdapter.
 
                     int capacity = ((Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getLowerLimit())) +
                             (Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getUpperLimit()))) / 2;
-
-                    holder.text2.setText(capacity + "");
+                    if(capacity<=50) {
+//                        holder.text2.setText( capacity + "" );
+                        holder.text2.setText( 50 + "" );
+                    }else if(capacity<=100) {
+                        holder.text2.setText( 100 + "" );
+                    }else if(capacity>100) {
+                        holder.text2.setText( 150 + "" );
+                    }
                 } else {
                     holder.text2.setText(MySingleton.getInstance().getPayload1().get(position).getRanges().getLowerLimit() + "-" + MySingleton.getInstance().getPayload1().get(position).getRanges().getUpperLimit());
                 }
             } else {
                 for (int i = 0; i < MySingleton.getInstance().getPayload1().get(position).getValues().size(); i++) {
-
+                    Log.e("Style ", MySingleton.getInstance().getPayload1().get(position).getValues().get(i).getNameLabel());
                     if (MySingleton.getInstance().getPayload1().get(position).getFilterName().equals("Seating Style")) {
                         HallDetails.setSeatingStyle(MySingleton.getInstance().getPayload1().get(position).getValues().get(i).getNameLabel());
+                        holder.text2.setText(MySingleton.getInstance().getPayload1().get(position).getValues().get(i).getNameLabel());
                     }
 
                     if (MySingleton.getInstance().getPayload1().get(position).getValues().get(i).isSelected()) {

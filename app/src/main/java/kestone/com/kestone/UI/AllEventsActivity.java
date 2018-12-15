@@ -3,8 +3,8 @@ package kestone.com.kestone.UI;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -19,9 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -32,7 +30,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.fabric.sdk.android.services.common.CommonUtils;
 import it.gmariotti.recyclerview.adapter.AlphaAnimatorAdapter;
 import kestone.com.kestone.Adapters.AllEventsActivity.AllEventAdapter;
 import kestone.com.kestone.MODEL.DeleteEvent.REQUEST.DeleteEventRequest;
@@ -52,6 +49,7 @@ import kestone.com.kestone.MODEL.More.REQUEST.MoreRequest;
 import kestone.com.kestone.MODEL.More.RESPONSE.MoreResponse;
 import kestone.com.kestone.MODEL.Setup.REQUEST.SetupRequest;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.SetupResponse;
+import kestone.com.kestone.MODEL.Theme.RESPONSE.ThemeResponse;
 import kestone.com.kestone.R;
 import kestone.com.kestone.Utilities.CONSTANTS;
 import kestone.com.kestone.Utilities.GeneralUtils;
@@ -60,7 +58,7 @@ import kestone.com.kestone.Utilities.PrefEntities;
 import kestone.com.kestone.Utilities.StorageUtilities;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class AllEventsActivity extends AppCompatActivity implements AllEventAdapter.AllEventAdapterCallBack {
+public class AllEventsActivity extends AppCompatActivity implements AllEventAdapter.AllEventAdapterCallBack, Serializable {
 
     RecyclerView recyclerView;
 
@@ -84,30 +82,30 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_events);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_all_events );
 
-        storage = new StorageUtilities(AllEventsActivity.this);
-        search = (AppCompatEditText) findViewById(R.id.allEventSearch);
-        getSavedEventListResponse = (GetSavedEventListResponse) getIntent().getSerializableExtra("events");
+        storage = new StorageUtilities( AllEventsActivity.this );
+        search = (AppCompatEditText) findViewById( R.id.allEventSearch );
+        getSavedEventListResponse = (GetSavedEventListResponse) getIntent().getSerializableExtra( "events" );
 
 
-        progressDialogue = new ProgressDialog(this);
-        progressDialogue.setCancelable(false);
-        progressDialogue.setMessage("Please wait..");
+        progressDialogue = new ProgressDialog( this );
+        progressDialogue.setCancelable( false );
+        progressDialogue.setMessage( "Please wait.." );
 
-        recyclerView = (RecyclerView) findViewById(R.id.allEvents);
+        recyclerView = (RecyclerView) findViewById( R.id.allEvents );
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager( this );
 
-        adapter = new AllEventAdapter(AllEventsActivity.this,getSavedEventListResponse);
+        adapter = new AllEventAdapter( AllEventsActivity.this, getSavedEventListResponse );
 
-        recyclerView.setLayoutManager(layoutManager);
-        animatorAdapter = new AlphaAnimatorAdapter(adapter,recyclerView);
-        recyclerView.setAdapter(animatorAdapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager( layoutManager );
+        animatorAdapter = new AlphaAnimatorAdapter( adapter, recyclerView );
+        recyclerView.setAdapter( animatorAdapter );
+        recyclerView.setItemAnimator( new DefaultItemAnimator() );
 
-        search.addTextChangedListener(new TextWatcher() {
+        search.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -115,15 +113,15 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (GeneralUtils.isNetworkAvailable(AllEventsActivity.this))
-                adapter.getFilter().filter(charSequence);
-                else GeneralUtils.displayNetworkAlert(AllEventsActivity.this,false);
+                if (GeneralUtils.isNetworkAvailable( AllEventsActivity.this ))
+                    adapter.getFilter().filter( charSequence );
+                else GeneralUtils.displayNetworkAlert( AllEventsActivity.this, false );
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
             }
-        });
+        } );
     }
 
     @Override
@@ -131,20 +129,20 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
         super.onPostResume();
     }
 
-    void GetSavedFilter(String eventID){
-        SavedFilterRequest filterRequest = new SavedFilterRequest(eventID, storage.loadID());
-        Log.d("VOLLEY",new Gson().toJson(filterRequest));
-        GenericRequest<SavedEventListResponse> request = new GenericRequest<SavedEventListResponse>(Request.Method.POST, CONSTANTS.URL_SAVED_EVENT_FILTERS, SavedEventListResponse.class, filterRequest,
+    void GetSavedFilter(String eventID) {
+        SavedFilterRequest filterRequest = new SavedFilterRequest( eventID, storage.loadID() );
+        Log.d( "VOLLEY", new Gson().toJson( filterRequest ) );
+        GenericRequest<SavedEventListResponse> request = new GenericRequest<SavedEventListResponse>( Request.Method.POST, CONSTANTS.URL_SAVED_EVENT_FILTERS, SavedEventListResponse.class, filterRequest,
                 new Response.Listener<SavedEventListResponse>() {
                     @Override
                     public void onResponse(SavedEventListResponse response) {
                         progressDialogue.dismiss();
-                        if (Boolean.parseBoolean(response.getResponse().get(0).getStatus())) {
-                            new setUpSingleton().execute(response);
-                        }else {
-                            AlertDialog.Builder alert = new AlertDialog.Builder(AllEventsActivity.this);
-                            alert.setMessage(response.getResponse().get(0).getMessage());
-                            alert.setCancelable(true);
+                        if (Boolean.parseBoolean( response.getResponse().get( 0 ).getStatus() )) {
+                            new setUpSingleton().execute( response );
+                        } else {
+                            AlertDialog.Builder alert = new AlertDialog.Builder( AllEventsActivity.this );
+                            alert.setMessage( response.getResponse().get( 0 ).getMessage() );
+                            alert.setCancelable( true );
                             final AlertDialog alertDialog = alert.create();
                             alertDialog.show();
                         }
@@ -153,28 +151,28 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialogue.dismiss();
-                GeneralUtils.ShowAlert(AllEventsActivity.this,getString(R.string.VolleyTimeout));
+                GeneralUtils.ShowAlert( AllEventsActivity.this, getString( R.string.VolleyTimeout ) );
             }
-        });
-        AppController.getInstance().addToRequestQueue(request);
+        } );
+        AppController.getInstance().addToRequestQueue( request );
     }
 
     @Override
-    public void OnEventClicked(kestone.com.kestone.MODEL.GetSavedVenue.RESPONSE.Payload payload,int position) {
-       // Toast.makeText(getApplicationContext(),payload.getEventId() + " " + storage.loadID(),Toast.LENGTH_LONG).show();
+    public void OnEventClicked(kestone.com.kestone.MODEL.GetSavedVenue.RESPONSE.Payload payload, int position) {
+        // Toast.makeText(getApplicationContext(),payload.getEventId() + " " + storage.loadID(),Toast.LENGTH_LONG).show();
         if (position==0){
-            storage.storeEventID(payload.getEventId());
-            storage.storeCity(payload.getCityname());
-            storage.storeEventName(payload.getEventName());
-            storage.storeEventDate(payload.getCreateDate());
-            GetSavedFilter(payload.getEventId());
-            progressDialogue.show();
+        storage.storeEventID( payload.getEventId() );
+        storage.storeCity( payload.getCityname() );
+        storage.storeEventName( payload.getEventName() );
+        storage.storeEventDate( payload.getCreateDate() );
+        GetSavedFilter( payload.getEventId() );
+        progressDialogue.show();
         }else if (position==1){
             storage.storeEventID(payload.getEventId());
             storage.storeCity(payload.getCityname());
             storage.storeEventName(payload.getEventName());
             storage.storeEventDate(payload.getCreateDate());
-            storage.StoreKey(PrefEntities.VENUEID,payload.getVenueId());
+            storage.StoreKey( PrefEntities.VENUEID,payload.getVenueId());
             storage.storeHallID(payload.getHallId());
             Setup(payload.getEventId(),payload.getVenueId(),payload.getHallId(),payload.getCityID());
         }else if (position==2){
@@ -185,7 +183,8 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             storage.StoreKey(PrefEntities.VENUEID,payload.getVenueId());
             storage.StoreKey(PrefEntities.SETUPID,payload.getSetupID());
             storage.storeHallID(payload.getHallId());
-            Design(payload.getEventId());
+//            Design(payload.getEventId());
+            Design();
         }else if (position==3){
             storage.storeEventID(payload.getEventId());
             storage.storeCity(payload.getCityname());
@@ -198,9 +197,9 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             More(storage.loadID(),payload.getEventId());
 
         }
-//        else {
-//            Email(payload.getEventId(),storage.loadID());
-//        }
+        else {
+            Email(payload.getEventId(),storage.loadID());
+        }
 
     }
 
@@ -238,100 +237,51 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
 //        alert = alertDialog.create();
 //        alert.show();
 
-        final Dialog clearAll = new Dialog(AllEventsActivity.this);
-        clearAll.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        clearAll.setCancelable(true);
-        clearAll.setContentView(R.layout.dialog_delete_event);
-        TextView no = (TextView) clearAll.findViewById(R.id.no);
-        TextView yes = (TextView) clearAll.findViewById(R.id.yes);
-        yes.setOnClickListener(new View.OnClickListener() {
+        final Dialog clearAll = new Dialog( AllEventsActivity.this );
+        clearAll.requestWindowFeature( Window.FEATURE_NO_TITLE );
+        clearAll.setCancelable( true );
+        clearAll.setContentView( R.layout.dialog_delete_event );
+        TextView no = (TextView) clearAll.findViewById( R.id.no );
+        TextView yes = (TextView) clearAll.findViewById( R.id.yes );
+        yes.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleteEvent(storage.loadID(),payload.getEventId(),position);
+                DeleteEvent( storage.loadID(), payload.getEventId(), position );
                 clearAll.dismiss();
             }
-        });
-        no.setOnClickListener(new View.OnClickListener() {
+        } );
+        no.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 clearAll.dismiss();
 //
             }
-        });
-        clearAll.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        } );
+        clearAll.getWindow().setLayout( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT );
         clearAll.show();
-
 
 
     }
 
     @Override
     public void OnEmailClicked(String EventID) {
-        Email(EventID,storage.loadID());
+        Email( EventID, storage.loadID() );
     }
 
-    class setUpSingleton extends AsyncTask<SavedEventListResponse,Void,String>{
-
-        @Override
-        protected String doInBackground(SavedEventListResponse... savedEventListResponses) {
-
-            p1.clear();
-            p2.clear();
-            SavedEventListResponse response = savedEventListResponses[0];
-
-            if (MySingleton.getInstance()== null) {
-                MySingleton.initInstance();
-            }
-
-            //MySingleton.getInstance().setModel(response);
-            for (int i = 0; i < response.getResponse().get(0).getPayloads().size(); i++) {
-                if (response.getResponse().get(0).getPayloads().get(i).getMoreType().equals("0")) {
-                    if (response.getResponse().get(0).getPayloads().get(i).getStyle().equals("2")){
-                        if (response.getResponse().get(0).getPayloads().get(i).getValues().size()>2) {
-                            SavedRange range = new SavedRange();
-                            range.setLowerLimit(response.getResponse().get(0).getPayloads().get(i).getValues().get(2).getNameLabel());
-                            range.setUpperLimit(response.getResponse().get(0).getPayloads().get(i).getValues().get(3).getNameLabel());
-                            response.getResponse().get(0).getPayloads().get(i).setRanges(range);
-                        }
-                        p1.add(response.getResponse().get(0).getPayloads().get(i));
-                    }else {
-                        p1.add(response.getResponse().get(0).getPayloads().get(i));
-                    }
-                } else {
-                    p2.add(response.getResponse().get(0).getPayloads().get(i));
-                }
-
-            }
-            MySingleton.getInstance().setPayload1(p1);
-            MySingleton.getInstance().setPayload2(p2);
-            storage.storePayload1(p1);
-            storage.storePayload3(p2);
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            progressDialogue.dismiss();
-
-            Intent i = new Intent(AllEventsActivity.this, VenueFilterActivity.class);
-            startActivity(i);
-
-        }
+    @Override
+    public void OnConfigurationClicked(String EventID) {
+        openPDF( EventID, storage.loadID() );
     }
 
-
-    void DeleteEvent(String userID, String EventID, final int position){
+    void DeleteEvent(String userID, String EventID, final int position) {
         progressDialogue.show();
-        GenericRequest<DeleteEventResponse> request = new GenericRequest<DeleteEventResponse>(Request.Method.POST, CONSTANTS.URL_DELETE_EVENT, DeleteEventResponse.class,
-                new DeleteEventRequest(EventID, userID), new Response.Listener<DeleteEventResponse>() {
+        GenericRequest<DeleteEventResponse> request = new GenericRequest<DeleteEventResponse>( Request.Method.POST, CONSTANTS.URL_DELETE_EVENT, DeleteEventResponse.class,
+                new DeleteEventRequest( EventID, userID ), new Response.Listener<DeleteEventResponse>() {
             @Override
             public void onResponse(DeleteEventResponse response) {
                 progressDialogue.dismiss();
-                if (Boolean.valueOf(response.getResponse().get(0).getStatus())){
+                if (Boolean.valueOf( response.getResponse().get( 0 ).getStatus() )) {
                     GetallEvents();
 
 
@@ -341,28 +291,28 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialogue.dismiss();
-                GeneralUtils.ShowAlert(AllEventsActivity.this,getString(R.string.VolleyTimeout));
+                GeneralUtils.ShowAlert( AllEventsActivity.this, getString( R.string.VolleyTimeout ) );
             }
-        });
-        AppController.getInstance().addToRequestQueue(request);
+        } );
+        AppController.getInstance().addToRequestQueue( request );
     }
 
-    void Setup(String eventID,String venueID, String hallID, String cityID){
+    void Setup(String eventID, String venueID, String hallID, String cityID) {
         progressDialogue.show();
-        GenericRequest<SetupResponse> request = new GenericRequest<SetupResponse>(Request.Method.POST, CONSTANTS.URL_SETUP, SetupResponse.class,
-                new SetupRequest(eventID, venueID, hallID, cityID), new Response.Listener<SetupResponse>() {
+        GenericRequest<SetupResponse> request = new GenericRequest<SetupResponse>( Request.Method.POST, CONSTANTS.URL_SETUP, SetupResponse.class,
+                new SetupRequest( eventID, venueID, hallID, cityID ), new Response.Listener<SetupResponse>() {
             @Override
             public void onResponse(SetupResponse response) {
 
                 progressDialogue.dismiss();
-                if (Boolean.valueOf(response.getResponse().get(0).getStatus())){
+                if (Boolean.valueOf( response.getResponse().get( 0 ).getStatus() )) {
                     //Toast.makeText(getApplicationContext(),response.getResponse().get(0).getStatus(),Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(AllEventsActivity.this,VenueFilterActivity.class);
-                    intent.putExtra(CONSTANTS.VENUESETUP_TAG,CONSTANTS.VENUESETUP_VALUE);
-                    intent.putExtra("data",(Serializable) response);
-                    startActivity(intent);
-                }else {
-                    GeneralUtils.ShowAlert(AllEventsActivity.this,response.getResponse().get(0).getMessage());
+                    Intent intent = new Intent( AllEventsActivity.this, VenueFilterActivity.class );
+                    intent.putExtra( CONSTANTS.VENUESETUP_TAG, CONSTANTS.VENUESETUP_VALUE );
+                    intent.putExtra( "data", (Serializable) response );
+                    startActivity( intent );
+                } else {
+                    GeneralUtils.ShowAlert( AllEventsActivity.this, response.getResponse().get( 0 ).getMessage() );
                 }
 
             }
@@ -370,97 +320,131 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialogue.dismiss();
-                GeneralUtils.ShowAlert(AllEventsActivity.this,getString(R.string.VolleyTimeout));
+                GeneralUtils.ShowAlert( AllEventsActivity.this, getString( R.string.VolleyTimeout ) );
 
 
             }
-        });
+        } );
 
-        AppController.getInstance().addToRequestQueue(request);
+        AppController.getInstance().addToRequestQueue( request );
     }
 
-
-
-    void GetallEvents(){
-        GenericRequest<GetSavedEventListResponse> request = new GenericRequest<GetSavedEventListResponse>(Request.Method.POST, CONSTANTS.URL_GET_SAVED_EVENT_LIST, GetSavedEventListResponse.class, new GetSavedVenueRequest(storage.loadID())
+    void GetallEvents() {
+        GenericRequest<GetSavedEventListResponse> request = new GenericRequest<GetSavedEventListResponse>( Request.Method.POST, CONSTANTS.URL_GET_SAVED_EVENT_LIST, GetSavedEventListResponse.class, new GetSavedVenueRequest( storage.loadID() )
                 , new Response.Listener<GetSavedEventListResponse>() {
             @Override
             public void onResponse(GetSavedEventListResponse response) {
-                adapter = new AllEventAdapter(AllEventsActivity.this,response);
-                animatorAdapter = new AlphaAnimatorAdapter(adapter,recyclerView);
-                recyclerView.setAdapter(animatorAdapter);
+                adapter = new AllEventAdapter( AllEventsActivity.this, response );
+                animatorAdapter = new AlphaAnimatorAdapter( adapter, recyclerView );
+                recyclerView.setAdapter( animatorAdapter );
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                GeneralUtils.ShowAlert(AllEventsActivity.this,getString(R.string.VolleyTimeout));
+                GeneralUtils.ShowAlert( AllEventsActivity.this, getString( R.string.VolleyTimeout ) );
 
             }
-        });
+        } );
 
-        AppController.getInstance().addToRequestQueue(request);
+        AppController.getInstance().addToRequestQueue( request );
     }
 
-    void Design(String EventID){
-        progressDialogue.show();
-        GenericRequest<DesignResponse> request = new GenericRequest<DesignResponse>(Request.Method.POST, CONSTANTS.URL_DESIGN, DesignResponse.class,
-                new DesignRequest(EventID), new Response.Listener<DesignResponse>() {
-            @Override
-            public void onResponse(DesignResponse response) {
+//    void Design(String EventID) {
+//        progressDialogue.show();
+//        GenericRequest<DesignResponse> request = new GenericRequest<DesignResponse>( Request.Method.POST, CONSTANTS.URL_DESIGN, DesignResponse.class,
+//                new DesignRequest( EventID ), new Response.Listener<DesignResponse>() {
+//            @Override
+//            public void onResponse(DesignResponse response) {
+//
+//                progressDialogue.dismiss();
+//                if (response != null) {
+//                    if (Boolean.parseBoolean( response.getResponse().get( 0 ).getStatus() )) {
+//                        //MySingleton.getInstance().setDesignResponse(response);
+//                        Intent intent = new Intent( AllEventsActivity.this, VenueFilterActivity.class );
+//                        intent.putExtra( CONSTANTS.VENUEDESIGN_TAG, CONSTANTS.VENUEDESIGN_VALUE );
+//                        intent.putExtra( "data", (Serializable) response );
+//                        startActivity( intent );
+//                    } else {
+//                        GeneralUtils.ShowAlert( AllEventsActivity.this, response.getResponse().get( 0 ).getMessage() );
+//                    }
+//                } else {
+//                    GeneralUtils.ShowAlert( AllEventsActivity.this, "Invalid Response from server" );
+//                }
+//
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                progressDialogue.dismiss();
+//                GeneralUtils.ShowAlert( AllEventsActivity.this, getString( R.string.VolleyTimeout ) );
+//            }
+//        } );
+//
+//        AppController.getInstance().addToRequestQueue( request );
+//    }
 
-                progressDialogue.dismiss();
-                if (response!=null){
-                    if (Boolean.parseBoolean(response.getResponse().get(0).getStatus())){
-                        //MySingleton.getInstance().setDesignResponse(response);
-                        Intent intent = new Intent(AllEventsActivity.this,VenueFilterActivity.class);
-                        intent.putExtra(CONSTANTS.VENUEDESIGN_TAG,CONSTANTS.VENUEDESIGN_VALUE);
-                        intent.putExtra("data",(Serializable) response);
-                        startActivity(intent);
-                    }else {
-                        GeneralUtils.ShowAlert(AllEventsActivity.this,response.getResponse().get(0).getMessage());
+    void Design() {
+        if (GeneralUtils.isNetworkAvailable(this)) {
+            progressDialogue.show();
+            GenericRequest<ThemeResponse> request = new GenericRequest<ThemeResponse>(Request.Method.GET, CONSTANTS.URL_DESIGN_THEME, ThemeResponse.class,
+                    null,new Response.Listener<ThemeResponse>() {
+                @Override
+                public void onResponse(ThemeResponse response) {
+                    progressDialogue.dismiss();
+                    Log.e("Size ", ""+response.getGetThemeResult().size());
+                    if (response.getGetThemeResult().size()>0) {
+
+                        Intent intent = new Intent( AllEventsActivity.this, VenueFilterActivity.class );
+                        intent.putExtra( CONSTANTS.VENUEDESIGN_TAG, CONSTANTS.VENUEDESIGN_VALUE );
+                        intent.putExtra( "data", (Serializable) response );
+                        startActivity( intent );
+
+
+                    } else {
+                        GeneralUtils.ShowAlert(getApplicationContext(), "Theme not available");
                     }
+
                 }
-                else {
-                    GeneralUtils.ShowAlert(AllEventsActivity.this,"Invalid Response from server");
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    progressDialogue.dismiss();
+                    GeneralUtils.ShowAlert(getApplicationContext(), getString(R.string.VolleyTimeout));
                 }
+            });
 
+            AppController.getInstance().addToRequestQueue(request);
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialogue.dismiss();
-                GeneralUtils.ShowAlert(AllEventsActivity.this,getString(R.string.VolleyTimeout));
-            }
-        });
+        } else {
+            GeneralUtils.displayNetworkAlert(getApplicationContext(), false);
+        }
 
-        AppController.getInstance().addToRequestQueue(request);
     }
 
-
-    void More(String UserID, String eventID){
-        Log.d("UserID",UserID);
-        Log.d("eventID",eventID);
+    void More(String UserID, String eventID) {
+        Log.d( "UserID", UserID );
+        Log.d( "eventID", eventID );
         progressDialogue.show();
-        GenericRequest<MoreResponse> request = new GenericRequest<MoreResponse>(Request.Method.POST, CONSTANTS.URL_MORE, MoreResponse.class,
-                new MoreRequest(eventID, UserID), new Response.Listener<MoreResponse>() {
+        GenericRequest<MoreResponse> request = new GenericRequest<MoreResponse>( Request.Method.POST, CONSTANTS.URL_MORE, MoreResponse.class,
+                new MoreRequest( eventID, UserID ), new Response.Listener<MoreResponse>() {
             @Override
             public void onResponse(MoreResponse response) {
                 progressDialogue.dismiss();
-                if (Boolean.parseBoolean(response.getResponse().get(0).getStatus())){
-                    if (MySingleton.getInstance()==null){
+                if (Boolean.parseBoolean( response.getResponse().get( 0 ).getStatus() )) {
+                    if (MySingleton.getInstance() == null) {
                         MySingleton.initInstance();
                     }
-                    MySingleton.getInstance().setMoreResponse(response);
-                    storage.storeMoreData(response);
-                    storage.storeMoreDataDefault(response);
+                    MySingleton.getInstance().setMoreResponse( response );
+                    storage.storeMoreData( response );
+                    storage.storeMoreDataDefault( response );
 
-                    Intent intent = new Intent(AllEventsActivity.this,VenueFilterActivity.class);
-                    intent.putExtra(CONSTANTS.VENUEMORE_TAG,CONSTANTS.VENUEMORE_VALUE);
-                    startActivity(intent);
+                    Intent intent = new Intent( AllEventsActivity.this, VenueFilterActivity.class );
+                    intent.putExtra( CONSTANTS.VENUEMORE_TAG, CONSTANTS.VENUEMORE_VALUE );
+                    startActivity( intent );
 
-                }else {
-                    GeneralUtils.ShowAlert(AllEventsActivity.this,response.getResponse().get(0).getMessage());
+                } else {
+                    GeneralUtils.ShowAlert( AllEventsActivity.this, response.getResponse().get( 0 ).getMessage() );
                 }
 
             }
@@ -468,37 +452,103 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialogue.dismiss();
-                GeneralUtils.ShowAlert(AllEventsActivity.this,getString(R.string.VolleyTimeout));
+                GeneralUtils.ShowAlert( AllEventsActivity.this, getString( R.string.VolleyTimeout ) );
             }
-        });
-        AppController.getInstance().addToRequestQueue(request);
+        } );
+        AppController.getInstance().addToRequestQueue( request );
 
     }
 
-    void Email(String EventID, String UserID){
+    void Email(String EventID, String UserID) {
         progressDialogue.show();
-        GenericRequest<EventEmailResponse> request = new GenericRequest<EventEmailResponse>(Request.Method.POST, CONSTANTS.URL_EMAIL_ALLEVENTS, EventEmailResponse.class,
-                new EventEmailRequest(EventID, UserID), new Response.Listener<EventEmailResponse>() {
+        GenericRequest<EventEmailResponse> request = new GenericRequest<EventEmailResponse>( Request.Method.POST, CONSTANTS.URL_EMAIL_ALLEVENTS, EventEmailResponse.class,
+                new EventEmailRequest( EventID, UserID ), new Response.Listener<EventEmailResponse>() {
             @Override
             public void onResponse(EventEmailResponse response) {
                 progressDialogue.dismiss();
 
-                GeneralUtils.CustomDialogSucessWithImage(AllEventsActivity.this,"Email Configuration Sent","Event configuration has been sent to your Email ID");
-               // GeneralUtils.ShowAlert(AllEventsActivity.this,"BOQ sent to Registered Email Account");
+                GeneralUtils.CustomDialogSucessWithImage( AllEventsActivity.this, "Email Configuration Sent", "Event configuration has been sent to your Email ID" );
+                // GeneralUtils.ShowAlert(AllEventsActivity.this,"BOQ sent to Registered Email Account");
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialogue.dismiss();
-                GeneralUtils.ShowAlert(AllEventsActivity.this,getString(R.string.VolleyTimeout));
+                GeneralUtils.ShowAlert( AllEventsActivity.this, getString( R.string.VolleyTimeout ) );
             }
-        });
-        AppController.getInstance().addToRequestQueue(request);
+        } );
+        AppController.getInstance().addToRequestQueue( request );
+    }
+
+    void openPDF(String eventID, String userID) {
+        Intent intent = new Intent( Intent.ACTION_VIEW );
+//        http://pocketevents.in/eiab/M_EmailView.aspx?EventID=3371&UserID=1021
+        String uri = Uri.parse( CONSTANTS.url_event_configuration )
+                .buildUpon()
+                .appendQueryParameter( "EventID", eventID )
+                .appendQueryParameter( "UserID", userID )
+                .build().toString();
+        Log.e( "Configuration ", uri );
+
+        intent.setDataAndType( Uri.parse( uri ), "text/html");
+        startActivity(intent);
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext( CalligraphyContextWrapper.wrap( newBase ) );
+    }
+
+    class setUpSingleton extends AsyncTask<SavedEventListResponse, Void, String> {
+
+        @Override
+        protected String doInBackground(SavedEventListResponse... savedEventListResponses) {
+
+            p1.clear();
+            p2.clear();
+            SavedEventListResponse response = savedEventListResponses[0];
+
+            if (MySingleton.getInstance() == null) {
+                MySingleton.initInstance();
+            }
+
+            //MySingleton.getInstance().setModel(response);
+            for (int i = 0; i < response.getResponse().get( 0 ).getPayloads().size(); i++) {
+                if (response.getResponse().get( 0 ).getPayloads().get( i ).getMoreType().equals( "0" )) {
+                    if (response.getResponse().get( 0 ).getPayloads().get( i ).getStyle().equals( "2" )) {
+                        if (response.getResponse().get( 0 ).getPayloads().get( i ).getValues().size() > 2) {
+                            SavedRange range = new SavedRange();
+                            range.setLowerLimit( response.getResponse().get( 0 ).getPayloads().get( i ).getValues().get( 2 ).getNameLabel() );
+                            range.setUpperLimit( response.getResponse().get( 0 ).getPayloads().get( i ).getValues().get( 3 ).getNameLabel() );
+                            response.getResponse().get( 0 ).getPayloads().get( i ).setRanges( range );
+                        }
+                        p1.add( response.getResponse().get( 0 ).getPayloads().get( i ) );
+                    } else {
+                        p1.add( response.getResponse().get( 0 ).getPayloads().get( i ) );
+                    }
+                } else {
+                    p2.add( response.getResponse().get( 0 ).getPayloads().get( i ) );
+                }
+
+            }
+            MySingleton.getInstance().setPayload1( p1 );
+            MySingleton.getInstance().setPayload2( p2 );
+            storage.storePayload1( p1 );
+            storage.storePayload3( p2 );
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute( s );
+            progressDialogue.dismiss();
+
+            Intent i = new Intent( AllEventsActivity.this, VenueFilterActivity.class );
+            startActivity( i );
+
+        }
     }
 
 }

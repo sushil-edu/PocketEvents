@@ -1,12 +1,23 @@
 ECLIPSE ANDROID PROJECT IMPORT SUMMARY
 ======================================
 
+Risky Project Location:
+-----------------------
+The tools *should* handle project locations in any directory. However,
+due to bugs, placing projects in directories containing spaces in the
+path, or characters like ", ' and &, have had issues. We're working to
+eliminate these bugs, but to save yourself headaches you may want to
+move your project to a location where this is not a problem.
+/Android Projects/Kestone Projects/Kestone
+        -                -                
+
 Ignored Files:
 --------------
 The following files were *not* copied into the new Gradle project; you
 should evaluate whether these are still needed in your project and if
 so manually move them:
 
+* .DS_Store
 * proguard-project.txt
 
 Replaced Jars with Dependencies:
@@ -26,13 +37,13 @@ Moved Files:
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => libraryMobilePaymentSDK/src/main/AndroidManifest.xml
-* assets/ => libraryMobilePaymentSDK/src/main/assets
-* libs/MobilePaymentSDKOutput.jar => libraryMobilePaymentSDK/libs/MobilePaymentSDKOutput.jar
-* libs/secure-data.jar => libraryMobilePaymentSDK/libs/secure-data.jar
-* libs/xercesImpl-2.6.2-jaxb-1.0.6.jar => libraryMobilePaymentSDK/libs/xercesImpl-2.6.2-jaxb-1.0.6.jar
-* res/ => libraryMobilePaymentSDK/src/main/res/
-* src/ => libraryMobilePaymentSDK/src/main/java
+* AndroidManifest.xml => ATOMlibraryMobilePaymentSDK/src/main/AndroidManifest.xml
+* assets/ => ATOMlibraryMobilePaymentSDK/src/main/assets
+* libs/MobilePaymentSDKOutput.jar => ATOMlibraryMobilePaymentSDK/libs/MobilePaymentSDKOutput.jar
+* libs/secure-data.jar => ATOMlibraryMobilePaymentSDK/libs/secure-data.jar
+* libs/xercesImpl-2.6.2-jaxb-1.0.6.jar => ATOMlibraryMobilePaymentSDK/libs/xercesImpl-2.6.2-jaxb-1.0.6.jar
+* res/ => ATOMlibraryMobilePaymentSDK/src/main/res/
+* src/ => ATOMlibraryMobilePaymentSDK/src/main/java
 
 Missing Android Support Repository:
 -----------------------------------

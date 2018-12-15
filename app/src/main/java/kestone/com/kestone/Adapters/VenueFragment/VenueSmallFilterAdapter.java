@@ -2,11 +2,13 @@ package kestone.com.kestone.Adapters.VenueFragment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kestone.com.kestone.MODEL.HallDetails.HallDetails;
 import kestone.com.kestone.MODEL.Manager.MySingleton;
@@ -70,8 +72,18 @@ public class VenueSmallFilterAdapter extends RecyclerView.Adapter<VenueSmallFilt
                 if (MySingleton.getInstance().getPayload1().get(position).getStyle().equals("2")) {
 
                     if (MySingleton.getInstance().getPayload1().get(position).getFilterName().equals("Hall Capacity")) {
-                        holder.text2.setText(((Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getLowerLimit()))
-                                + (Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getUpperLimit())))/2+"");
+//                        holder.text2.setText(((Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getLowerLimit()))
+//                                + (Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getUpperLimit())))/2+"");
+                        int capacity = ((Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getLowerLimit())) +
+                                (Integer.parseInt(MySingleton.getInstance().getPayload1().get(position).getRanges().getUpperLimit()))) / 2;
+                        if(capacity<=50) {
+//                        holder.text2.setText( capacity + "" );
+                            holder.text2.setText( 50 + "" );
+                        }else if(capacity<=100) {
+                            holder.text2.setText( 100 + "" );
+                        }else if(capacity>100) {
+                            holder.text2.setText( 150 + "" );
+                        }
 
                     } else {
                         holder.text2.setText(MySingleton.getInstance().getPayload1().get(position).getRanges().getLowerLimit() + "-" + MySingleton.getInstance().getPayload1().get(position).getRanges().getUpperLimit());

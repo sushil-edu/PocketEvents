@@ -2,6 +2,7 @@ package kestone.com.kestone.Adapters.AllEventsActivity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,24 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.silencedut.expandablelayout.ExpandableLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import kestone.com.kestone.MODEL.EventEmail.REQUEST.EventEmailRequest;
+import kestone.com.kestone.MODEL.EventEmail.RESPONSE.EventEmailResponse;
 import kestone.com.kestone.MODEL.GetSavedVenue.RESPONSE.GetSavedEventListResponse;
 import kestone.com.kestone.MODEL.GetSavedVenue.RESPONSE.Payload;
 import kestone.com.kestone.R;
+import kestone.com.kestone.UI.AllEventsActivity;
+import kestone.com.kestone.UI.AppController;
+import kestone.com.kestone.Utilities.CONSTANTS;
+import kestone.com.kestone.Utilities.GeneralUtils;
+import kestone.com.kestone.Utilities.GenericRequest;
 
 /**
  * Created by karan on 8/30/2017.
@@ -42,8 +53,8 @@ public class AllEventAdapter extends RecyclerView.Adapter<AllEventAdapter.Holder
     public class Holder extends RecyclerView.ViewHolder {
         LinearLayout expandableView,fourthLl,thirdLl,secondLl,firstLl;
         RelativeLayout click;
-        TextView showMore, details, name, venue, setup, design, more;
-        TextView delete, email;
+        TextView showMore, details, name, venue, setup, design, more, tvEdit;
+        TextView delete, email, eventConfiguration;
         ExpandableLayout expandableLl;
 
         public Holder(View view) {
@@ -56,8 +67,11 @@ public class AllEventAdapter extends RecyclerView.Adapter<AllEventAdapter.Holder
             setup = (TextView) view.findViewById(R.id.allEventSetup);
             design = (TextView) view.findViewById(R.id.allEventDesign);
             more = (TextView) view.findViewById(R.id.allEventMore);
+            tvEdit = (TextView) view.findViewById(R.id.tvEdit);
+            tvEdit.setVisibility( View.GONE );
             delete = (TextView) view.findViewById(R.id.allEventDelete_btn);
             email = (TextView) view.findViewById(R.id.allEventEmail_btn);
+            eventConfiguration = (TextView) view.findViewById(R.id.tvEventConfiguration);
             click = (RelativeLayout) view.findViewById(R.id.rl_click);
             expandableLl = (ExpandableLayout) view.findViewById(R.id.expandableLl);
             firstLl = (LinearLayout) view.findViewById(R.id.firstLl);
@@ -111,6 +125,7 @@ public class AllEventAdapter extends RecyclerView.Adapter<AllEventAdapter.Holder
 
         if (list.get(position).getHallId().equals("0")) {
             holder.venue.setText("Configure This");
+
         } else {
             holder.venue.setText(list.get(position).getVenueName() + " | " + list.get(position).getHallName());
         }
@@ -122,7 +137,7 @@ public class AllEventAdapter extends RecyclerView.Adapter<AllEventAdapter.Holder
 //        });
 
 
-        holder.firstLl.setOnClickListener(new View.OnClickListener() {
+        holder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 allEventAdapterCallBack.OnEventClicked(list.get(position),0);
@@ -132,21 +147,27 @@ public class AllEventAdapter extends RecyclerView.Adapter<AllEventAdapter.Holder
         holder.secondLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                allEventAdapterCallBack.OnEventClicked(list.get(position),1);
+                if (holder.setup.getText().toString().equals( "Configure This" ))
+                    allEventAdapterCallBack.OnEventClicked( list.get( position ), 1 );
+
             }
         });
 
         holder.thirdLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                allEventAdapterCallBack.OnEventClicked(list.get(position),2);
+                if (holder.design.getText().toString().equals( "Configure This" ) && !holder.setup.getText().toString().equals( "Configure This" ) )
+                    allEventAdapterCallBack.OnEventClicked( list.get( position ), 2 );
             }
         });
 
         holder.fourthLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                allEventAdapterCallBack.OnEventClicked(list.get(position),3);
+                if (holder.more.getText().toString().equals( "Configure This" ) && !holder.design.getText().toString().equals( "Configure This" ) && !holder.setup.getText().toString().equals( "Configure This" ))
+                    allEventAdapterCallBack.OnEventClicked(list.get(position),3);
+
+
             }
         });
 
@@ -177,11 +198,20 @@ public class AllEventAdapter extends RecyclerView.Adapter<AllEventAdapter.Holder
             public void onExpand(boolean b) {
                 if (b) {
                     holder.showMore.setText("Less");
+                    holder.tvEdit.setVisibility( View.VISIBLE );
                 } else {
                     holder.showMore.setText("More");
+                    holder.tvEdit.setVisibility( View.GONE );
                 }
             }
         });
+
+        holder.eventConfiguration.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allEventAdapterCallBack.OnConfigurationClicked(list.get(position).getEventId());
+            }
+        } );
 
     }
 
@@ -196,6 +226,8 @@ public class AllEventAdapter extends RecyclerView.Adapter<AllEventAdapter.Holder
         void OnDeleteClicked(Payload payload, int position);
 
         void OnEmailClicked(String EventID);
+
+        void OnConfigurationClicked(String EventID);
     }
 
     @Override

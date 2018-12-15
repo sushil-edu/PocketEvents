@@ -23,7 +23,9 @@ public class FilterManager {
     public String getSelectedFilters() {
 
         String selectedFilters = "";
+        Log.e("Size ", String.valueOf( storage.loadPayload1().size() ) );
         for (int i = 0; i < storage.loadPayload1().size(); i++) {
+
             if (storage.loadPayload1().get(i).isSelected()) {
 
                 selectedFilters += "; FilterID " + storage.loadPayload1().get(i).getFilterId() + " ; FilterValue ";
@@ -62,8 +64,8 @@ public class FilterManager {
                 for (int j = 0; j < storage.loadPayload3().get(i).getValues().size(); j++) {
                     if (storage.loadPayload3().get(i).getValues().get(j).isSelected()) {
                         //Toast.makeText(getApplicationContext(),storage.loadPayload3().get(i).getFilterName() + "  " + storage.loadPayload3().get(i).getValues().get(j).getNameLabel(),Toast.LENGTH_SHORT).show();
-
                         selectedFilters += storage.loadPayload3().get(i).getValues().get(j).getId() + ",";
+
                     }
                 }
                 if (selectedFilters.length() > 2)
