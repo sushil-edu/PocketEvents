@@ -20,11 +20,12 @@ import kestone.com.kestone.R;
  */
 
 public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.Holder> {
-    List<ContactUsPayload> list;
+//    List<ContactUsPayload> list;
+    ContactUsPayload list;
     Context mcontext;
     ContactUsCallback callback;
 
-    public ContactUsAdapter(Context context, List<ContactUsPayload> data) {
+    public ContactUsAdapter(Context context, ContactUsPayload data) {
         list = data;
         mcontext = context;
         callback = (ContactUsCallback) context;
@@ -45,17 +46,17 @@ public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.Hold
                 ResetExpanded();
                 if (holder.expandableView.getVisibility() == View.VISIBLE){
                     holder.expandableView.setVisibility(View.GONE);
-                    list.get(position).setExpanded(false);
+                    list.setExpanded(false);
                 }else {
                     holder.expandableView.setVisibility(View.VISIBLE);
-                    list.get(position).setExpanded(true);
+                    list.setExpanded(true);
                 }
 
                 callback.resetExpanded();
             }
         });
 
-        if (list.get(position).isExpanded())
+        if (list.isExpanded())
         {
             holder.expandableView.setVisibility(View.VISIBLE);
             holder.text.setTextColor(ContextCompat.getColor(mcontext,R.color.textColorRed));
@@ -64,7 +65,7 @@ public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.Hold
             holder.text.setTextColor(ContextCompat.getColor(mcontext,R.color.textColorBlack));
         }
 
-        if (list.get(position).getText_required().equals("1")){
+        if (list.getText_required().equals("1")){
             holder.query.setVisibility(View.VISIBLE);
             holder.line.setVisibility(View.VISIBLE);
         }else {
@@ -75,18 +76,18 @@ public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.Hold
         holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.onSubmitClick(list.get(position).getQuestionId(),holder.invoice.getText().toString(),holder.query.getText().toString());
+                callback.onSubmitClick(list.getQuestionId(),holder.invoice.getText().toString(),holder.query.getText().toString());
             }
         });
 
 
-        holder.text.setText(list.get(position).getQuestion());
+        holder.text.setText(list.getQuestion());
 
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return 1;
     }
 
     public class Holder extends RecyclerView.ViewHolder{
@@ -109,9 +110,9 @@ public class ContactUsAdapter extends RecyclerView.Adapter<ContactUsAdapter.Hold
     }
 
     public void ResetExpanded(){
-        for (int i = 0; i<list.size();i++){
-            list.get(i).setExpanded(false);
-        }
+//        for (int i = 0; i<list.size();i++){
+            list.setExpanded(false);
+//        }
     }
 
     public interface ContactUsCallback {

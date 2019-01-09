@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import kestone.com.kestone.MODEL.Setup.Detail;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.Details;
 import kestone.com.kestone.R;
 
@@ -16,9 +17,10 @@ import kestone.com.kestone.R;
  */
 
 public class SetupDetailsAdapter extends RecyclerView.Adapter<SetupDetailsAdapter.Holder> {
-    List<Details> data;
+//    List<Details> data;
+    List<Detail> data;
 
-    public SetupDetailsAdapter(List<Details> details) {
+    public SetupDetailsAdapter(List<Detail> details) {
         data = details;
     }
 

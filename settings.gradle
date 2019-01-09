@@ -1,3 +1,5 @@
 include ':app', ':plutuspg-release', ':mylibrary'
 include ':libraryMobilePaymentSDK'
 include ':ATOMlibraryMobilePaymentSDK'
+include ':ATOMPaymentSDK'
+include ':ATOMUATPaymentSDK'

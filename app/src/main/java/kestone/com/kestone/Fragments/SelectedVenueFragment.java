@@ -1,5 +1,6 @@
 package kestone.com.kestone.Fragments;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -43,6 +44,7 @@ import com.bumptech.glide.Glide;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -283,6 +285,7 @@ public class SelectedVenueFragment extends Fragment implements View.OnClickListe
                     enterEventDate.setOnClickListener(new View.OnClickListener() {
                         int mYear, mMonth, mDay;
 
+                        @SuppressLint("NewApi")
                         @Override
                         public void onClick(View view) {
 
@@ -300,31 +303,46 @@ public class SelectedVenueFragment extends Fragment implements View.OnClickListe
                             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-
                                     y2 = year;
-                                    m2 = monthOfYear;
+                                    m2 = monthOfYear+1;
                                     d2 = dayOfMonth;
                                     enterEventDate.setText("");
-                                    if (y1 <= y2) {
-                                        if (m1 <= m2 || y1 < y2) {
-
-                                            if (d1 <= d2 || m1 < m2) {
-                                                enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-
-                                            } else {
-                                                GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
-                                                enterEventDate.setText("");
-                                            }
+                                    String selected_date = d2+"/"+m2+"/"+y2;
+                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                    Date strDate=null;
+                                    try {
+                                        strDate = sdf.parse( selected_date);
+                                        if(new Date(  ).compareTo( strDate )==-1){
+                                            enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                                         } else {
                                             GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
                                             enterEventDate.setText("");
                                         }
-                                    } else {
-                                        GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
-                                        enterEventDate.setText("");
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
                                     }
+//                                    if (y1 <= y2) {
+//                                        if (m1 <= m2 || y1 < y2) {
+//
+//                                            if (d1 <= d2 || m1 < m2 ) {
+//                                                enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+//
+//                                            } else {
+//                                                GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
+//                                                enterEventDate.setText("");
+//                                            }
+//                                        } else {
+//                                            GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
+//                                            enterEventDate.setText("");
+//                                        }
+//                                    } else {
+//                                        GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
+//                                        enterEventDate.setText("");
+//                                    }
 
                                     //  enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+//                                            enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+
                                 }
                             }, mYear, mMonth, mDay);
                             datePickerDialog.show();
@@ -393,28 +411,45 @@ public class SelectedVenueFragment extends Fragment implements View.OnClickListe
                                 @Override
                                 public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
 
+                                    String selected_date = ""+y2+"/"+m2+"/"+d2;
+                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
-                                    y2 = year;
-                                    m2 = monthOfYear;
-                                    d2 = dayOfMonth;
-                                    enterEventDate.setText("");
-                                    if (y1 <= y2) {
-                                        if (m1 <= m2 || y1 < y2) {
-                                            if (d1 <= d2 || m1 < m2) {
-                                                enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                    Date strDate=null;
+                                    try {
+                                        strDate = sdf.parse( selected_date.toString().trim() );
+                                        if(new Date(  ).compareTo( strDate )==-1){
+                                            enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
 
-                                            } else {
-                                                GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
-                                                enterEventDate.setText("");
-                                            }
                                         } else {
                                             GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
                                             enterEventDate.setText("");
                                         }
-                                    } else {
-                                        GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
-                                        enterEventDate.setText("");
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
                                     }
+
+
+//                                    y2 = year;
+//                                    m2 = monthOfYear;
+//                                    d2 = dayOfMonth;
+//                                    enterEventDate.setText("");
+//                                    if (y1 <= y2) {
+//                                        if (m1 <= m2 || y1 < y2) {
+//                                            if (d1 <= d2 || m1 < m2) {
+//                                                enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+//
+//                                            } else {
+//                                                GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
+//                                                enterEventDate.setText("");
+//                                            }
+//                                        } else {
+//                                            GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
+//                                            enterEventDate.setText("");
+//                                        }
+//                                    } else {
+//                                        GeneralUtils.ShowAlert(getActivity(), "Please Select Valid Date");
+//                                        enterEventDate.setText("");
+//                                    }
 
                                     // enterEventDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                                 }

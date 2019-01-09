@@ -27,15 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-
-            />
+            android:layout_centerInParent="true"/>
         <RelativeLayout
             android:id="@+id/cornerRl"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -66,22 +65,22 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="@dimen/_73sdp"
+            android:id="@+id/designEmail"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_grey_solid_dark"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
-            android:visibility="gone">
-
+            android:visibility="visible">
+            <!--android:background="@drawable/btn_grey_solid_dark"-->
 
             <TextView
-                android:id="@+id/designEmail"
+
                 android:layout_width="@dimen/Dialog_Button_Big_Width"
                 android:layout_height="@dimen/Dialog_Button_Height"
                 android:gravity="center"
                 android:paddingLeft="@dimen/_12sdp"
                 android:text="Email Artwork"
-                android:textColor="@color/textColorWhite"
+                android:textColor="@color/textColorGrey"
                 android:textSize="@dimen/Size8" />
 
             <ImageView
@@ -90,7 +89,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="3dp"
                 android:src="@drawable/email_icon"
-                android:tint="@color/textColorWhite" />
+                android:tint="@color/textColorGrey" />
 
         </RelativeLayout>
 

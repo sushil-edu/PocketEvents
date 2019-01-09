@@ -75,6 +75,8 @@ public class VenueFilterAdapter extends RecyclerView.Adapter<VenueFilterAdapter.
     public void onBindViewHolder(final VenueFilterAdapter.Holder holder, final int position) {
         holder.text1.setText(MySingleton.getInstance().getPayload1().get(position).getFilterName());
 
+        Log.e("Filter Name ", MySingleton.getInstance().getPayload1().get( position ).getFilterName());
+
         if (MySingleton.getInstance().getPayload1().get(position).isSelected()) {
             if (MySingleton.getInstance().getPayload1().get(position).getStyle().equals("2")) {
                 if (MySingleton.getInstance().getPayload1().get(position).getFilterName().equals("Hall Capacity")) {

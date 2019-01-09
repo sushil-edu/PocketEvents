@@ -482,7 +482,8 @@ public class CitySearchActivity extends AppCompatActivity
 
             case R.id.rewards_referral:
                 if (GeneralUtils.isNetworkAvailable(CitySearchActivity.this)) {
-                    RefferalReward(storage.loadID());
+                    GeneralUtils.ShowAlert( CitySearchActivity.this, "Coming Soon...." );
+//                    RefferalReward(storage.loadID());
                 } else {
                     GeneralUtils.displayNetworkAlert(CitySearchActivity.this, false);
                 }
@@ -580,6 +581,7 @@ public class CitySearchActivity extends AppCompatActivity
     protected void onPostResume() {
         super.onPostResume();
         enterCity.setText("");
+
     }
 
 
@@ -834,32 +836,32 @@ public class CitySearchActivity extends AppCompatActivity
     }
 
     void ContactUs() {
-        progressDialog.show();
-        GenericRequest<ContactUsResponse> request = new GenericRequest<ContactUsResponse>(Request.Method.GET, CONSTANTS.URL_CONTACT_US, ContactUsResponse.class,
-                null, new Response.Listener<ContactUsResponse>() {
-            @Override
-            public void onResponse(ContactUsResponse response) {
-                progressDialog.dismiss();
-                if (Boolean.valueOf(response.getResponse().get(0).getStatus())) {
+//        progressDialog.show();
+//        GenericRequest<ContactUsResponse> request = new GenericRequest<ContactUsResponse>(Request.Method.GET, CONSTANTS.URL_CONTACT_US, ContactUsResponse.class,
+//                null, new Response.Listener<ContactUsResponse>() {
+//            @Override
+//            public void onResponse(ContactUsResponse response) {
+//                progressDialog.dismiss();
+//                if (Boolean.valueOf(response.getResponse().get(0).getStatus())) {
                     Intent intent = new Intent(CitySearchActivity.this, ContactUsActivity.class);
-                    intent.putExtra("data", response);
+//                    intent.putExtra("data", response);
                     startActivity(intent);
 
-                } else {
-                    GeneralUtils.ShowAlert(CitySearchActivity.this, getString(R.string.VolleyTimeout));
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
-                GeneralUtils.ShowAlert(CitySearchActivity.this, getString(R.string.VolleyTimeout));
-
-            }
-        });
-
-        AppController.getInstance().addToRequestQueue(request);
+//                } else {
+//                    GeneralUtils.ShowAlert(CitySearchActivity.this, getString(R.string.VolleyTimeout));
+//                }
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                progressDialog.dismiss();
+//                GeneralUtils.ShowAlert(CitySearchActivity.this, getString(R.string.VolleyTimeout));
+//
+//            }
+//        });
+//
+//        AppController.getInstance().addToRequestQueue(request);
     }
 
 

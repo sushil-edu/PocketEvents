@@ -4,7 +4,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,14 +27,26 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import it.gmariotti.recyclerview.adapter.AlphaAnimatorAdapter;
@@ -58,7 +73,7 @@ import kestone.com.kestone.Utilities.PrefEntities;
 import kestone.com.kestone.Utilities.StorageUtilities;
 
 
-public class DesignFragment extends Fragment implements View.OnClickListener, ThemeTypeAdapter.DesignCallback {//} DesignAdapterTheme.DesignCallback {
+public class DesignFragment extends Fragment implements View.OnClickListener, ThemeTypeAdapter.DesignCallback, DesignDialogueAdapter.ClickArtWork {//} DesignAdapterTheme.DesignCallback {
 
     public DesignDialogueAdapter adapterDsn;
     TextView venueText, hallText;
@@ -81,11 +96,13 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
     Spinner spnrSelectTheme;
     ArrayList<String> listThemeName = new ArrayList<>();
     ArrayList<Payload> listImage = new ArrayList<Payload>();
-    HashMap<String, String> imageId = new HashMap();
+    HashMap selectedImageId = new HashMap();
     HashSet<DesignStatus> setDStatus = new HashSet<>();
     ArrayList<Payload> displayImage = new ArrayList<>();
     HashSet<Integer> imageID = new HashSet<>();
-    StringBuilder sb = new StringBuilder(  );
+    StringBuilder sb = new StringBuilder();
+
+    int designSelectedPosition;
 
     @Nullable
     @Override
@@ -138,9 +155,9 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
 
         listThemeName.clear();
         listThemeName.add( "Select theme for your event" );
+//        for (int i = 0; i < data.getGetThemeResult().size(); i++) {
         for (int i = 0; i < data.getGetThemeResult().size(); i++) {
             listThemeName.add( data.getGetThemeResult().get( i ).getThemeName() );
-
         }
         spnrSelectTheme.setAdapter( new ArrayAdapter<String>( getActivity(), R.layout.simple_list_item_1, listThemeName ) );
 
@@ -151,13 +168,15 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
                     listImage.clear();
                     for (int th = 0; th < data.getGetThemeResult().size(); th++) {
                         for (int j = 0; j < data.getGetThemeResult().get( th ).getPayload().size(); j++) {
-                            if (data.getGetThemeResult().get( th ).getThemeName().equals( listThemeName.get( i ) )) {
-
+                            if (data.getGetThemeResult().get( th ).getThemeName().equals( listThemeName.get( i ) )
+                                    && data.getGetThemeResult().get( th ).getPayload().get( j ).getIsPrimary().equalsIgnoreCase( "True" )) {
                                 listImage.add( data.getGetThemeResult().get( th ).getPayload().get( j ) );
                                 data.getGetThemeResult().get( th ).getPayload().get( j ).setSelected( true );
+                                imageID.add( Integer.valueOf( data.getGetThemeResult().get( th ).getPayload().get( j ).getImageid() ) );
                                 showHideRecycler( listImage );
                                 selectedPos = i;
                                 selectedTheme = listThemeName.get( i );
+                                selectedImageId.put( j, data.getGetThemeResult().get( th ).getPayload().get( j ).getImageid()  );
                             } else {
                                 data.getGetThemeResult().get( th ).getPayload().get( j ).setSelected( false );
                             }
@@ -451,6 +470,10 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
             }
         } );
         AppController.getInstance().addToRequestQueue( request );
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     @Override
@@ -465,26 +488,15 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
 
                 break;
             case R.id.designSave:
-
-//                 designID = designAdapter.getSelected();
                 sb = new StringBuilder();
-                if(imageID.size()>1) {
-
-                    Object[] ary = imageID.toArray();
-                    for (int s = 0; s < ary.length; s++) {
-                        sb.append( ary[s] + "," );
-                        Log.e( "Image id ", "" + ary[s] );
-                    }
-                }else {
-                    for (int j = 0; j < listImage.size(); j++) {
-                        if (listImage.get( j ).isDgnSelected()) {
-                            sb.append( listImage.get( j ).getImageid()+"," );
-                        }
-                    }
+                for(int n =0;n<selectedImageId.size();n++){
+                    sb.append( selectedImageId.get( n )+"," );
+//                    Log.e("Selected id ", String.valueOf( selectedImageId.get( n )));
                 }
+
                 designID = sb.toString();
 
-                Log.e("Design ID ", designID);
+                Log.e( "Design ID ", designID );
                 if (!designID.equals( "" )) {
 //                        ol;
                     SaveFilters( storage.loadEventName(), false, false, storage.loadEventDate() );
@@ -515,32 +527,15 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
             case R.id.designSaveExit:
 //                designID = designAdapter.getSelected();
                 sb = new StringBuilder();
-                if(imageID.size()>1) {
-
-                    Object[] ary = imageID.toArray();
-                    for (int s = 0; s < ary.length; s++) {
-                        sb.append( ary[s] + "," );
-                        Log.e( "Image id ", "" + ary[s] );
-                    }
-                }else {
-                    for (int j = 0; j < listImage.size(); j++) {
-                        if (listImage.get( j ).isDgnSelected()) {
-                            sb.append( listImage.get( j ).getImageid()+"," );
-                        }
-                    }
+                for(int n =0;n<selectedImageId.size();n++){
+                    sb.append( selectedImageId.get( n )+"," );
+//                    Log.e("Selected id ", String.valueOf( selectedImageId.get( n )));
                 }
+
                 designID = sb.toString();
 
-//                Log.e("Design ID ", designID);
-//                Object[] ary2 = imageID.toArray();
-//                for (int s = 0; s < ary2.length; s++) {
-//                    sb.append( ary2 [s]);
-//                    Log.e( "Image id ", "" + ary2[s] );
-//                }
-//                designID = sb.toString();
-
                 if (!designID.equals( "" )) {
-
+/////////---------******----------////////////
 //                        new AlertDialog.Builder(getActivity())
 //                                .setMessage(getString(R.string.SaveExit))
 //                                .setNegativeButton("No", null)
@@ -555,7 +550,7 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
 //                                        }
 //                                    }
 //                                }).create().show();
-
+/////////---------******----------////////////
                     final Dialog dialog = new Dialog( getContext() );
                     dialog.requestWindowFeature( Window.FEATURE_NO_TITLE );
                     dialog.setContentView( R.layout.dialog_save_and_exit );
@@ -741,7 +736,8 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
             imageID.remove( Integer.valueOf( displayImage.get( pos ).getImageid() ) );
         }
         Log.e( "Position ", "" + pos );
-            imageID.add( Integer.valueOf( displayImage.get( pos ).getImageid() ) );
+        imageID.add( Integer.valueOf( displayImage.get( pos ).getImageid() ) );
+        selectedImageId.replace(  designSelectedPosition, displayImage.get( pos ).getImageid()  );
 
         displayImage.get( pos ).setSelected( true );
         adapterDsn.notifyDataSetChanged();
@@ -749,6 +745,7 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
 
     @Override
     public void designCallback(final int pos, boolean isSelected) {
+        designSelectedPosition=pos;
         String strTitle = listImage.get( pos ).getThemeType();
         dialog.setContentView( R.layout.dialogue_design_theme );
         dialog.setCancelable( true );
@@ -763,25 +760,35 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
         displayImage.clear();
         for (int i = 0; i < data.getGetThemeResult().size(); i++) {
             for (int c = 0; c < data.getGetThemeResult().get( i ).getPayload().size(); c++) {
-                if (strTitle.equals( data.getGetThemeResult().get( i ).getPayload().get( c ).getThemeType() )) {
+                if (strTitle.equals( data.getGetThemeResult().get( i ).getPayload().get( c ).getThemeType() ))
                     displayImage.add( data.getGetThemeResult().get( i ).getPayload().get( c ) );
-                }
-
             }
         }
-//        for (int dis = 0; dis < displayImage.size(); dis++) {
-//            if (dis == selectedPos - 1) {
-//                displayImage.get( dis ).setSelected( true );
-//            } else {
-//                displayImage.get( dis ).setSelected( false );
-//            }
-//        }
+
         RecyclerView.LayoutManager lm = new GridLayoutManager( getActivity(), 1, GridLayoutManager.HORIZONTAL, false );
-        adapterDsn = new DesignDialogueAdapter( DesignFragment.this, displayImage, dialog, selectedPos - 1 );
+        adapterDsn = new DesignDialogueAdapter( DesignFragment.this, displayImage, dialog, selectedPos - 1, this );
         recyclerView.setLayoutManager( lm );
         recyclerView.setAdapter( adapterDsn );
         adapterDsn.notifyDataSetChanged();
-        recyclerView.smoothScrollToPosition( selectedPos - 1 );
+        for (int dis = 0; dis < displayImage.size(); dis++) {
+            if (displayImage.get( dis ).isSelected) {
+                final int finalDis = dis;
+                new Handler().postDelayed(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                recyclerView.smoothScrollToPosition( finalDis );
+                            }
+                        }, 50 );
+            }
+        }
+//        new Handler().postDelayed(
+//                new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        recyclerView.smoothScrollToPosition( selectedPos - 1 );
+//                    }
+//                }, 50 );
 
         if (!listImage.get( pos ).isDgnSelected) {
             selected.setText( "Select" );
@@ -793,13 +800,30 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
             selected.setTextColor( getResources().getColor( R.color.textColorWhite ) );
         }
 
+        next.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int indexp = recyclerView.getCurrentPosition();
+                recyclerView.smoothScrollToPosition( indexp + 1 );
+
+            }
+        } );
+        previous.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int indexm = recyclerView.getCurrentPosition();
+                recyclerView.smoothScrollToPosition( indexm - 1 );
+            }
+        } );
         selected.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e( "Position ", "" + pos );
                 if (listImage.get( pos ).isDgnSelected) {
                     listImage.get( pos ).setDgnSelected( false );
-                    imageID.remove( Integer.valueOf( listImage.get( pos ).getImageid() )  );
+                    imageID.remove( Integer.valueOf( listImage.get( pos ).getImageid() ) );
+                    selectedImageId.remove( pos );
                 } else {
                     listImage.get( pos ).setDgnSelected( true );
 
@@ -812,6 +836,12 @@ public class DesignFragment extends Fragment implements View.OnClickListener, Th
 
         dialog.getWindow().setLayout( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT );
         dialog.show();
+
+    }
+
+    @Override
+    public void onClickArtWork(String id) {
+        SendEmail( id, storage.loadID() );
 
     }
 

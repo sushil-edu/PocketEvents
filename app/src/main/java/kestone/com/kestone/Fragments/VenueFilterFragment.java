@@ -1032,6 +1032,7 @@ public class VenueFilterFragment extends Fragment implements View.OnClickListene
     }
 
     void GetVenues(String Filters) {
+        Log.e("City Name ", storage.loadCityID());
         GenericRequest<GetVenueListResponse> request = new GenericRequest<GetVenueListResponse>(Request.Method.POST, CONSTANTS.URL_GET_VENUE_LIST, GetVenueListResponse.class, new VenueRequest(storage.loadCityID(), "1", "100", Filters),
                 new Response.Listener<GetVenueListResponse>() {
                     @Override

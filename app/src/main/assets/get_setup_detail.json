@@ -1,0 +1,240 @@
+{
+    "SetupAPIResult": [
+        {
+            "Code": "OK",
+            "Message": "Request was successful.",
+            "Payload": [
+                {
+                "CityId": "2",
+                "CityName": "New Delhi",
+                "Data": [
+                    {
+                        "Description": "1 Backdrop 1 Screen",
+                        "Description2": "This is ideal for small gatherings where 50-60 PAX are to be addressed",
+                        "Details": [
+                            {
+                                "Label": "DECOR",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "Stage",
+                                "Values": "10 W X 12 D x 1 H (Ft.)"
+                            },
+                            {
+                                "Label": "Backdrop",
+                                "Values": "10 W X 8 H (Ft.)"
+                            },
+                            {
+                                "Label": "Screen Frame",
+                                "Values": "10 W X 9 H (Ft.)"
+                            },
+                            {
+                                "Label": "AV Screen",
+                                "Values": "9 W x 5 H (Ft.)"
+                            },
+                            {
+                                "Label": "SOUND",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "PA System",
+                                "Values": "2 Powered Top with Sound Mixer"
+                            },
+                            {
+                                "Label": "Microphones",
+                                "Values": "1 Podium Mic\n2 Cordless Mics & 2 Lapel Mics"
+                            },
+                            {
+                                "Label": "LIGHTS",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "Parcan 64 with Dimmer",
+                                "Values": "4"
+                            },
+                            {
+                                "Label": "Profile spots",
+                                "Values": "1"
+                            },
+                            {
+                                "Label": "LED Par",
+                                "Values": "8"
+                            },
+                            {
+                                "Label": "Light Stands",
+                                "Values": "2"
+                            }
+                        ],
+                        "Isrecommended": "0",
+                        "PackageImages": ["http://pocketevents.in/EIAB/DesignUpload/SSImages/Basic/Basic-AspireBeyond.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Basic/Basic-FutureIsNow.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Basic/Basic-GoodToGreat.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Basic/Basic-LeadToWin.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Basic/Basic-MarchToGlory.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Basic/Basic-NextIsNow.jpg"
+                            
+                        ],
+                        "SetupId": "1",
+                        "SetupName": "Basic Set-Up"
+                    },
+                    {
+                        "Description": "1 Backdrop 2 Screen - Large Setup",
+                        "Description2": "This setup if ideal for medium size gatherings and panel discussions",
+                        "Details": [
+                            {
+                                "Label": "DECOR",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "Stage",
+                                "Values": "12 W X 12 D x 1 H (Ft.)"
+                            },
+                            {
+                                "Label": "Backdrop",
+                                "Values": "12 W X 8 H (Ft.)"
+                            },
+                            {
+                                "Label": "2 Screen Frame",
+                                "Values": "10 W X 9 H (Ft.)"
+                            },
+                            {
+                                "Label": "AV Screen",
+                                "Values": "9 W x 5 H (Ft.)"
+                            },
+                            {
+                                "Label": "SOUND",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "PA System",
+                                "Values": "4 Top 2 Base with Sound Mixer"
+                            },
+                            {
+                                "Label": "Microphones",
+                                "Values": "2 Podium Mic\n3 Cordless Mics & 2 Lapel Mics"
+                            },
+                            {
+                                "Label": "LIGHTS",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "Parcan 64 with Dimmer",
+                                "Values": "12"
+                            },
+                            {
+                                "Label": "Profile spots",
+                                "Values": "2"
+                            },
+                            {
+                                "Label": "LED Par",
+                                "Values": "12"
+                            },
+                            {
+                                "Label": "Truss T Stands",
+                                "Values": "2"
+                            }
+                        ],
+                        "Isrecommended": "0",
+                        "PackageImages": ["http://pocketevents.in/EIAB/DesignUpload/SSImages/Advance/Advance-AspireBeyond.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Advance/Advance-FutureIsNow.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Advance/Advance-GoodToGreat.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Advance/Advance-LeadToWin.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Advance/Advance-MarchToGlory.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Advance/Advance-NextIsNow.jpg"
+                        ],
+                        "SetupId": "2",
+                        "SetupName": "Advanced Set-Up"
+                    },
+                    {
+                        "Description": "Wide Screen Setup - LED Wall",
+                        "Description2": "This is a fairly modern and advance setup with Digital Backdrop",
+                        "Details": [
+                            {
+                                "Label": "DECOR",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "Stage",
+                                "Values": "20 W X 16 D x 1 H (Ft.)"
+                            },
+                            {
+                                "Label": "LED Riser",
+                                "Values": "20 W X 4 D x 3 H (Ft.)"
+                            },
+                            {
+                                "Label": "LED AV Screen",
+                                "Values": "20 W x 10 H Ft. (Approx.)"
+                            },
+                            {
+                                "Label": "SOUND",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "PA System",
+                                "Values": "4 Top 2 Base with Sound Mixer"
+                            },
+                            {
+                                "Label": "Microphones",
+                                "Values": "2 Podium Mic\n3 Cordless Mics & 2 Lapel Mics"
+                            },
+                            {
+                                "Label": "LIGHTS",
+                                "Values": ""
+                            },
+                            {
+                                "Label": "Parcan 64 with Dimmer",
+                                "Values": "12"
+                            },
+                            {
+                                "Label": "Profile spots",
+                                "Values": "2"
+                            },
+                            {
+                                "Label": "LED Par",
+                                "Values": "8"
+                            },
+                            {
+                                "Label": "Truss T Stands",
+                                "Values": "2"
+                            }
+                        ],
+                        "Isrecommended": "0",
+                        "PackageImages": ["http://pocketevents.in/EIAB/DesignUpload/SSImages/Pro/Pro-AspireBeyond.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Pro/Pro-FutureIsNow.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Pro/Pro-GoodToGreat.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Pro/Pro-LeadToWin.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Pro/Pro-MarchToGlory.jpg",
+                        "http://pocketevents.in/EIAB/DesignUpload/SSImages/Pro/ProSetup-NextIsNow.jpg"
+                        ],
+                        "SetupId": "3",
+                        "SetupName": "Pro Set-Up"
+                    }
+                ],
+                "HallId": "18",
+                "HallImage": "http://mobileapps.kestoneapps.com/EIAB/HotelImage/36577165_convention-hall-ashok Hotel delhi.jpg",
+                "HallName": "Convention Hall",
+                "VenueId": "3",
+                "VenueName": "Ashok Hotel",
+                "selectedFilter": [
+                    {
+                        "Id": "2",
+                        "Label": "Seating Style",
+                        "SelectedValue": "Cluster"
+                    },
+                    {
+                        "Id": "3",
+                        "Label": "Hall Capacity",
+                        "SelectedValue": "101-150"
+                    },
+                    {
+                        "Id": "0",
+                        "Label": "Hall Area",
+                        "SelectedValue": "16435 Sqft"
+                    }
+                ]
+            }
+        ],
+        "Status": "true"
+        }
+    ]
+}

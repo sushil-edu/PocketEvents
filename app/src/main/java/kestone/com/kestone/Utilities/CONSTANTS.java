@@ -16,8 +16,8 @@ public class CONSTANTS {
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 101;
     private static String HOST_URL="http://pocketevents.in/eiab/";
 
-    //URL  http://mobileapps.kestoneapps.com/eiab
-    //URL2 http://mobileapps.kestoneapps.com/eiab
+    //URL  http://mobileapps.kestoneapps.com/eiab/RestServiceImpl.svc/GetContactUS
+    //URL2 http://pocketevents.in/eiab/RestServiceImpl.svc/getTheme
 
     //URLS
     public  static final String URL_GET_VENUE_FILTERS = HOST_URL + "RestServiceImpl.svc/getVenueFilters";

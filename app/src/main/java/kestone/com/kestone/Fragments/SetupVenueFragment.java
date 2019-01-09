@@ -1,5 +1,6 @@
 package kestone.com.kestone.Fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,13 +20,17 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -36,9 +41,12 @@ import kestone.com.kestone.MODEL.Design.REQUEST.DesignRequest;
 import kestone.com.kestone.MODEL.Design.RESPONSE.DesignResponse;
 import kestone.com.kestone.MODEL.SaveVenue.REQUEST.SaveVenueRequest;
 import kestone.com.kestone.MODEL.SaveVenue.RESPONSE.SaveEventResponse;
+import kestone.com.kestone.MODEL.Setup.Detail;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.Data;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.Details;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.SetupResponse;
+import kestone.com.kestone.MODEL.Setup.SetUpDetails;
+import kestone.com.kestone.MODEL.Setup.SetupAPIResult;
 import kestone.com.kestone.MODEL.Theme.REQUEST.DesignRequestTheme;
 import kestone.com.kestone.MODEL.Theme.RESPONSE.DesignResponseTheme;
 import kestone.com.kestone.MODEL.Theme.RESPONSE.ThemeResponse;
@@ -73,6 +81,7 @@ public class SetupVenueFragment extends Fragment implements SetupAdapter.SetupAd
     int selectedPosition = -1;
     TextView choose_city;
     ImageView hallIv;
+    SetUpDetails setUpDetails;
 
 
     @Nullable
@@ -158,14 +167,36 @@ public class SetupVenueFragment extends Fragment implements SetupAdapter.SetupAd
 
     @Override
     public void onDetailsClicked(List<Details> details, String[] images, String banner) {
-        //        Toast.makeText(getActivity(),"Details Click",Toast.LENGTH_LONG).show();
+        Log.e( "SetUp Name ", banner );
+//                Toast.makeText(getActivity(),"SetUp Name "+banner,Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(getActivity(), SetupActivity.class);
+//        intent.putExtra("data", (Serializable) details);
+//        intent.putExtra("images", images);
+//        intent.putExtra("banner", banner);
+//        startActivity(intent);
+    }
+
+    @Override
+    public void onSetUpDetails(String banner) {
+        List<Detail> details = null;
+        String[] images = new String[0];
+        setUpDetails = new Gson().fromJson( new ReadJson().loadJSONFromAsset( getActivity(), "get_setup_detail.json" ), SetUpDetails.class );
+        Log.e("API RESULT ", ""+setUpDetails.getSetupAPIResult().get( 0 ).getCode());
+        for(int d =0;d<setUpDetails.getSetupAPIResult().get( 0 ).getPayload().get( 0 ).getData().size();d++){
+            if(setUpDetails.getSetupAPIResult().get( 0 ).getPayload().get( 0 ).getData().get( d ).getSetupName().equalsIgnoreCase( banner)){
+                details=setUpDetails.getSetupAPIResult().get( 0 ).getPayload().get( 0 ).getData().get( d ).getDetails();
+                images= setUpDetails.getSetupAPIResult().get( 0 ).getPayload().get( 0 ).getData().get( d ).getPackageImages().toArray( new String[0] );
+                break;
+            }
+        }
+
         Intent intent = new Intent(getActivity(), SetupActivity.class);
-        intent.putExtra("data", (Serializable) details);
+        intent.putExtra("data", (Serializable) details );
         intent.putExtra("images", images);
         intent.putExtra("banner", banner);
         startActivity(intent);
-    }
 
+    }
 
     @Override
     public void onClick(View view) {
@@ -453,6 +484,23 @@ public class SetupVenueFragment extends Fragment implements SetupAdapter.SetupAd
 
     }
 
+    private class ReadJson {
+        public String loadJSONFromAsset(Activity activity, String fileName) {
+            String json=null;
+            try {
+                InputStream is = activity.getAssets().open( fileName);
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read( buffer );
+                is.close();
+                json = new String( buffer, "UTF-8" );
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return null;
+            }
+            return json;
+        }
+    }
 }
 
 //        10-06 14:06:16.555 29161-29161/kestone.com.kestone D/userId: 18

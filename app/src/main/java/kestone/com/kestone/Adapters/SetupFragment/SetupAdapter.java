@@ -78,7 +78,8 @@ public class SetupAdapter extends RecyclerView.Adapter<SetupAdapter.Holder> {
         holder.seeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setupAdapterCallBack.onDetailsClicked(data.get(position).getDetails(), data.get(position).getPackageImages(), data.get(position).getSetupName());
+//                setupAdapterCallBack.onDetailsClicked(data.get(position).getDetails(), data.get(position).getPackageImages(), data.get(position).getSetupName());
+                setupAdapterCallBack.onSetUpDetails( data.get( position ).getSetupName() );
             }
         });
 
@@ -102,6 +103,7 @@ public class SetupAdapter extends RecyclerView.Adapter<SetupAdapter.Holder> {
         void onSelectClick(Data data, int position);
 
         void onDetailsClicked(List<Details> details, String[] images, String banner);
+        void onSetUpDetails(String banner);
     }
 
     public void SelectSetup(int position) {

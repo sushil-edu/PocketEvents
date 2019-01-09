@@ -1,5 +1,6 @@
 package kestone.com.kestone.UI;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -19,14 +20,26 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,6 +174,7 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
     public void OnEventClicked(kestone.com.kestone.MODEL.GetSavedVenue.RESPONSE.Payload payload, int position) {
         // Toast.makeText(getApplicationContext(),payload.getEventId() + " " + storage.loadID(),Toast.LENGTH_LONG).show();
         if (position==0){
+            storage.storeCityID( payload.getCityID() );
         storage.storeEventID( payload.getEventId() );
         storage.storeCity( payload.getCityname() );
         storage.storeEventName( payload.getEventName() );
@@ -168,6 +182,7 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
         GetSavedFilter( payload.getEventId() );
         progressDialogue.show();
         }else if (position==1){
+            storage.storeCityID( payload.getCityID() );
             storage.storeEventID(payload.getEventId());
             storage.storeCity(payload.getCityname());
             storage.storeEventName(payload.getEventName());
@@ -176,6 +191,7 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             storage.storeHallID(payload.getHallId());
             Setup(payload.getEventId(),payload.getVenueId(),payload.getHallId(),payload.getCityID());
         }else if (position==2){
+            storage.storeCityID( payload.getCityID() );
             storage.storeEventID(payload.getEventId());
             storage.storeCity(payload.getCityname());
             storage.storeEventName(payload.getEventName());
@@ -186,6 +202,7 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
 //            Design(payload.getEventId());
             Design();
         }else if (position==3){
+            storage.storeCityID( payload.getCityID() );
             storage.storeEventID(payload.getEventId());
             storage.storeCity(payload.getCityname());
             storage.storeEventName(payload.getEventName());
@@ -267,6 +284,8 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
     @Override
     public void OnEmailClicked(String EventID) {
         Email( EventID, storage.loadID() );
+//        new SendMail( EventID, storage.loadID() );
+
     }
 
     @Override
@@ -466,7 +485,7 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             @Override
             public void onResponse(EventEmailResponse response) {
                 progressDialogue.dismiss();
-
+                Log.e("Response ", response.getResponse().get( 0 ).getCode());
                 GeneralUtils.CustomDialogSucessWithImage( AllEventsActivity.this, "Email Configuration Sent", "Event configuration has been sent to your Email ID" );
                 // GeneralUtils.ShowAlert(AllEventsActivity.this,"BOQ sent to Registered Email Account");
             }
@@ -478,6 +497,10 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
             }
         } );
         AppController.getInstance().addToRequestQueue( request );
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     void openPDF(String eventID, String userID) {
@@ -552,6 +575,7 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
     }
 
 }
+
 
 
 //FilterID 1 ; FilterValue 3; FilterID 13 ; FilterValue 45; FilterID 5 ; FilterValue 18; FilterID 6 ; FilterValue 20,21,22

@@ -30,7 +30,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_2sdp"
@@ -43,9 +43,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Novotel Mumbai"
+                    android:textAlignment="center"
+                    android:lines="2"
                     android:textColor="@color/textColorRed"
                     android:textSize="@dimen/Size14"
                     tools:ignore="MissingPrefix"
+                    android:layout_toLeftOf="@id/card_venue_isrecomended"
                     android:layout_marginLeft="@dimen/_15sdp"/>
 
                 <ImageView
@@ -56,7 +59,7 @@
                     android:layout_margin="@dimen/_5sdp"
                     android:src="@drawable/checked"
                     android:visibility="visible" />
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

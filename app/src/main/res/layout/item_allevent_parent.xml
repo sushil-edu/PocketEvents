@@ -63,7 +63,7 @@
                     fontPath="fonts/medium.ttf"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_height="wrap_content"
-                    android:lines="1"
+                    android:lines="2"
                     android:text="Mumbai | Novotel Mumbai | 17 Nov 2017"
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/Size9"

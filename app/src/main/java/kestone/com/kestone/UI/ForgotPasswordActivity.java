@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -15,9 +17,24 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
 
 import kestone.com.kestone.MODEL.ForgotPassword.REQUEST.ForegotPasswordRequest;
 import kestone.com.kestone.MODEL.ForgotPassword.RESPONSE.ForgotPasswordResponse;
@@ -27,6 +44,8 @@ import kestone.com.kestone.Utilities.GeneralUtils;
 import kestone.com.kestone.Utilities.GenericRequest;
 import qiu.niorgai.StatusBarCompat;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -139,12 +158,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
         AppController.getInstance().addToRequestQueue(request);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-
 
 }

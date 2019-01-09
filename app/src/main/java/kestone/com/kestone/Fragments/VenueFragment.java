@@ -37,6 +37,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -550,7 +551,6 @@ public class VenueFragment extends Fragment implements VenueSmallFilterAdapter.V
                                     secondTv.setTextColor( getResources().getColor( R.color.textColorWhite ) );
                                     thirdTv.setBackground( getResources().getDrawable( R.drawable.shape_circle_white ) );
                                     thirdTv.setTextColor( getResources().getColor( R.color.textColorBlack ) );
-                                } else if (Integer.parseInt( editable.toString() ) > 100) {
                                     firstTv.setBackground( getResources().getDrawable( R.drawable.shape_circle_white ) );
                                     firstTv.setTextColor( getResources().getColor( R.color.textColorBlack ) );
                                     secondTv.setBackground( getResources().getDrawable( R.drawable.shape_circle_white ) );
@@ -580,7 +580,7 @@ public class VenueFragment extends Fragment implements VenueSmallFilterAdapter.V
                                 if(Integer.parseInt(etCapacity.getText().toString()) == 50) {
 //                                    savedRange.setLowerLimit((Integer.parseInt(etCapacity.getText().toString()) - 25) + "");
 //                                    savedRange.setUpperLimit((Integer.parseInt(etCapacity.getText().toString()) + 25) + "");
-                                    savedRange.setLowerLimit(45 + "");
+                                    savedRange.setLowerLimit(45  + "");
                                     savedRange.setUpperLimit(50 + "");
                                 }else if(Integer.parseInt(etCapacity.getText().toString()) == 100) {
                                     savedRange.setLowerLimit(51 + "");
@@ -1334,6 +1334,10 @@ public class VenueFragment extends Fragment implements VenueSmallFilterAdapter.V
             }
         } );
         AppController.getInstance().addToRequestQueue( request );
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
 }

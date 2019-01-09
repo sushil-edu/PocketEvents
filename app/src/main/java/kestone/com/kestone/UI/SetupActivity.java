@@ -21,6 +21,8 @@ import io.fabric.sdk.android.services.common.CommonUtils;
 import kestone.com.kestone.Adapters.DialogueAdapters.SelectHallImageAdapter;
 import kestone.com.kestone.Adapters.SetupActivity.SetupDetailsAdapter;
 import kestone.com.kestone.MODEL.ContactUs.ContactUsResponse;
+import kestone.com.kestone.MODEL.Setup.Detail;
+import kestone.com.kestone.MODEL.Setup.Datum;
 import kestone.com.kestone.MODEL.Setup.RESPONSE.Details;
 import kestone.com.kestone.R;
 import kestone.com.kestone.Utilities.CONSTANTS;
@@ -34,7 +36,7 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
     TextView banner;
     ProgressDialog progressDialog;
     TextView gotIt, next, previous,contactUs;
-    List<Details> details;
+    List<Detail> details;
     String[] images;
     LinearLayoutManager layout;
     LinearLayoutManager layout2;
@@ -59,18 +61,21 @@ public class SetupActivity extends AppCompatActivity implements View.OnClickList
         recyclerViewPager = (RecyclerViewPager) findViewById(R.id.setup_image_rv);
 
         if (getIntent() != null) {
-            details = (List<Details>) getIntent().getSerializableExtra("data");
+//            details = (List<Details>) getIntent().getSerializableExtra("data");
+            details = (List<Detail>) getIntent().getSerializableExtra("data");
             images = getIntent().getStringArrayExtra("images");
             banner.setText(getIntent().getStringExtra("banner"));
-            if (images.length<=1){
-               next.setVisibility(View.INVISIBLE);
-               previous.setVisibility(View.INVISIBLE);
-            }
-            else {
-                next.setVisibility(View.VISIBLE);
-                previous.setVisibility(View.VISIBLE);
-            }
+//            if (images.length<=1){
+//               next.setVisibility(View.INVISIBLE);
+//               previous.setVisibility(View.INVISIBLE);
+//            }
+//            else {
+//                next.setVisibility(View.VISIBLE);
+//                previous.setVisibility(View.VISIBLE);
+//            }
         }
+
+
 
         SelectHallImageAdapter imageAdapter = new SelectHallImageAdapter(SetupActivity.this, images);
         layout = new LinearLayoutManager(SetupActivity.this, LinearLayoutManager.VERTICAL, false);

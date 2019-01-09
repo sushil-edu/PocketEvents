@@ -2,6 +2,7 @@ package kestone.com.kestone.Adapters.DialogueAdapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,7 @@ public class SelectHallImageAdapter extends RecyclerView.Adapter<SelectHallImage
 
     @Override
     public void onBindViewHolder(SelectHallImageAdapter.Holder holder, int position) {
-        Glide.with(mContext).load(images[position].trim()).placeholder(R.drawable.placeholder_big).crossFade().into(holder.image);
+        Glide.with(mContext).load(""+images[position].trim()).placeholder(R.drawable.placeholder_big).crossFade().into(holder.image);
 
     }
 

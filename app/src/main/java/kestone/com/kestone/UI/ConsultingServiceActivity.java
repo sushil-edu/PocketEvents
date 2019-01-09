@@ -32,6 +32,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -211,8 +212,6 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
         };
 
         autoCompleteTextView.addTextChangedListener(textWatcher);
-
-
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -442,64 +441,45 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
 
     void Pay(String amount) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String currentDateandTime = sdf.format(new Date());
+        SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
+        String currentDateandTime = sdf.format( new Date() );
 
         char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
         Random rnd = new Random();
-        StringBuilder sb = new StringBuilder((100000 + rnd.nextInt(900000)));
+        StringBuilder sb = new StringBuilder( (100000 + rnd.nextInt( 900000 )) );
         for (int i = 0; i < 5; i++)
-            sb.append(chars[rnd.nextInt(chars.length)]);
+            sb.append( chars[rnd.nextInt( chars.length )] );
 
-//
-        String TxnId = new StorageUtilities(this).loadID() + sb.toString();
+        String TxnId = new StorageUtilities( this ).loadID() + sb.toString();
 
-//        PayReqParams obj = new PayReqParams();
-//        MerchantParams params = new MerchantParams();
-//        params.setMerAmount(amount);
-//        params.setMerMID("308");
-//        params.setMerAppName("kestone");
-//        params.setMerAppUser("kestone");
-//        params.setMerCBUrl("android");
-//        params.setMerCurrency("INR");
-//        params.setMerCountry("IND");
-//        params.setMerOthersDtls("Other");
-//        params.setMerKey("1QfmTm5mKcpptjn3ehRpB+Od5LK09rGx8MNe6fkMZtc=");
-//        params.setMerTxnId(TxnId); // must be unique every time.
-//        params.setActionBarTitle(""); // Actionbar Title to show on PG Screen.
-//        params.setIsProductionEnv(false); // Default : false (for Test), true (for Production).
-//        params.setHaveBillingDtls(false); // Default : false (So not require to set object of BillingDtls in obj ).
-//        params.setHaveShippingDtls(false); // Default : false(So not require to set object of ShippingDtls in obj).
-//        obj.setMerchantParams(params);
-//
-//        PlutusInt.getInstance(ConsultingServiceActivity.this, obj);
+        Log.d( "amount", amount );
+        Log.d( "TxnId", TxnId );
+        Log.d( "date", currentDateandTime );
 
-        Log.d("amount", amount);
-        Log.d("TxnId", TxnId);
-        Log.d("date", currentDateandTime);
+        Intent newPayIntent = new Intent( ConsultingServiceActivity.this, PayActivity.class );
+        newPayIntent.putExtra( "merchantId", "61028" );
+        newPayIntent.putExtra( "txnscamt", "0" ); //Fixed. Must be 0
+        newPayIntent.putExtra( "loginid", "61028" );
+        newPayIntent.putExtra( "password", "KESTONE@123" );
+        newPayIntent.putExtra( "prodid", "MOBILEAPP" );
+        newPayIntent.putExtra( "txncurr", "INR" ); //Fixed. Must be ?INR?
+        newPayIntent.putExtra( "clientcode", "007" );
+        newPayIntent.putExtra( "custacc", "100000036600" );
+        newPayIntent.putExtra( "amt", amount+".00" );//Should be 2 decimal number i.e 51.00
+        newPayIntent.putExtra( "txnid", TxnId );
+        newPayIntent.putExtra( "date", currentDateandTime );//Should be in same format
+//        newPayIntent.putExtra("bankid", “2001”); //Should be valid bank id // Optional
+        newPayIntent.putExtra( "discriminator", "All" ); // NB or IMPS or All ONLY (value should be same as commented)
+        newPayIntent.putExtra( "signature_request", "73f054c2da9db53e7b" );
+        newPayIntent.putExtra( "signature_response", "720c3d760227ba97ea" );
 
-        Intent newPayIntent = new Intent(ConsultingServiceActivity.this,PayActivity.class);
-        newPayIntent.putExtra("merchantId", "61028");
-        newPayIntent.putExtra("txnscamt", "0"); //Fixed. Must be 0
-        newPayIntent.putExtra("loginid", "61028");
-        newPayIntent.putExtra("password", "KESTONE@123");
-        newPayIntent.putExtra("prodid", "MOBILEAPP");
-        newPayIntent.putExtra("txncurr", "INR"); //Fixed. Must be ?INR?
-        newPayIntent.putExtra("clientcode", "007");
-        //newPayIntent.putExtra("custacc", "100000036600");
-        newPayIntent.putExtra("custacc", "100000036600");
-        newPayIntent.putExtra("amt", amount + ".00");//Should be 2 decimal number i.e 51.00
-        //newPayIntent.putExtra("amt", "50" + ".000");//Should be 3 decimal number i.e 51.000
-        newPayIntent.putExtra("txnid", TxnId);
-        newPayIntent.putExtra("date", currentDateandTime);//Should be in same format
-        //newPayIntent.putExtra("bankid", "9"); //Should be valid bank id // Optional
-        newPayIntent.putExtra("discriminator", "ALL"); // NB or IMPS or All ONLY (value should be same as commented)
-        newPayIntent.putExtra("signature_request", "73f054c2da9db53e7b");
-        newPayIntent.putExtra("signature_response", "720c3d760227ba97ea");
-//        newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param");  // FOR UAT (Testing)
-        newPayIntent.putExtra("ru", "https://payment.atomtech.in/mobilesdk/param");  // FOR PRODUCTION
-        startActivityForResult(newPayIntent, 1);
+        //use below Production url only with Production "Library-MobilePaymentSDK", Located inside PROD folder
+        newPayIntent.putExtra( "ru", "https://payment.atomtech.in/mobilesdk/param" );
 
+        //use below UAT url only with UAT "Library-MobilePaymentSDK", Located inside UAT folder
+//        newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param"); // FOR UAT (Testing)
+
+        startActivityForResult( newPayIntent, 1 );
     }
 
 
@@ -510,65 +490,70 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
             if (data != null) {
                 Log.d("Datastatus", data.getStringExtra("status"));
                 Log.d("Data", Arrays.toString(data.getStringArrayExtra("responseKeyArray")));
-                Log.d("Data", Arrays.toString(data.getStringArrayExtra("responseValueArray")));
-
+                Log.e("DataValue ", Arrays.toString(data.getStringArrayExtra("responseValueArray")));
 
                 String message = data.getStringExtra("status");
-                String[] resKey = data.getStringArrayExtra("responseKeyArray");
-                String[] resValue = data.getStringArrayExtra("responseValueArray");
-                if (resKey != null && resValue != null) {
-                    for (int i = 0; i < resKey.length; i++)
-                        System.out.println("  " + i + " resKey : " + resKey[i] + " resValue : " + resValue[i]);
-                }
-
-                try {
-
-
-                    String RESVAL = resValue[2].toString();
-                    GeneralUtils.log("resValuetst", RESVAL);
-                    if (RESVAL.equals("null")) {
-                        switch (resValue[19].toString()) {
-                            case "Ok":
-                                if (myData != null)
-                                    transationID = resValue[19];
-                                // Payment(venueAmount,setupAmount,designAmount,artistAmount,activitiesAmount,giveawayAmount,eventID,storage.loadID(),String.valueOf(sum+400),"400","12");
-                                PaymentSuccess(storage.loadID(), eventID, GstNo, transationID, venueAmount, setupAmount, designAmount, artistAmount,
-                                        activitiesAmount, giveawayAmount, "", myData.get(0).getBaseAmount(), myData.get(0).getCGSTTax(),
-                                        myData.get(0).getCGSTTaxAmount(), myData.get(0).getSGSTTax(), myData.get(0).getSGSTTaxAmount(),
-                                        myData.get(0).getIGSTTax(), myData.get(0).getIGSTTaxAmount(), myData.get(0).getTaxAmount(), myData.get(0).getGrandTotalAmount());
-                                break;
-                            case "F":
-                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transaction Failure");
-                                break;
-                            default:
-                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transaction Cancelled by User.");
-                                break;
-                        }
-
-                    } else {
-                        switch (resValue[22].toString()) {
-                            case "Ok":
-                                if (myData != null)
-                                    transationID = resValue[19];
-                                // Payment(venueAmount,setupAmount,designAmount,artistAmount,activitiesAmount,giveawayAmount,eventID,storage.loadID(),String.valueOf(sum+400),"400","12");
-                                PaymentSuccess(storage.loadID(), eventID, GstNo, transationID, venueAmount, setupAmount, designAmount, artistAmount,
-                                        activitiesAmount, giveawayAmount, "", myData.get(0).getBaseAmount(), myData.get(0).getCGSTTax(),
-                                        myData.get(0).getCGSTTaxAmount(), myData.get(0).getSGSTTax(), myData.get(0).getSGSTTaxAmount(),
-                                        myData.get(0).getIGSTTax(), myData.get(0).getIGSTTaxAmount(), myData.get(0).getTaxAmount(), myData.get(0).getGrandTotalAmount());
-                                break;
-
-                            case "F":
-                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, resValue[21].toString());
-                                break;
-                            default:
-                                GeneralUtils.ShowAlert(ConsultingServiceActivity.this, "Transaction Cancelled by User.");
-                                break;
-                        }
+                if(message.contains("Transaction Successful!"  )) {
+                    String[] resKey = data.getStringArrayExtra( "responseKeyArray" );
+                    String[] resValue = data.getStringArrayExtra( "responseValueArray" );
+                    if (resKey != null && resValue != null) {
+                        for (int i = 0; i < resKey.length; i++)
+                            System.out.println( "  " + i + " resKey : " + resKey[i] + " resValue : " + resValue[i] );
                     }
 
+                    try {
+                        String RESVAL = resValue[2].toString();
+                        GeneralUtils.log( "resValuetst", RESVAL );
+                        if (RESVAL.equals( "null" )) {
+                            Log.e("Transaction ","NB");
+                            switch (resValue[20].toString()) {
+                                case "success_00":
+                                    if (myData != null)
+                                        transationID = resValue[17];
+                                    // Payment(venueAmount,setupAmount,designAmount,artistAmount,activitiesAmount,giveawayAmount,eventID,storage.loadID(),String.valueOf(sum+400),"400","12");
+                                    PaymentSuccess( storage.loadID(), eventID, GstNo, transationID, venueAmount, setupAmount, designAmount, artistAmount,
+                                            activitiesAmount, giveawayAmount, "", myData.get( 0 ).getBaseAmount(), myData.get( 0 ).getCGSTTax(),
+                                            myData.get( 0 ).getCGSTTaxAmount(), myData.get( 0 ).getSGSTTax(), myData.get( 0 ).getSGSTTaxAmount(),
+                                            myData.get( 0 ).getIGSTTax(), myData.get( 0 ).getIGSTTaxAmount(), myData.get( 0 ).getTaxAmount(), myData.get( 0 ).getGrandTotalAmount() );
+                                    break;
+                                case "F_05":
+                                    GeneralUtils.ShowAlert( ConsultingServiceActivity.this, "Transaction Failure" );
+                                    break;
+                                default:
+                                    GeneralUtils.ShowAlert( ConsultingServiceActivity.this, "Transaction Cancelled by User." );
+                                    break;
+                            }
 
-                } catch (Exception e) {
-                    GeneralUtils.ShowAlert(ConsultingServiceActivity.this, data.getStringExtra("status"));
+                        } else {
+                            Log.e("Transaction ","Card");
+                            switch (resValue[23].toString()) {
+                                case "success_00":
+                                    if (myData != null)
+                                        transationID = resValue[20];
+                                    // Payment(venueAmount,setupAmount,designAmount,artistAmount,activitiesAmount,giveawayAmount,eventID,storage.loadID(),String.valueOf(sum+400),"400","12");
+                                    PaymentSuccess( storage.loadID(), eventID, GstNo, transationID, venueAmount, setupAmount, designAmount, artistAmount,
+                                            activitiesAmount, giveawayAmount, "", myData.get( 0 ).getBaseAmount(), myData.get( 0 ).getCGSTTax(),
+                                            myData.get( 0 ).getCGSTTaxAmount(), myData.get( 0 ).getSGSTTax(), myData.get( 0 ).getSGSTTaxAmount(),
+                                            myData.get( 0 ).getIGSTTax(), myData.get( 0 ).getIGSTTaxAmount(), myData.get( 0 ).getTaxAmount(), myData.get( 0 ).getGrandTotalAmount() );
+                                    break;
+
+                                case "F_05":
+                                    GeneralUtils.ShowAlert( ConsultingServiceActivity.this, "Transaction Failure" );
+                                    //GeneralUtils.ShowAlert( ConsultingServiceActivity.this, resValue[21].toString() );
+                                    break;
+                                default:
+                                    GeneralUtils.ShowAlert( ConsultingServiceActivity.this, "Transaction Cancelled by User." );
+                                    break;
+                            }
+                        }
+
+
+                    } catch (Exception e) {
+                        GeneralUtils.ShowAlert( ConsultingServiceActivity.this, data.getStringExtra( "status" ) );
+                    }
+                }else {
+                    GeneralUtils.ShowAlert( ConsultingServiceActivity.this, data.getStringExtra( "status" ) );
+//                    GeneralUtils.ShowAlert( ConsultingServiceActivity.this, "Transaction Cancelled by User." );
                 }
             }
         }
@@ -609,6 +594,10 @@ public class ConsultingServiceActivity extends AppCompatActivity implements Cons
         });
 
         AppController.getInstance().addToRequestQueue(request);
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
     }
 
     @Override
