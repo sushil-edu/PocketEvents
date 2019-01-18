@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context="kestone.com.kestone.UI.AboutConsultingServices">
+    tools:context="kestone.com.pocketevents.UI.AboutConsultingServices">
 
     <LinearLayout
         android:id="@+id/venue_header"

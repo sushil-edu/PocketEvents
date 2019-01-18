@@ -7,7 +7,7 @@
     android:background="@mipmap/bg"
     android:fitsSystemWindows="true"
     android:paddingBottom="@dimen/_20sdp"
-    tools:context="kestone.com.kestone.UI.TutorialActivity"
+    tools:context="kestone.com.pocketevents.UI.TutorialActivity"
 
     >
 

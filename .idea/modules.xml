@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ATOMPaymentSDK/ATOMPaymentSDK.iml" filepath="$PROJECT_DIR$/ATOMPaymentSDK/ATOMPaymentSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/ATOMUATPaymentSDK/ATOMUATPaymentSDK.iml" filepath="$PROJECT_DIR$/ATOMUATPaymentSDK/ATOMUATPaymentSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/ATOMlibraryMobilePaymentSDK/ATOMlibraryMobilePaymentSDK.iml" filepath="$PROJECT_DIR$/ATOMlibraryMobilePaymentSDK/ATOMlibraryMobilePaymentSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/Kestone JAN Backup.iml" filepath="$PROJECT_DIR$/Kestone JAN Backup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PaymentSDK/PaymentSDK.iml" filepath="$PROJECT_DIR$/PaymentSDK/PaymentSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraryMobilePaymentSDK/libraryMobilePaymentSDK.iml" filepath="$PROJECT_DIR$/libraryMobilePaymentSDK/libraryMobilePaymentSDK.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraryMobilePaymentSDK/libraryMobilePaymentSDK.iml" filepath="$PROJECT_DIR$/libraryMobilePaymentSDK/libraryMobilePaymentSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/plutuspg-release/plutuspg-release.iml" filepath="$PROJECT_DIR$/plutuspg-release/plutuspg-release.iml" />
     </modules>
   </component>

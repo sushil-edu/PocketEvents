@@ -10,7 +10,7 @@
     android:focusableInTouchMode="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     app:theme="@style/AppTheme.NoActionBar"
-    tools:context="kestone.com.kestone.UI.CitySearchActivity"
+    tools:context="kestone.com.pocketevents.UI.CitySearchActivity"
     tools:showIn="@layout/app_bar_city_search">
 
     <TextView
@@ -56,7 +56,7 @@
                     android:layout_weight="0.3"
                     android:textColorHint="@color/textColorWhite">
 
-                    <kestone.com.kestone.Utilities.DelayAutoCompleteTextView
+                    <kestone.com.pocketevents.Utilities.DelayAutoCompleteTextView
                         android:id="@+id/citySearch_et_enterCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

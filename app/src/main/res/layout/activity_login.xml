@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kestone.com.kestone.UI.LoginActivity"
+    tools:context="kestone.com.pocketevents.UI.LoginActivity"
     android:background="@mipmap/bg"
     android:paddingTop="20dp"
     android:paddingLeft="60dp"

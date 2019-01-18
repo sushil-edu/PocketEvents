@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kestone.com.kestone.UI.VideoPlayerActivityNew">
+    tools:context="kestone.com.pocketevents.UI.VideoPlayerActivityNew">
     <VideoView
         android:id="@+id/iv_video_view_play"
         android:layout_alignParentTop="true"

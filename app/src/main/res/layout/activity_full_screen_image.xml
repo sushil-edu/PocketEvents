@@ -7,13 +7,13 @@
     android:fitsSystemWindows="true"
     android:animateLayoutChanges="true"
     android:background="@color/textColorBlack"
-    tools:context="kestone.com.kestone.UI.FullScreenImage">
+    tools:context="kestone.com.pocketevents.UI.FullScreenImage">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <kestone.com.kestone.Utilities.ZoomImageView
+        <kestone.com.pocketevents.Utilities.ZoomImageView
             android:layout_width="match_parent"
             android:id="@+id/imageView"
             android:layout_height="match_parent"

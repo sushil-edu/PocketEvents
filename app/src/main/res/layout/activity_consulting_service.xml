@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context="kestone.com.kestone.UI.VenueFilterActivity">
+    tools:context="kestone.com.pocketevents.UI.VenueFilterActivity">
 
     <LinearLayout
         android:id="@+id/venue_header"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/textColorGrey">
 
-                <kestone.com.kestone.Utilities.DelayAutoCompleteTextView
+                <kestone.com.pocketevents.Utilities.DelayAutoCompleteTextView
                     android:id="@+id/search_event"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -43,5 +43,6 @@
     <string name="payment_proceed_lable2">Individual</string>
     <string name="payment_proceed_gst_number">Enter GST Number</string>
     <string name="termsAndCondition">Left aligned running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here.\n \n Left aligned running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms andconditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here.</string>
+    <string name="notification_error_ssl_cert_invalid">Invalid ssl certificate</string>
 
 </resources>

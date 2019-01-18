@@ -7,7 +7,7 @@
     android:background="@mipmap/bg"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="kestone.com.kestone.UI.VenueFilterActivity">
+    tools:context="kestone.com.pocketevents.UI.VenueFilterActivity">
 
     <LinearLayout
         android:id="@+id/venue_header"

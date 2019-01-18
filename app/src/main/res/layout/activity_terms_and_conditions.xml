@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context="kestone.com.kestone.UI.TermsAndConditions">
+    tools:context="kestone.com.pocketevents.UI.TermsAndConditions">
 
     <LinearLayout
         android:id="@+id/venue_header"
@@ -21,6 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tvTitle"
                 fontPath="fonts/medium.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,8 +29,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:text="Terms and Conditions
-"
+                android:text="Terms and Conditions"
                 android:textColor="@color/textColorWhite"
                 android:textSize="@dimen/Size12"
                 android:textStyle="bold"
