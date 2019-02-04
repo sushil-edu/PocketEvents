@@ -15,4 +15,6 @@
     <color name="selection_red">#a0e82a2a</color>
     <color name="colorRedDark">#e82a2a</color>
     <color name="text_defaul">#808080</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

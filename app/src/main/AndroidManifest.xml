@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".UI.AppController"
@@ -23,12 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:node="replace">
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="c36e2abad2159a30c2d650acbb93479cf2e2f992" />
+
+        <!-- <meta-data -->
+        <!-- android:name="io.fabric.ApiKey" -->
+        <!-- android:value="c36e2abad2159a30c2d650acbb93479cf2e2f992" /> -->
 
         <provider
             android:name=".Utilities.GenericFileProvider"
@@ -40,11 +39,11 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <!--<service android:name=".MyFirebaseInstanceIDService">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
+        <!-- <service android:name=".MyFirebaseInstanceIDService"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
 
         <activity
             android:name=".UI.SplashScreenActivity"
@@ -73,7 +72,7 @@
             android:name=".UI.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".UI.LoginActivity"
             android:screenOrientation="portrait"
@@ -148,59 +147,110 @@
             android:name=".UI.VideoPlayerActivityNew"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.FullScreenImage"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.ContactUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.MyEarningActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.RewardsAndReferrals"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.TermsAndConditions"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.PrivacyAndPolicy"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.ChangePasswrodActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
-
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".UI.AboutConsultingServices"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
-
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.atom.mobilepaymentsdk.PayActivity"
-            android:label="@string/app_name" >
-        </activity>
+            android:label="@string/app_name" />
+        <activity android:name=".Utilities.WebViewActivity"
+            android:label="@string/app_name"/>
 
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!--
+         Optionally, register AnalyticsReceiver and AnalyticsService to support background
+         dispatching on non-Google Play devices
+        -->
+        <receiver
+            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!--
+             Optionally, register CampaignTrackingReceiver and CampaignTrackingService to enable
+             installation campaign reporting
+        -->
+        <receiver
+            android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+
+        <!-- <service android:name="com.google.android.gms.measurement.AppMeasurementService" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="false"/> -->
+
+
+        <!-- <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" -->
+        <!-- android:enabled="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.android.gms.measurement.UPLOAD" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
+
+        <!-- <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" /> -->
+        <!-- <meta-data -->
+        <!-- android:name="firebase_analytics_collection_deactivated" -->
+        <!-- android:value="false" /> -->
     </application>
 
 </manifest>

@@ -45,4 +45,8 @@
     <string name="termsAndCondition">Left aligned running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here.\n \n Left aligned running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here. Running text for Terms andconditions for Pocket Events mobile app will come here. Running text for Terms and conditions for Pocket Events mobile app will come here.</string>
     <string name="notification_error_ssl_cert_invalid">Invalid ssl certificate</string>
 
+    <string name="title_activity_web_view">WebViewActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

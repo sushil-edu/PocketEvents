@@ -8,7 +8,7 @@
 
     <!--  The property id associated with this analytics tracker -->
     <!--<string name="ga_trackingId">UA-119469500-1</string>-->
-    <string name="ga_trackingId">UA-132215892-1</string>
+    <string name="ga_trackingId">UA-133437276-1</string>
 
     <string name="ga_sampleFrequency">100.0</string>
 

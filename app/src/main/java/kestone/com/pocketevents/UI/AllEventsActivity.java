@@ -55,6 +55,7 @@ import kestone.com.pocketevents.Utilities.GeneralUtils;
 import kestone.com.pocketevents.Utilities.GenericRequest;
 import kestone.com.pocketevents.Utilities.PrefEntities;
 import kestone.com.pocketevents.Utilities.StorageUtilities;
+import kestone.com.pocketevents.Utilities.WebViewActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class AllEventsActivity extends AppCompatActivity implements AllEventAdapter.AllEventAdapterCallBack, Serializable {
@@ -383,7 +384,7 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
 //            }
 //        } );
 //
-//        AppController.getInstance().addToRequestQueue( request );
+//        Application.getInstance().addToRequestQueue( request );
 //    }
 
     void Design() {
@@ -493,16 +494,14 @@ public class AllEventsActivity extends AppCompatActivity implements AllEventAdap
                 .appendQueryParameter( "UserID", userID )
                 .build().toString();
 
-        Intent intent = new Intent( AllEventsActivity.this, TermsAndConditions.class );
-        intent.putExtra( "title", "View Configuration" );
+        Intent intent = new Intent( AllEventsActivity.this, WebViewActivity.class );
+//        intent.putExtra( "title", "View Configuration" );
         intent.putExtra( "url", uri );
         startActivity( intent );
 
 //        Intent intent = new Intent( Intent.ACTION_VIEW );
-////        http://pocketevents.in/eiab/M_EmailView.aspx?EventID=3371&UserID=1021
-
+//        http://pocketevents.in/eiab/M_EmailView.aspx?EventID=3371&UserID=1021
 //        Log.e( "Configuration ", uri );
-//
 //        intent.setDataAndType( Uri.parse( uri ), "text/html");
 //        startActivity(intent);
     }
